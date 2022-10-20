@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
-import 'package:loan_app/views/onboarding/onboarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

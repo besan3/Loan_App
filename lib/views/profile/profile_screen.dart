@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/controllers/homeController.dart';
 import 'package:loan_app/shared/components/components.dart';
@@ -27,29 +28,33 @@ appBar: AppBar(
 body: Column(
   children: [
     Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding:  EdgeInsets.all(20.0.h.w),
       child: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
 
           Column(
             children: [
-              SizedBox(height: 60,)
+              SizedBox(height: 60.h,)
 ,              Container(
-                height: 458,
+                height: 458.h,
                 child: Card(
                   child: Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Expanded(child: ListView.builder(itemBuilder: (context,index)=>
-                    ListTile(
-                        title: Text(profilecontroller.profileInfoTitels[index]),
-                        subtitle: Text(profilecontroller.profileInfo[index]),
-                      
-                    ),
-                    physics: BouncingScrollPhysics(),
-                    itemCount: profilecontroller.profileInfo.length,
-                    ),
-                    
+                    padding:  EdgeInsets.all(30.0.h.w),
+                    child: Column(
+                      children: [
+                        Expanded(child: ListView.builder(itemBuilder: (context,index)=>
+                        ListTile(
+                            title: Text(profilecontroller.profileInfoTitels[index]),
+                            subtitle: Text(profilecontroller.profileInfo[index]),
+
+                        ),
+                        physics: BouncingScrollPhysics(),
+                        itemCount: profilecontroller.profileInfo.length,
+                        ),
+
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -57,7 +62,7 @@ body: Column(
             ],
           ),
         Container(
-          width: 120,height: 120,
+          width: 120.w,height: 120.h,
           
           child: Image.asset('assets/images/profile.png',fit: BoxFit.cover,))
         ],
@@ -65,8 +70,8 @@ body: Column(
     ),
 
     Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: defaultButton('Send Message'),
+      padding:  EdgeInsets.all(20.0.h.w),
+      child: DefaultCard(text: 'Send Message'),
     )
   ],
 ),

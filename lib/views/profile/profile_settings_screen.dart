@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
@@ -33,29 +34,29 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
         ),
         body: SafeArea(
           top: true,
-          minimum: EdgeInsets.only(top: 30),
+          minimum: EdgeInsets.only(top: 30.h),
           child: Column(
             children: [
               Expanded(
                   child: Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(20.h.w),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(55)),
+                        BorderRadius.vertical(top: Radius.circular(55.r)),
                     color: backgroundColor),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     InkWell(
                       onTap: () => Get.bottomSheet(
                           StatefulBuilder(
                             builder: (context, setState) => Column(
                               children: [
-                                const SizedBox(height: 20),
+                                 SizedBox(height: 20.h),
                                 ListTile(
                                     title: Text('System default '),
                                     leading: Radio<Theme>(
@@ -119,11 +120,11 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(60)))),
+                                  top: Radius.circular(60.r)))),
                       child: ListTile(
                         leading: CircleAvatar(
                             child: Icon(Icons.dark_mode_outlined),
-                            radius: 40,
+                            radius: 40.r,
                             backgroundColor: Color(0xffE8F0FF)),
                         title: Text('Theme',
                             style: bigTextStyle.copyWith(
@@ -136,7 +137,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                               color: theme.name == Theme.Dark
                                   ? Colors.white
                                   : primaryTextColor,
-                              fontSize: 16),
+                              fontSize: 16.sp),
                         ),
                       ),
                     ),
@@ -145,7 +146,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           StatefulBuilder(
                             builder: (context, setState) => Column(
                               children: [
-                                const SizedBox(height: 20),
+                                 SizedBox(height: 20.h),
                                 ListTile(
                                     title: Text('System default '),
                                     leading: Radio<Language>(
@@ -203,11 +204,11 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(60)))),
+                                  top: Radius.circular(60.r)))),
                       child: ListTile(
                         leading: CircleAvatar(
                             child: Icon(Icons.language_outlined),
-                            radius: 40,
+                            radius: 40.r,
                             backgroundColor: Color(0xffE8F0FF)),
                         title: Text('Language',
                             style: bigTextStyle.copyWith(
@@ -220,7 +221,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                               color: theme.name == Theme.Dark
                                   ? Colors.white
                                   : primaryTextColor,
-                              fontSize: 16),
+                              fontSize: 16.sp),
                         ),
                       ),
                     )

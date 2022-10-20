@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/controllers/homeController.dart';
+import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/views/profile/profile_screen.dart';
 
 import '../../shared/components/components.dart';
@@ -24,68 +26,70 @@ class RequestScreen extends StatelessWidget {
               ),
               body: SafeArea(
                   top: true,
-                  minimum: EdgeInsets.only(top: 30),
+                  minimum: EdgeInsets.only(top: 30.h),
                   child: Column(children: [
                     Expanded(
                         child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(20.h.w),
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(55)),
+                              BorderRadius.vertical(top: Radius.circular(55.r)),
                           color: backgroundColor),
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                                                                       SizedBox(height: 30,),
+                      padding:  EdgeInsets.all(20.0.h.w),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                                                                         SizedBox(height: 30.h,),
 
-                          Text('Phone number',
-                                              style: TextStyle(color: Color(0xff474F55),
-                                              fontSize: 16,fontWeight: FontWeight.w400
-                                              ),),
-                                               SizedBox(height: 10,),
-                                              defaultTextForm(textEditingController: TextEditingController(),
-                                                       textInputType: TextInputType.phone, 
-                                                       validator:(value) => 'Uncorrect Name',
-                                                       label: 'Enter your Phone number'),
-                                                        SizedBox(height: 15,),
-                                               
-                                     
-                                               Text('Deadline',
-                                              style: TextStyle(color: Color(0xff474F55),
-                                              fontSize: 16,fontWeight: FontWeight.w400
-                                              ),),
-                                               SizedBox(height: 10,),
-                                              defaultTextForm(textEditingController: TextEditingController(),
-                                                       textInputType: TextInputType.text, 
-                                                       validator:(value) => 'Uncorrect Name',
-                                                       label: 'dd/mm/yyyy',
+                            Text('Phone number',
+                                                style: TextStyle(color: Color(0xff474F55),
+                                                fontSize: 16,fontWeight: FontWeight.w400
+                                                ),),
+                                                 SizedBox(height: 10.h,),
+                                                DefaultTextForm(textEditingController: TextEditingController(),
+                                                         textInputType: TextInputType.phone,
+                                                         validator:(value) => 'Uncorrect Name',
+                                                         label: 'Enter your Phone number'),
+                                                          SizedBox(height: 15.h,),
+
+
+                                                 Text('Deadline',
+                                                style: TextStyle(color: Color(0xff474F55),
+                                                fontSize: 16.sp,fontWeight: FontWeight.w400
+                                                ),),
+                                                 SizedBox(height: 10.h,),
+                                                DefaultTextForm(textEditingController: TextEditingController(),
+                                                         textInputType: TextInputType.text,
+                                                         validator:(value) => 'Uncorrect Name',
+                                                         label: 'dd/mm/yyyy',
+                                                           hasPrefixIcon: true,
+                                                         iconData: Icons.calendar_month_outlined),
+                                                          SizedBox(height: 15.h,),
+
+
+                                                 Text('Amount',
+                                                style: TextStyle(color: Color(0xff474F55),
+                                                fontSize: 16.sp,fontWeight: FontWeight.w400
+                                                ),),
+                                                 SizedBox(height: 10.h,),
+                                                DefaultTextForm(textEditingController: TextEditingController(),
+                                                         textInputType: TextInputType.text,
+                                                         validator:(value) => 'Uncorrect Name',
+                                                         label: '1.200',
                                                          hasPrefixIcon: true,
-                                                       iconData: Icons.calendar_month_outlined),
-                                                        SizedBox(height: 15,),
-                                     
-                                    
-                                               Text('Amount',
-                                              style: TextStyle(color: Color(0xff474F55),
-                                              fontSize: 16,fontWeight: FontWeight.w400
-                                              ),),
-                                               SizedBox(height: 10,),
-                                              defaultTextForm(textEditingController: TextEditingController(),
-                                                       textInputType: TextInputType.text, 
-                                                       validator:(value) => 'Uncorrect Name',
-                                                       label: '1.200',
-                                                       hasPrefixIcon: true,
-                                                       iconData: Icons.monetization_on_outlined
-                                                       ),
-                                               SizedBox(height: 40,),
+                                                         iconData: Icons.monetization_on_outlined
+                                                         ),
+                                                 SizedBox(height: 40.h,),
 
-                                               //        defaultButton( 'Confirm',context: context,screen: ProfileScreen())
-                        ],
+                                                       DefaultButton( text: 'Confirm',screen: RoutesClass.getProfileRoute())
+                          ],
+                        ),
                       ),
                     ),),
-                    
+
                     ),
 
 

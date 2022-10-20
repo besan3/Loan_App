@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/controllers/homeController.dart';
 import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
 import 'package:loan_app/shared/components/styles/texts.dart';
-import 'package:loan_app/shared/constants.dart';
-import 'package:loan_app/views/home/request_screen.dart';
 
 import '../../models/loan_model.dart';
 
@@ -29,63 +28,63 @@ class LoanScreen extends StatelessWidget {
         ),
         body: SafeArea(
           top: true,
-          minimum: EdgeInsets.only(top: 30),
+          minimum: EdgeInsets.only(top: 30.h),
           child: Column(
             children: [
-             
+
               Expanded(
                   child: Container(
-             
-                padding: EdgeInsets.all(20),
+
+                padding: EdgeInsets.all(20.h.w),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(55)),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(55.r)),
                     color: backgroundColor),
-                    
+
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 40),
+                          padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 40.h),
                           child: ListTile(
                             title: Text('John Doe',style: bigTextStyle.copyWith(color: primaryTextColor),),
                             subtitle: Text('1234567890'),
                             trailing: Image.asset('assets/images/profile.png',
-                            width: 65,height: 65,
+                            width: 65.w,height: 65.h,
                             ),
                           ),
                         ),
 
-                        Center(child: Text('2.000\$',style: bigTextStyle.copyWith(fontSize: 28,color: Colors.black),)),
-                        SizedBox(height: 10,),
-                                                Center(child: Text('12.Nov.2022',style: smallTextStyle.copyWith(fontSize: 16,color: Color(0xff767D88)),)),
-                        SizedBox(height: 30,),
-                       
+                        Center(child: Text('2.000\$',style: bigTextStyle.copyWith(fontSize: 28.sp,color: Colors.black),)),
+                        SizedBox(height: 10.h,),
+                                                Center(child: Text('12.Nov.2022',style: smallTextStyle.copyWith(fontSize: 16.sp,color: Color(0xff767D88)),)),
+                        SizedBox(height: 30.h,),
+
                         Text('Transaction ',style: bigTextStyle.copyWith(color: primaryTextColor)),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 20.h,),
 
                         Expanded(child: ListView.separated(
                           separatorBuilder: (context, index) => Divider(
                             thickness: 1,
                           ),
                           itemBuilder: ((context, index) =>
-                        defaultLoanCard(LoanModel(
+                        DefaultLoanCard(LoanModel(
                           icon: loancontroller.loanIcons[index],
                           number: '1234567890',
                           date: 'December 28, 2021',
                           amount: '\$100.00'
 
                         ),
-                        
+
                         )
 
-                        
+
 
                          ),
                          itemCount: loancontroller.loanIcons.length,)),
-                                                 SizedBox(height: 30,),
+                                                 SizedBox(height: 30.h,),
 
-defaultButton( 'Pay your loan',context: context,screen: RoutesClass.getRequestRoute()),
+DefaultButton(text: 'Pay your loan',screen: RoutesClass.getRequestRoute()),
                       ],
                     ),
                     ),

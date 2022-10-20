@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/components.dart';
@@ -24,12 +26,12 @@ class PersonalDetailsScreen extends StatelessWidget {
             onPressed: (() => Navigator.pop(context)),
           ),
         
-        title: Text('My Profile',style: TextStyle(color: primaryTextColor,fontSize: 20,fontWeight: FontWeight.w600),),
+        title: Text('My Profile',style: TextStyle(color: primaryTextColor,fontSize: 20.sp,fontWeight: FontWeight.w600),),
         backgroundColor: Color.fromARGB(255, 252, 250, 250),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding:  EdgeInsets.all(20.0.h.w),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -37,99 +39,99 @@ class PersonalDetailsScreen extends StatelessWidget {
               children: [
                 Center(
                   child: CircleAvatar(
-                    radius: 50,
+                    radius: 50.r,
                     backgroundColor: Colors.grey.shade400,
                     child: Image.asset('assets/images/Path 66.png',
-                    width: 15,
-                    height: 15,),
+                    width: 15.w,
+                    height: 15.h,),
                   ),
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 16.h,),
           
           
                 Text('John Doe',
                       style: TextStyle(
                         color: primaryTextColor,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w600
                       ),
                       ),
                        Text('1234567890',
                       style: TextStyle(
                         color: Color(0xff95989A),
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w400
                       ),
                       ),
-                                    SizedBox(height: 25,),
+                                    SizedBox(height: 25.h,),
           
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                                      padding:  EdgeInsets.symmetric(horizontal: 15.w),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('Full Name',
                                           style: TextStyle(color: Color(0xff474F55),
-                                          fontSize: 16,fontWeight: FontWeight.w400
+                                          fontSize: 16.sp,fontWeight: FontWeight.w400
                                           ),),
-                                             SizedBox(height: 10,),
+                                             SizedBox(height: 10.h,),
                                    
                Row(
-                
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
                    Container(
-                    width: 148,
-                    height: 54,
-                     child: defaultTextForm(textEditingController: TextEditingController(),
+                    width: 148.w,
+                    height: 54.h,
+                     child: DefaultTextForm(textEditingController: TextEditingController(),
                                                        textInputType: TextInputType.text, 
                                                        validator:(value) => 'Uncorrect Name',
                                                        label: 'First Name'),
                    ),
-                   SizedBox(width: 10,),
+
                     Container(
-                width: 148,
-                height: 54,
-                 child: defaultTextForm(textEditingController: TextEditingController(),
+                width: 148.w,
+                height: 54.h,
+                 child: DefaultTextForm(textEditingController: TextEditingController(),
                                                    textInputType: TextInputType.text, 
                                                    validator:(value) => 'Uncorrect Name',
                                                    label: 'Last Name'),
                ),
                  ],
                ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15.h,),
 Text('Email',
                                             style: TextStyle(color: Color(0xff474F55),
-                                            fontSize: 16,fontWeight: FontWeight.w400
+                                            fontSize: 16.sp,fontWeight: FontWeight.w400
                                             ),),
-                                             SizedBox(height: 10,),
-                                            defaultTextForm(textEditingController: TextEditingController(),
+                                             SizedBox(height: 10.h,),
+                                          DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.emailAddress, 
                                                      validator:(value) => 'Uncorrect Name',
                                                      label: 'Enter your email address'),
-                                                      SizedBox(height: 15,),
+                                                      SizedBox(height: 15.h,),
                                              
                                    
                                              Text('Date of birth',
                                             style: TextStyle(color: Color(0xff474F55),
-                                            fontSize: 16,fontWeight: FontWeight.w400
+                                            fontSize: 16.sp,fontWeight: FontWeight.w400
                                             ),),
-                                             SizedBox(height: 10,),
-                                            defaultTextForm(textEditingController: TextEditingController(),
+                                             SizedBox(height: 10.h,),
+                                          DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 
                                                      validator:(value) => 'Uncorrect Name',
                                                      label: 'dd/mm/yyyy',
                                                        hasPrefixIcon: true,
                                                      iconData: Icons.calendar_month_outlined),
-                                                      SizedBox(height: 15,),
+                                                      SizedBox(height: 15.h,),
                                    
                                   
                                              Text('Address',
                                             style: TextStyle(color: Color(0xff474F55),
-                                            fontSize: 16,fontWeight: FontWeight.w400
+                                            fontSize: 16.sp,fontWeight: FontWeight.w400
                                             ),),
-                                             SizedBox(height: 10,),
-                                            defaultTextForm(textEditingController: TextEditingController(),
+                                             SizedBox(height: 10.h,),
+                                          DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 
                                                      validator:(value) => 'Uncorrect Name',
                                                      label: 'Gaza',
@@ -139,9 +141,9 @@ Text('Email',
                                         ],
                                       ),
                                     ),
-                                                SizedBox(height: 34,),
-                                            
-      defaultButton('Save Changes',  context: context,screen:RoutesClass.getLayoutRoute()),
+                                                SizedBox(height: 34.h,),
+
+                DefaultButton(text: 'Save Changes',screen:RoutesClass.getLayoutRoute()),
               ],
             ),
           ),

@@ -45,27 +45,25 @@ class VerificationScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding:  EdgeInsets.symmetric(horizontal: 30.w, ),
-                      child: Expanded(
-                        child: Container(
-                          height: 64.h,
-                         
-                          width: double.infinity,
-                          child: GridView.count(
-                              crossAxisCount: 4,
-                              physics: NeverScrollableScrollPhysics(),
-                              crossAxisSpacing: 20.w,
-                              children: List.generate(
-                                  4,
-                                  (index) => defaultButton(width:64.w, '6',
-                                   radius: 15))),
-                        ),
+                      child: Container(
+                        height: 64.h,
+
+                        width: double.infinity,
+                        child: GridView.count(
+                            crossAxisCount: 4,
+                            physics: NeverScrollableScrollPhysics(),
+                            crossAxisSpacing: 20.w,
+                            children: List.generate(
+                                4,
+                                (index) => DefaultCard(width:64.w, text:'6',
+                                 radius: 15.r))),
                       ),
                     ),
                     SizedBox(
                       height: 34.h,
                     ),
-                    defaultButton( 'Continue',
-                        context: context, screen: RoutesClass.getSetupAccountRoute()),
+                    DefaultButton( text:'Continue',
+                      screen: RoutesClass.getSetupAccountRoute()),
                     SizedBox(
                       height: 29.h,
                     ),

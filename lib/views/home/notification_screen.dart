@@ -57,7 +57,7 @@ class NotificationsScreen extends StatelessWidget {
                       ),
                       itemBuilder: ((context, index) =>  Column(
                         children: [
-                          defaultNotificationsItem(NotificationModel(
+                       NotificationsItem(NotificationModel(
 image: 'assets/images/profile.png',
 name: 'John Doe',
 description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',

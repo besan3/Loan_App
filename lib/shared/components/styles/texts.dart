@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
 
 final bigTextStyle = TextStyle(

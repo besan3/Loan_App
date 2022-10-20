@@ -1,5 +1,6 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
@@ -14,64 +15,65 @@ class HomeScreen extends StatelessWidget {
   HomeModel homeModel=HomeModel();
   @override
   Widget build(BuildContext context) {
+
     return GetBuilder<HomeController>(
       init: HomeController(),
 
       builder: (homecontroller)=>SafeArea(
           top: true,
-          minimum: EdgeInsets.only(top: 30),
+          minimum: EdgeInsets.only(top: 30.h),
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
            children: [
             Column(
               children: [
-                SizedBox(height: 40,),
-             defaultContainer(Column(
+                SizedBox(height: 40.h,),
+             DefaultContainer(Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       SizedBox(
-                        height: 85,
+                        height: 85.h,
                       ),
                       InkWell(
                         onTap: () =>Get.to(UsersScreen()) ,
                         child: Text('View All',style: TextStyle(
                           color: primaryColor,
-                          fontSize: 14,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w400
                         ),),
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 15.h,
                       ),
                     Expanded(child: ListView.separated(
-                      separatorBuilder: (context, index) => SizedBox(height: 15,),
-                      itemBuilder: ((context, index) =>  defaultCard(HomeModel(
-                      image: 'assets/images/profile.png',
-                      name: 'John Doe',
-                      number: '1234567890'
-                     ))
+                      separatorBuilder: (context, index) => SizedBox(height: 15.h,),
+                      itemBuilder: ((context, index) =>  HomeCard( homeModel: HomeModel(
+                          image: 'assets/images/profile.png',
+                          name: 'John Doe',
+                          number: '1234567890'
+                      ),)
                      ),
                      itemCount: 6,
                      ),
                      )
                     ],
                   ),)
-                
+
                 ,
               ],
             ),
             Container(
-              height: 153,
-              padding: EdgeInsets.all(20),
-              width: 301,
+               height: 153.h,
+           //   padding: EdgeInsets.all(20.h.w),
+              width: 301.w,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular((20)),
+                  borderRadius: BorderRadius.circular((20.r)),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     // stops: [0.4, 0.5],
                     tileMode: TileMode.clamp,
-            
+
                     colors: [
                       Color(0xff6783EA),
                       Color(0xff62349D),
@@ -80,13 +82,14 @@ class HomeScreen extends StatelessWidget {
 
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    
+
                     children: [
-                      Column(
+                      Column(                           mainAxisAlignment: MainAxisAlignment.center,
+
                         children: [
                           Text('Dr',
                            style: smallTextStyle.copyWith(
-                            fontSize: 17,color: Color(0xffEBEEF2)
+                            fontSize: 17.sp,color: Color(0xffEBEEF2)
                           )
                           ),
                                                     Row(
@@ -94,14 +97,14 @@ class HomeScreen extends StatelessWidget {
                                                         Icon(Icons.circle,color: Colors.red,size: 13,),
                                                         Text('2.000\$',
                                                          style: smallTextStyle.copyWith(
-                            fontSize: 23,color: Color(0xffEBEEF2)
+                            fontSize: 23.sp,color: Color(0xffEBEEF2)
                           )
                                                         ),
                                                       ],
                                                     ),
                                                     Text('12.Nov 2022',
                                                      style: smallTextStyle.copyWith(
-                            fontSize: 14,color: Color(0xffEBEEF2)
+                            fontSize: 14.sp,color: Color(0xffEBEEF2)
                           )
                                                     ),
 
@@ -111,28 +114,29 @@ class HomeScreen extends StatelessWidget {
                         thickness: 1,
                       ),
                          Column(
-                        children: [
-                          Text('Cr',style: smallTextStyle.copyWith(
-                            fontSize: 17,color: Color(0xffEBEEF2)
-                          ),),
-                                                    Row(
-                                                      children: [
-                                                        Icon(Icons.circle,color: Colors.green,size: 13,),
-                                                        Text('4.000\$',
-                                                        style: smallTextStyle.copyWith(
-                            fontSize: 23,color: Color(0xffEBEEF2)
-                          )
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Text('12.Nov 2022',
-                                                    style: smallTextStyle.copyWith(
-                            fontSize: 14,color: Color(0xffEBEEF2)
-                          )
-                                                    ),
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             Text('Cr',style: smallTextStyle.copyWith(
+                                 fontSize: 17.sp,color: Color(0xffEBEEF2)
+                             ),),
+                             Row(
+                               children: [
+                                 Icon(Icons.circle,color: Colors.green,size: 13,),
+                                 Text('4.000\$',
+                                     style: smallTextStyle.copyWith(
+                                         fontSize: 23.sp,color: Color(0xffEBEEF2)
+                                     )
+                                 ),
+                               ],
+                             ),
+                             Text('12.Nov 2022',
+                                 style: smallTextStyle.copyWith(
+                                     fontSize: 14.sp,color: Color(0xffEBEEF2)
+                                 )
+                             ),
 
-                        ],
-                      ),
+                           ],
+                         )
                     ],
                   ),
             ),

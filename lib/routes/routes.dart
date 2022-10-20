@@ -7,6 +7,7 @@ import 'package:loan_app/views/login/login_screen.dart';
 import 'package:loan_app/views/login/setup_account_screen.dart';
 import 'package:loan_app/views/login/verifecation_code_screen.dart';
 import 'package:loan_app/views/onboarding/onboarding_screen.dart';
+import 'package:loan_app/views/profile/profile_screen.dart';
 
 class RoutesClass {
   static String splash = '/splash';
@@ -16,6 +17,7 @@ class RoutesClass {
   static String setup = '/setup';
   static String verification= '/verification';
   static String request= '/request';
+  static String profile='/profile';
 
   static String getSplashRout() => splash;
   static String getLayoutRoute() => layout;
@@ -24,6 +26,7 @@ class RoutesClass {
   static String getSetupAccountRoute() => setup;
   static String getVerificationRoute() => verification;
   static String getRequestRoute() => request;
+  static String getProfileRoute() => profile;
 
   List<GetPage> routes = [
     GetPage(name: splash, page: () => SplashScreen()),
@@ -33,6 +36,7 @@ class RoutesClass {
     GetPage(name: setup, page: () => SetupAccountScreen()),
         GetPage(name: verification, page: () => VerificationScreen()),
     GetPage(name: request, page: ()=>RequestScreen()),
+    GetPage(name: profile, page: ()=>ProfileScreen())
 
   ];
 }

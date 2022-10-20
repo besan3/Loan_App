@@ -3,6 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/controllers/homeController.dart';
@@ -35,31 +36,31 @@ class UsersScreen extends StatelessWidget {
  
               body:SafeArea(
           top: true,
-          minimum: EdgeInsets.only(top: 30),
+          minimum: EdgeInsets.only(top: 30.h),
           child: Column(
             children: [
              
               Expanded(
                   child: Container(
              
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(20.h.w),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(55)),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(55.r)),
                     color: backgroundColor),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                       SizedBox(
-                      height: 40,
+                      height: 40.h,
                     ),
-                defaultTextForm(textEditingController: TextEditingController(), textInputType: TextInputType.text, validator: ((value) => ''), label: 'Search',hasPrefixIcon: true,iconData: Icons.search),
+                    DefaultTextForm(textEditingController: TextEditingController(), textInputType: TextInputType.text, validator: ((value) => ''), label: 'Search',hasPrefixIcon: true,iconData: Icons.search),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                   Expanded(child: ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(height: 15,),
-                    itemBuilder: ((context, index) =>  defaultCard(HomeModel(
+                    separatorBuilder: (context, index) => SizedBox(height: 15.h,),
+                    itemBuilder: ((context, index) =>  HomeCard(homeModel:HomeModel(
  image: 'assets/images/profile.png',
                       name: 'John Doe',
                       number: '1234567890'

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/controllers/onboarding_controller.dart';
 import 'package:loan_app/routes/routes.dart';
@@ -19,7 +20,8 @@ class OnBoarding_Screen extends StatelessWidget {
     void submit() {
       CacheHelper.saveData(key: 'onBoarding', value: true).then(((value) {
         if (value = true) {
-          navigatAndRemove(context, LoginScreen());
+          Get.offAndToNamed(RoutesClass.getLoginRoute());
+
         }
       }));
     }
@@ -34,7 +36,7 @@ class OnBoarding_Screen extends StatelessWidget {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        navigatTo(context, LoginScreen());
+                        Get.toNamed(RoutesClass.getLoginRoute());
                       },
                       child: Text(
                         'Skip',
@@ -47,35 +49,39 @@ class OnBoarding_Screen extends StatelessWidget {
               body: Stack(
                 alignment: AlignmentDirectional.bottomCenter,
                 children: [
-                  Expanded(
-                    child: PageView.builder(
-                      physics: BouncingScrollPhysics(),
-                      onPageChanged: (index) {
-                        onboardingcontroller.onPageChanged(index);
-                      },
-                      itemBuilder: (context, index) =>
-                          onboardingItem(onboardingcontroller.board[index]),
-                      itemCount: onboardingcontroller.board.length,
-                      controller: onboardingcontroller.onboardController,
-                    ),
+                  Column(
+                    children: [
+                      Expanded(
+                        child: PageView.builder(
+                          physics: BouncingScrollPhysics(),
+                          onPageChanged: (index) {
+                            onboardingcontroller.onPageChanged(index);
+                          },
+                          itemBuilder: (context, index) =>
+                              onboardingItem(onboardingcontroller.board[index]),
+                          itemCount: onboardingcontroller.board.length,
+                          controller: onboardingcontroller.onboardController,
+                        ),
+                      ),
+                    ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 50),
+                    padding:  EdgeInsets.only(bottom: 50.h),
                     child: onboardingcontroller.isLast != true
                         ? SmoothPageIndicator(
                             count: onboardingcontroller.board.length,
                             controller: onboardingcontroller.onboardController,
                             effect: WormEffect(
                                 activeDotColor: primaryColor,
-                                dotHeight: 10,
-                                dotWidth: 10,
-                                spacing: 11),
+                                dotHeight: 10.h,
+                                dotWidth: 10.w,
+                                spacing: 11.w),
                           )
                         : Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: defaultButton( 'Get Started',
-                                context: context, screen: RoutesClass.getLoginRoute()),
+                                 EdgeInsets.symmetric(horizontal: 20.0.w),
+                            child: DefaultButton(text: 'Get Started',
+                                screen: RoutesClass.getLoginRoute()),
                           ),
                   )
                 ],
@@ -95,10 +101,10 @@ Widget onboardingItem(OnboardingModel model) {
         ),
       ),
       Container(
-        height: 359,
+        height: 359.h,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(55)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(55.r)),
             color: Colors.white),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -108,17 +114,17 @@ Widget onboardingItem(OnboardingModel model) {
               style: TextStyle(
                   color: primaryTextColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontFamily: 'Poppins'),
             ),
             SizedBox(
-              height: 14,
+              height: 14.h,
             ),
             Text(
               '${model.description}',
               style: TextStyle(
                   fontWeight: FontWeight.w400,
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: Color(0xffA5A5A5)),
               textAlign: TextAlign.center,
             ),
