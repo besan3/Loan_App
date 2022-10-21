@@ -1,15 +1,14 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/modules/home/controllers/homeController.dart';
 import 'package:loan_app/shared/components/components.dart';
-import 'package:loan_app/controllers/homeController.dart';
 
-import '../../models/home_model.dart';
-import '../../shared/components/styles/colors.dart';
+import '../../../shared/components/styles/colors.dart';
+import '../models/home_model.dart';
+import '../widgets/home_widget.dart';
 
 class UsersScreen extends StatelessWidget {
    UsersScreen({super.key});
@@ -47,7 +46,7 @@ class UsersScreen extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.vertical(top: Radius.circular(55.r)),
-                    color: backgroundColor),
+                    color: Get.isDarkMode?primaryTextColor:Colors.white),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

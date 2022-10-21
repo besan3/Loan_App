@@ -2,10 +2,10 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/controllers/homeController.dart';
-import 'package:loan_app/views/home/notification_screen.dart';
+import 'package:loan_app/modules/home/controllers/homeController.dart';
+import 'package:loan_app/modules/home/views/notification_screen.dart';
 
-import '../../shared/components/styles/colors.dart';
+import '../../../shared/components/styles/colors.dart';
 
 class HomeLayout extends StatelessWidget {
   HomeLayout({super.key});
@@ -30,7 +30,7 @@ class HomeLayout extends StatelessWidget {
               ),
               backgroundColor: primaryColor,
               bottomNavigationBar: CurvedNavigationBar(
-                color: backgroundColor,
+                color: Get.isDarkMode?primaryTextColor:Colors.white,
                 items: homecontroller.screensIcons,
                 buttonBackgroundColor: primaryColor,
                 

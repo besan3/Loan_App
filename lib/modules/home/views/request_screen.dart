@@ -3,12 +3,11 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/controllers/homeController.dart';
+import 'package:loan_app/modules/home/controllers/homeController.dart';
 import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/views/profile/profile_screen.dart';
 
-import '../../shared/components/components.dart';
-import '../../shared/components/styles/colors.dart';
+import '../../../shared/components/components.dart';
+import '../../../shared/components/styles/colors.dart';
 
 class RequestScreen extends StatelessWidget {
   const RequestScreen({super.key});
@@ -35,7 +34,7 @@ class RequestScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(55.r)),
-                          color: backgroundColor),
+                          color: Get.isDarkMode?primaryTextColor:Colors.white),
                     child: Padding(
                       padding:  EdgeInsets.all(20.0.h.w),
                       child: SingleChildScrollView(

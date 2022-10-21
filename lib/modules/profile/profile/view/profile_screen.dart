@@ -3,18 +3,18 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/controllers/homeController.dart';
-import 'package:loan_app/shared/components/components.dart';
+import 'package:loan_app/modules/profile/profile/controller/profile_controller.dart';
 
-import '../../shared/components/styles/colors.dart';
+import '../../../../shared/components/components.dart';
+import '../../../../shared/components/styles/colors.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-init: HomeController(),
+    return GetBuilder<ProfileController>(
+init: ProfileController(),
 builder: (profilecontroller)=>Scaffold(
 appBar: AppBar(
   elevation: 0.0,

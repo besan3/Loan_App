@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
-import 'package:loan_app/views/home/home_screen.dart';
-import 'package:loan_app/views/home/layout.dart';
-import 'package:loan_app/views/home/request_screen.dart';
-import 'package:loan_app/views/home/splash_screen.dart';
-import 'package:loan_app/views/login/login_screen.dart';
-import 'package:loan_app/views/login/setup_account_screen.dart';
-import 'package:loan_app/views/login/verifecation_code_screen.dart';
-import 'package:loan_app/views/onboarding/onboarding_screen.dart';
-import 'package:loan_app/views/profile/profile_screen.dart';
+
+import '../modules/auth/login/view/login_screen.dart';
+import '../modules/auth/setup/view/setup_account_screen.dart';
+import '../modules/auth/verification/view/verifecation_code_screen.dart';
+import '../modules/home/views/layout.dart';
+import '../modules/home/views/request_screen.dart';
+import '../modules/home/views/splash_screen.dart';
+import '../modules/onboarding/view/onboarding_screen.dart';
+import '../modules/profile/profile/view/profile_screen.dart';
 
 class RoutesClass {
   static String splash = '/splash';

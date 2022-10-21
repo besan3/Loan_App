@@ -1,14 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
-import 'package:loan_app/views/login/verifecation_code_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

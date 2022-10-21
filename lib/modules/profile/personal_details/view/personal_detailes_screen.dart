@@ -5,35 +5,59 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/components.dart';
+import '../../../../shared/components/styles/colors.dart';
 
-class SetupAccountScreen extends StatelessWidget {
-  const SetupAccountScreen({super.key});
+class PersonalDetailsScreen extends StatelessWidget {
+  const PersonalDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+     
+        elevation: 0.0,
+        leading:
+          IconButton(
+            icon: Icon(Icons.arrow_back,color: primaryTextColor,),
+            onPressed: (() => Navigator.pop(context)),
+          ),
+        
+        title: Text('My Profile',style: TextStyle(color: primaryTextColor,fontSize: 20.sp,fontWeight: FontWeight.w600),),
+        backgroundColor: Color.fromARGB(255, 252, 250, 250),
+      ),
       body: SafeArea(
         child: Padding(
           padding:  EdgeInsets.all(20.0.h.w),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Center(
-                  child: Image.asset('assets/images/Group 6.png',
-                  width: 155.w,
-                  height: 125.h,),
+                  child: CircleAvatar(
+                    radius: 50.r,
+                    backgroundColor: Colors.grey.shade400,
+                    child: Image.asset('assets/images/Path 66.png',
+                    width: 15.w,
+                    height: 15.h,),
+                  ),
                 ),
           
                 SizedBox(height: 16.h,),
           
           
-                Text('Setup your account',
+                Text('John Doe',
                       style: TextStyle(
-                      //  color: backgroundColor,
+                        color: primaryTextColor,
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w600
+                      ),
+                      ),
+                       Text('1234567890',
+                      style: TextStyle(
+                        color: Color(0xff95989A),
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400
                       ),
                       ),
                                     SizedBox(height: 25.h,),
@@ -49,7 +73,8 @@ class SetupAccountScreen extends StatelessWidget {
                                           ),),
                                              SizedBox(height: 10.h,),
                                    
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
                    Container(
                     width: 148.w,
@@ -59,6 +84,7 @@ class SetupAccountScreen extends StatelessWidget {
                                                        validator:(value) => 'Uncorrect Name',
                                                        label: 'First Name'),
                    ),
+
                     Container(
                 width: 148.w,
                 height: 54.h,
@@ -112,9 +138,8 @@ Text('Email',
                                       ),
                                     ),
                                                 SizedBox(height: 34.h,),
-                                            
-      DefaultButton(text: 'Continue',
-   screen: RoutesClass.getLayoutRoute()),
+
+                DefaultButton(text: 'Save Changes',screen:RoutesClass.getLayoutRoute()),
               ],
             ),
           ),

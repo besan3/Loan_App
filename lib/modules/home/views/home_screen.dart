@@ -2,22 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/modules/home/controllers/homeController.dart';
+import 'package:loan_app/modules/home/views/users_screen.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
-import 'package:loan_app/controllers/homeController.dart';
-import 'package:loan_app/views/home/users_screen.dart';
 
-import '../../models/home_model.dart';
-import '../../shared/components/styles/texts.dart';
+import '../../../shared/components/styles/texts.dart';
+import '../models/home_model.dart';
+import '../widgets/home_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  HomeModel homeModel=HomeModel();
   @override
   Widget build(BuildContext context) {
 
     return GetBuilder<HomeController>(
-      init: HomeController(),
+   //   init: HomeController(),
 
       builder: (homecontroller)=>SafeArea(
           top: true,
@@ -28,7 +28,11 @@ class HomeScreen extends StatelessWidget {
             Column(
               children: [
                 SizedBox(height: 40.h,),
-             DefaultContainer(Column(
+             DefaultContainer(
+
+
+
+               Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       SizedBox(

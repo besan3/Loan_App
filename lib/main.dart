@@ -5,6 +5,8 @@ import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
 
 void main() {
+
+
   runApp(const MyApp());
 }
 
@@ -21,7 +23,6 @@ class MyApp extends StatelessWidget {
       (context , child)=> GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Loan Application',
-       
         theme:
         
         
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         
          ThemeData(
         fontFamily: 'Poppins',
-    
+
           primarySwatch: MaterialColor(
             0xff244AD3, const <int, Color>{ 
         50: const Color(0xff244AD3 ),//10% 
@@ -44,8 +45,6 @@ class MyApp extends StatelessWidget {
         900: const Color(0xff244AD3),//100% 
       }, 
           ),
-        cardColor: Colors.white,
-      textTheme: TextTheme(bodyLarge: TextStyle(color: primaryTextColor))
         ),
     
     
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
           textTheme: TextTheme()
         ),
        initialRoute:RoutesClass.getSplashRout() ,
-        getPages: 
+        getPages:
           RoutesClass().routes
         ,
     //    home: SplashScreen(),

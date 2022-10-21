@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/controllers/homeController.dart';
-import 'package:loan_app/shared/components/components.dart';
-import 'package:loan_app/views/home/home_screen.dart';
-import 'package:loan_app/views/home/layout.dart';
-
-import '../../models/notification_model.dart';
-import '../../shared/components/styles/colors.dart';
+import 'package:loan_app/modules/home/controllers/homeController.dart';
+import 'package:loan_app/modules/home/models/notification_model.dart';
+import 'package:loan_app/modules/home/widgets/notification_widget.dart';
+import '../../../shared/components/styles/colors.dart';
 
 
 class NotificationsScreen extends StatelessWidget {
@@ -43,7 +40,7 @@ class NotificationsScreen extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.vertical(top: Radius.circular(55)),
-                      color: backgroundColor),
+                      color: Get.isDarkMode?primaryTextColor:Colors.white),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

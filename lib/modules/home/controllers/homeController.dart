@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/views/home/home_screen.dart';
-import 'package:loan_app/views/home/settingsScreen.dart';
+import 'package:loan_app/modules/home/views/home_screen.dart';
+
+import '../views/settingsScreen.dart';
 
 class HomeController extends GetxController {
   int index = 0;
@@ -28,19 +29,5 @@ class HomeController extends GetxController {
 
   ];
 
-  List<String> profileInfoTitels = [
-    'Name',
-    ' Email ',
-    'Contact Number',
-    'ODB',
-    'Location'
-  ];
 
-    List<String> profileInfo= [
-    'John Doe',
-    ' johndoe@example.con ',
-    '+12 345 67890',
-    '23 February 1996',
-    'Gaza'
-  ];
 }

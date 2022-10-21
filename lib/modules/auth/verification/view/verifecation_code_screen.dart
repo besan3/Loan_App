@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
-import 'package:loan_app/views/login/setup_account_screen.dart';
 
 class VerificationScreen extends StatelessWidget {
   const VerificationScreen({super.key});
@@ -74,7 +75,7 @@ class VerificationScreen extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,
-                             color: primaryTextColor
+                             color: Get.isDarkMode?Colors.white:primaryTextColor
                               )),
                       TextSpan(
                           text: 'Resend',

@@ -3,13 +3,14 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/controllers/homeController.dart';
+import 'package:loan_app/modules/home/controllers/homeController.dart';
+import 'package:loan_app/modules/home/models/loan_model.dart';
+import 'package:loan_app/modules/home/widgets/loan_card_widget.dart';
 import 'package:loan_app/routes/routes.dart';
 import 'package:loan_app/shared/components/components.dart';
 import 'package:loan_app/shared/components/styles/colors.dart';
 import 'package:loan_app/shared/components/styles/texts.dart';
 
-import '../../models/loan_model.dart';
 
 class LoanScreen extends StatelessWidget {
   const LoanScreen({super.key});
@@ -39,7 +40,7 @@ class LoanScreen extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.vertical(top: Radius.circular(55.r)),
-                    color: backgroundColor),
+                    color: Get.isDarkMode?primaryTextColor:Colors.white),
 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
