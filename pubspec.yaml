@@ -44,6 +44,8 @@ dependencies:
   animated_bottom_navigation_bar: ^1.1.0
   flutter_svg: ^1.1.5
   flutter_screenutil: ^5.5.4
+  hexcolor: ^3.0.1
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:

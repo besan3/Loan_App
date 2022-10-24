@@ -82,10 +82,10 @@ void changeLang(String langCode){
 
                       update();
                       isDark==false;
-isSavedDrakMode()==false;
+isSavedDrakMode()==true;
 
 changeTheme();
-Get.changeThemeMode(ThemeMode.light);
+//Get.changeThemeMode(ThemeMode.light);
                     }),
               ),
               ListTile(
