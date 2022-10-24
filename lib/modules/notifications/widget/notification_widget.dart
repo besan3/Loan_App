@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:loan_app/shared/widgets/shared_widgets.dart';
 import '../model/notification_model.dart';
 
@@ -16,7 +18,8 @@ class NotificationsItem extends StatelessWidget {
             leading: Image.asset(notificationModel.image!),
             title: Text(notificationModel.name!),
             subtitle: Text(
-              notificationModel.description!,
+              notificationModel.description!,style: Theme.of(context).textTheme.subtitle2?.copyWith(
+              color: HexColor( '#7E7B7B'),),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -28,8 +31,8 @@ class NotificationsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(width: 150.w, child: DefaultCard(text:'Reject', width: 150.w,)),
-              Container(width: 150.w, child: DefaultCard(text:'Reject', width: 150.w)),
+              Container(width: 150.w, child: DefaultCard(text:'accept'.tr, width: 150.w,)),
+              Container(width: 150.w, child: DefaultCard(text:'reject'.tr, width: 150.w)),
             ],
           ),
           SizedBox(

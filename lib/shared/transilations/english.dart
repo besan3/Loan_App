@@ -57,7 +57,10 @@ start here''',
   'arabic':'Arabic',
   'system':'System ',
   'light':'Light',
-  'dark':'Dark'
+  'dark':'Dark',
+  'accept':'Accept',
+  'reject':'Reject'
+
 
 
 

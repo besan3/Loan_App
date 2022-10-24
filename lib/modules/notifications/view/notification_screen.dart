@@ -56,7 +56,7 @@ class NotificationsScreen extends StatelessWidget {
                         children: [
                        NotificationsItem(NotificationModel(
 image: 'assets/images/profile.png',
-name: 'John Doe',
+name: 'username'.tr,
 description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
 time: '4h ago',
 

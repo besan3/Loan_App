@@ -61,6 +61,8 @@ const  Map<String, String> ar ={
   'arabic':'العربية',
   'system':'وضع الجهاز',
   'light':'مضيء',
-  'dark':'معتم'
+  'dark':'معتم',
+  'accept':'قبول',
+  'reject':'رفض'
 
 };
