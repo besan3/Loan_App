@@ -3,10 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/shared/components/components.dart';
-import 'package:loan_app/shared/components/styles/colors.dart';
+import 'package:loan_app/shared/colors/app_colors.dart';
+
+import '../../../../shared/widgets/shared_widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -32,9 +34,9 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 36.h,),
               Center(
-                child: Text('Sign in',
+                child: Text('signin'.tr,
                 style: TextStyle(
-                  color: primaryTextColor,
+                  color: AppColors.primaryTextColor,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600
                 ),
@@ -42,9 +44,9 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 29.h,),
 
-                Text('Enter your phone number',
+                Text('enterphhone'.tr,
               style: TextStyle(
-                color: primaryTextColor,
+                color: AppColors.primaryTextColor,
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w400
               ),
@@ -53,7 +55,7 @@ SizedBox(height: 15.h,),
               IntlPhoneField(
     decoration: InputDecoration(
  
-        labelText: 'Enter your  Number',
+        labelText: 'hint1'.tr,
         labelStyle: TextStyle(
           color: Color(0xffA5A5A5),
           fontSize: 16.sp,
@@ -72,7 +74,7 @@ SizedBox(height: 15.h,),
     },
 ),
 SizedBox(height: 30.h,),
-DefaultButton(text:'Continue',
+DefaultButton(text:'button2'.tr,
 screen: RoutesClass.getVerificationRoute()
 
 )

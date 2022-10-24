@@ -9,19 +9,17 @@ class OnBoardingController extends GetxController{
   List<OnboardingModel> board = [
       OnboardingModel(
           image: 'assets/images/onboard1.png',
-          title: 'Get Access To Quick Loans',
-          description: '''Easily get access to loans 
-using your phone'''),
+          title: 'onBoardingTitle1'.tr,
+          description: 'description1'.tr),
       OnboardingModel(
           image: 'assets/images/onboard2.png',
-          title: 'Easy & Convenient',
-          description: 'No guarantors, No long queues, No paper.'),
+          title: 'onBoardingTitle2'.tr,
+          description: 'description2'.tr),
       OnboardingModel(
           image:
               'assets/images/onboard3.png',
-          title: 'Track Everything',
-          description: '''Your financial journey
-start here'''),
+          title: 'onBoardingTitle3'.tr,
+          description: 'description3'.tr),
     ];
 void  onPageChanged(index) {
                   if (index ==board.length - 1) {

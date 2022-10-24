@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/models/home_model.dart';
 
-import '../views/pay_loan_screen.dart';
+import '../../loan/view/loan_screen.dart';
 
 class HomeCard extends StatelessWidget {
   HomeModel homeModel;
@@ -28,7 +28,7 @@ class HomeCard extends StatelessWidget {
               height: 65.h,
             ),
             title: Text(homeModel.name!),
-            subtitle: Text(homeModel.number!),
+            subtitle: Text(homeModel.number!,style: Theme.of(context).textTheme.subtitle1,),
           ),
         ),
       ),

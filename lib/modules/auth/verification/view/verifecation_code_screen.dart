@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/shared/components/components.dart';
-import 'package:loan_app/shared/components/styles/colors.dart';
+import 'package:loan_app/shared/widgets/shared_widgets.dart';
+
+import '../../../../shared/colors/app_colors.dart';
 
 class VerificationScreen extends StatelessWidget {
   const VerificationScreen({super.key});
@@ -12,12 +13,12 @@ class VerificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: primaryColor,
+        backgroundColor: AppColors.primaryColor,
         toolbarHeight: 60.h,
-        title: Text('Verification Code'),
+        title: Text('screentitle1'.tr),
       ),
       body: SafeArea(
         child: Column(
@@ -30,7 +31,7 @@ class VerificationScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(55)),
-                    color: backgroundColor
+                    color: AppColors.backgroundColor
                     ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -38,7 +39,7 @@ class VerificationScreen extends StatelessWidget {
                     Padding(
                       padding:  EdgeInsets.symmetric(vertical: 36.w),
                       child: Text(
-                        'We sent OTP code to verify your number',
+                        'verification'.tr,
                         style: TextStyle(
                             fontSize: 20.sp, fontWeight: FontWeight.w400),
                         textAlign: TextAlign.center,
@@ -63,7 +64,7 @@ class VerificationScreen extends StatelessWidget {
                     SizedBox(
                       height: 34.h,
                     ),
-                    DefaultButton( text:'Continue',
+                    DefaultButton( text:'button2'.tr,
                       screen: RoutesClass.getSetupAccountRoute()),
                     SizedBox(
                       height: 29.h,
@@ -71,18 +72,18 @@ class VerificationScreen extends StatelessWidget {
                     RichText(
                         text: TextSpan(children: [
                       TextSpan(
-                          text: 'Not received code? ',
+                          text: 'verificationhint'.tr,
                           style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,
-                             color: Get.isDarkMode?Colors.white:primaryTextColor
+                             color: Get.isDarkMode?Colors.white:AppColors.primaryTextColor
                               )),
                       TextSpan(
-                          text: 'Resend',
+                          text: 'resend'.tr,
                           style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,
-                              color: primaryColor))
+                              color: AppColors.primaryColor))
                     ]))
                   ],
                 ),

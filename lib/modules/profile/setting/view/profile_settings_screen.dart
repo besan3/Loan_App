@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/modules/profile/setting/controller/settind_controller.dart';
-import 'package:loan_app/shared/components/styles/colors.dart';
-import 'package:loan_app/shared/components/styles/texts.dart';
+import 'package:loan_app/modules/profile/setting/controller/setting_controller.dart';
+import 'package:loan_app/shared/colors/app_colors.dart';
 
 
 class ProfileSettingScreen extends StatefulWidget {
@@ -19,11 +18,12 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SettingController settingController=Get.find();
     return Scaffold(
-        backgroundColor: primaryColor,
+        backgroundColor:  AppColors.primaryColor,
         appBar: AppBar(
-          backgroundColor:primaryColor,
-          title: Text('Setting'),
+          backgroundColor: AppColors.primaryColor,
+          title: Text('setting'.tr),
           elevation: 0.0,
         ),
         body: SafeArea(
@@ -38,9 +38,9 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(55.r)),
-                    color: backgroundColor),
+                    color:Get.isDarkMode?AppColors.primaryTextColor:  AppColors.backgroundColor),
                 child: GetBuilder<SettingController>(
-                  init: SettingController(),
+                 // init: SettingController(),
                   builder:(settingController)=> Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -51,20 +51,16 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         onTap: () => settingController.showBottomSheet(),
                         child: ListTile(
                           leading: CircleAvatar(
-                              child: Icon(Icons.dark_mode_outlined),
+                              child: Icon(Icons.brightness_4_outlined),
                               radius: 40.r,
                               backgroundColor: Color(0xffE8F0FF)),
-                          title: Text('Theme',
-                              style: bigTextStyle.copyWith(
-                                  color: Get.isDarkMode
-                                      ? Colors.white
-                                      : primaryTextColor)),
+                          title: Text('theme'.tr,
+                              style:Theme.of(context).textTheme.bodyText1
+                          ),
                           subtitle: Text(
                           settingController.  theme.name,
-                            style: smallTextStyle.copyWith(
-                                color: Get.isDarkMode
-                                    ? Colors.white
-                                    : primaryTextColor,
+                            style:Theme.of(context).textTheme.subtitle1?.copyWith(
+
                                 fontSize: 16.sp),
                           ),
                         ),
@@ -76,17 +72,12 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                               child: Icon(Icons.language_outlined),
                               radius: 40.r,
                               backgroundColor: Color(0xffE8F0FF)),
-                          title: Text('Language',
-                              style: bigTextStyle.copyWith(
-                                  color: Get.isDarkMode
-                                      ? Colors.white
-                                      : primaryTextColor)),
+                          title: Text('language'.tr,
+                              style:  Theme.of(context).textTheme.bodyText1),
                           subtitle: Text(
-                         settingController.   language.name,
-                            style: smallTextStyle.copyWith(
-                                color: Get.isDarkMode
-                                    ? Colors.white
-                                    : primaryTextColor,
+                         settingController.language.name,
+                            style:Theme.of(context).textTheme.subtitle1?.copyWith(
+
                                 fontSize: 16.sp),
                           ),
                         ),

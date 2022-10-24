@@ -4,11 +4,9 @@ import 'package:get/get.dart';
 import 'package:loan_app/modules/onboarding/controller/onboarding_controller.dart';
 import 'package:loan_app/modules/onboarding/widget/onboarding_widget.dart';
 import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/shared/components/styles/texts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../../shared/components/components.dart';
-import '../../../shared/components/styles/colors.dart';
+import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/shared/widgets/shared_widgets.dart';
 import '../../../shared/network/local/cache_helper.dart';
 
 class OnBoarding_Screen extends StatelessWidget {
@@ -28,10 +26,10 @@ class OnBoarding_Screen extends StatelessWidget {
     return GetBuilder<OnBoardingController>(
         init: OnBoardingController(),
         builder: ((onboardingcontroller) => Scaffold(
-              backgroundColor: primaryColor,
+              backgroundColor: AppColors.primaryColor,
               appBar: AppBar(
                 elevation: 0.0,
-                backgroundColor: primaryColor,
+                backgroundColor: AppColors.primaryColor,
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -39,8 +37,8 @@ class OnBoarding_Screen extends StatelessWidget {
                         submit();
                       },
                       child: Text(
-                        'Skip',
-                        style: smallTextStyle.copyWith(
+                        'skip'.tr,
+                        style:  Theme.of(context).textTheme.bodyText2?.copyWith(
                           color: Colors.white
                         )
                       ))
@@ -72,7 +70,7 @@ class OnBoarding_Screen extends StatelessWidget {
                             count: onboardingcontroller.board.length,
                             controller: onboardingcontroller.onboardController,
                             effect: WormEffect(
-                                activeDotColor: primaryColor,
+                                activeDotColor: AppColors.primaryColor,
                                 dotHeight: 10.h,
                                 dotWidth: 10.w,
                                 spacing: 11.w),
@@ -80,7 +78,7 @@ class OnBoarding_Screen extends StatelessWidget {
                         : Padding(
                             padding:
                                  EdgeInsets.symmetric(horizontal: 20.0.w),
-                            child: DefaultButton(text: 'Get Started',
+                            child: DefaultButton(text: 'button1'.tr,
                                 screen: RoutesClass.getLoginRoute()),
                           ),
                   )

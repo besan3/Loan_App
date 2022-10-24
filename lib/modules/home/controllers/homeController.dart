@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/views/home_screen.dart';
 
-import '../views/settingsScreen.dart';
+import '../../setting/view/settingsScreen.dart';
 
 class HomeController extends GetxController {
   int index = 0;
@@ -14,9 +14,9 @@ class HomeController extends GetxController {
     Icon(Icons.settings_outlined, color: Colors.grey.shade300),
   ];
   List<String> screensTitels = [
-    ' Welcom, John ',
-    ' Welcom, John ',
-    'My Profile'
+    'homewelcome',
+    'homewelcome',
+    'screentitle4'
   ];
   void changeScreen(int currentIndex) {
     index = currentIndex;

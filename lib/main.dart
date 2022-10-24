@@ -1,13 +1,21 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:loan_app/modules/profile/setting/controller/setting_controller.dart';
 import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/shared/components/styles/colors.dart';
+import 'package:loan_app/themes/themes.dart';
+import 'package:loan_app/shared/local/local.dart';
+import 'package:loan_app/shared/network/local/cache_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-
-
-  runApp(const MyApp());
+SharedPreferences?  sharepref;
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  sharepref=await CacheHelper.init();
+  await GetStorage.init();
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +23,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SettingController localController=Get.put(SettingController(),permanent: true);
     return ScreenUtilInit(
        designSize: const Size(375, 812),
       minTextAdapt: true,
@@ -22,37 +31,20 @@ class MyApp extends StatelessWidget {
       builder:
       (context , child)=> GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        locale: localController.initialLang,
+        translations: MyLocal(),
         title: 'Loan Application',
         theme:
         
         
         
-        
-         ThemeData(
-        fontFamily: 'Poppins',
 
-          primarySwatch: MaterialColor(
-            0xff244AD3, const <int, Color>{ 
-        50: const Color(0xff244AD3 ),//10% 
-        100: const Color(0xff244AD3),//20% 
-        200: const Color(0xff244AD3),//30% 
-        300: const Color(0xff244AD3),//40% 
-        400: const Color(0xff244AD3),//50% 
-        500: const Color(0xff244AD3),//60% 
-        600: const Color(0xff244AD3),//70% 
-        700: const Color(0xff244AD3),//80% 
-        800: const Color(0xff244AD3),//90% 
-        900: const Color(0xff244AD3),//100% 
-      }, 
-          ),
-        ),
-    
+      AppThemes.CustomLightTheme,
+       darkTheme: AppThemes.CustomDarkTheme,
+       themeMode:localController.getThemeMode(),
     
         
-        darkTheme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: primaryColor),
-          textTheme: TextTheme()
-        ),
+
        initialRoute:RoutesClass.getSplashRout() ,
         getPages:
           RoutesClass().routes

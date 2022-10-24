@@ -5,33 +5,57 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/routes/routes.dart';
-import '../../../../shared/widgets/shared_widgets.dart';
+import 'package:loan_app/shared/widgets/shared_widgets.dart';
+import '../../../shared/colors/app_colors.dart';
 
-class SetupAccountScreen extends StatelessWidget {
-  const SetupAccountScreen({super.key});
+class PersonalDetailsScreen extends StatelessWidget {
+  const PersonalDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+
+        elevation: 0.0,
+        leading:
+          IconButton(
+            icon: Icon(Icons.arrow_back,color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor,),
+            onPressed: (() => Navigator.pop(context)),
+          ),
+        
+        title: Text('screentitle4'.tr,style: Theme.of(context).textTheme.bodyText1,),
+        //backgroundColor:Get.isDarkMode?AppColors.primaryTextColor: Color.fromARGB(255, 252, 250, 250),
+      ),
       body: SafeArea(
         child: Padding(
           padding:  EdgeInsets.all(20.0.h.w),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Center(
-                  child: Image.asset('assets/images/Group 6.png',
-                  width: 155.w,
-                  height: 125.h,),
+                  child: CircleAvatar(
+                    radius: 50.r,
+                    backgroundColor: Colors.grey.shade400,
+                    child: Image.asset('assets/images/Path 66.png',
+                    width: 15.w,
+                    height: 15.h,),
+                  ),
                 ),
           
                 SizedBox(height: 16.h,),
           
           
-                Text('setup'.tr,
+                Text('username'.tr,
                       style: Theme.of(context).textTheme.bodyText1
+                      ),
+                       Text('1234567890',
+                      style: TextStyle(
+                        color: Color(0xff95989A),
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400
+                      ),
                       ),
                                     SizedBox(height: 25.h,),
           
@@ -41,35 +65,29 @@ class SetupAccountScreen extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('label1'.tr,
-                                          style: Theme.of(context).textTheme.bodyText2?.copyWith(color: Color(0xff474F55),
+                                          style: TextStyle(color: Color(0xff474F55),
                                           fontSize: 16.sp,fontWeight: FontWeight.w400
                                           ),),
                                              SizedBox(height: 10.h,),
                                    
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
                    Container(
                     width: 148.w,
                     height: 54.h,
                      child: DefaultTextForm(textEditingController: TextEditingController(),
-                                                       textInputType: TextInputType.text,
-                         validator: (String? value) {
-                           if(value!.isEmpty) {
-                             return 'Please Enter your First Name';
-                           }
-                         },
+                                                       textInputType: TextInputType.text, 
+                                                       validator:(value) => 'Uncorrect Name',
                                                        label: 'hint01'.tr),
                    ),
+
                     Container(
                 width: 148.w,
                 height: 54.h,
                  child: DefaultTextForm(textEditingController: TextEditingController(),
-                                                   textInputType: TextInputType.text,
-                     validator: (String? value) {
-                       if(value!.isEmpty) {
-                         return 'Please Enter your Last Name';
-                       }
-                     },
+                                                   textInputType: TextInputType.text, 
+                                                   validator:(value) => 'Uncorrect Name',
                                                    label: 'hint02'.tr),
                ),
                  ],
@@ -81,13 +99,9 @@ Text('label2'.tr,
                                             ),),
                                              SizedBox(height: 10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
-                                                     textInputType: TextInputType.emailAddress,
-                                              validator: (String? value) {
-                                                if(value!.isEmpty) {
-                                                  return 'Please Enter your email address';
-                                                }
-                                              },
-                                                     label: 'hint03'.tr),
+                                                     textInputType: TextInputType.emailAddress, 
+                                                     validator:(value) => 'Uncorrect Name',
+                                                     label: 'hint01'.tr),
                                                       SizedBox(height: 15.h,),
                                              
                                    
@@ -121,9 +135,8 @@ Text('label2'.tr,
                                       ),
                                     ),
                                                 SizedBox(height: 34.h,),
-                                            
-      DefaultButton(text: 'button2'.tr,
-   screen: RoutesClass.getLayoutRoute()),
+
+                DefaultButton(text: 'button3'.tr,screen:RoutesClass.getLayoutRoute()),
               ],
             ),
           ),

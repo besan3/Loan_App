@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/controllers/homeController.dart';
-import 'package:loan_app/modules/home/views/users_screen.dart';
-import 'package:loan_app/shared/components/components.dart';
-import 'package:loan_app/shared/components/styles/colors.dart';
-
-import '../../../shared/components/styles/texts.dart';
+import 'package:loan_app/modules/users/view/users_screen.dart';
+import 'package:loan_app/shared/widgets/shared_widgets.dart';
+import '../../../shared/colors/app_colors.dart';
 import '../models/home_model.dart';
 import '../widgets/home_widget.dart';
 
@@ -40,8 +38,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () =>Get.to(UsersScreen()) ,
-                        child: Text('View All',style: TextStyle(
-                          color: primaryColor,
+                        child: Text('view'.tr,style: TextStyle(
+                          color: AppColors.primaryColor,
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400
                         ),),
@@ -53,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                       separatorBuilder: (context, index) => SizedBox(height: 15.h,),
                       itemBuilder: ((context, index) =>  HomeCard( homeModel: HomeModel(
                           image: 'assets/images/profile.png',
-                          name: 'John Doe',
+                          name: 'username'.tr,
                           number: '1234567890'
                       ),)
                      ),
@@ -92,7 +90,7 @@ class HomeScreen extends StatelessWidget {
 
                         children: [
                           Text('Dr',
-                           style: smallTextStyle.copyWith(
+                           style:Theme.of(context).textTheme.bodyText2?.copyWith(
                             fontSize: 17.sp,color: Color(0xffEBEEF2)
                           )
                           ),
@@ -100,14 +98,14 @@ class HomeScreen extends StatelessWidget {
                                                       children: [
                                                         Icon(Icons.circle,color: Colors.red,size: 13,),
                                                         Text('2.000\$',
-                                                         style: smallTextStyle.copyWith(
+                                                         style: Theme.of(context).textTheme.bodyText2?.copyWith(
                             fontSize: 23.sp,color: Color(0xffEBEEF2)
                           )
                                                         ),
                                                       ],
                                                     ),
                                                     Text('12.Nov 2022',
-                                                     style: smallTextStyle.copyWith(
+                                                     style: Theme.of(context).textTheme.bodyText2?.copyWith(
                             fontSize: 14.sp,color: Color(0xffEBEEF2)
                           )
                                                     ),
@@ -120,21 +118,21 @@ class HomeScreen extends StatelessWidget {
                          Column(
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
-                             Text('Cr',style: smallTextStyle.copyWith(
+                             Text('Cr',style: Theme.of(context).textTheme.bodyText2?.copyWith(
                                  fontSize: 17.sp,color: Color(0xffEBEEF2)
                              ),),
                              Row(
                                children: [
                                  Icon(Icons.circle,color: Colors.green,size: 13,),
                                  Text('4.000\$',
-                                     style: smallTextStyle.copyWith(
+                                     style: Theme.of(context).textTheme.bodyText2?.copyWith(
                                          fontSize: 23.sp,color: Color(0xffEBEEF2)
                                      )
                                  ),
                                ],
                              ),
                              Text('12.Nov 2022',
-                                 style: smallTextStyle.copyWith(
+                                 style:Theme.of(context).textTheme.bodyText2?.copyWith(
                                      fontSize: 14.sp,color: Color(0xffEBEEF2)
                                  )
                              ),
