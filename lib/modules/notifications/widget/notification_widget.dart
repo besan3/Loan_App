@@ -16,9 +16,9 @@ class NotificationsItem extends StatelessWidget {
         children: [
           ListTile(
             leading: Image.asset(notificationModel.image!),
-            title: Text(notificationModel.name!),
+            title: Text(notificationModel.name!,style: context.theme.textTheme.bodyText1,),
             subtitle: Text(
-              notificationModel.description!,style: Theme.of(context).textTheme.subtitle2?.copyWith(
+              notificationModel.description!,style: context.theme.textTheme.headline2?.copyWith(
               color: HexColor( '#7E7B7B'),),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

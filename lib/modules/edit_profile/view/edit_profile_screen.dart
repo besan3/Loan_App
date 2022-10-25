@@ -23,7 +23,7 @@ class PersonalDetailsScreen extends StatelessWidget {
             onPressed: (() => Navigator.pop(context)),
           ),
         
-        title: Text('screentitle4'.tr,style:  context.theme.textTheme.bodyText1,),
+        title: Text('screentitle4'.tr),
       ),
       body: SafeArea(
         child: Padding(
@@ -64,7 +64,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('label1'.tr,
-                                          style: context.theme.textTheme.bodyMedium),
+                                          style: context.theme.textTheme.headline3),
                                              SizedBox(height: 10.h,),
                                    
                Row(
@@ -91,7 +91,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                ),
                   SizedBox(height: 15.h,),
 Text('label2'.tr,
-                                            style:  context.theme.textTheme.bodyMedium,),
+                                            style:  context.theme.textTheme.headline3,),
                                              SizedBox(height: 10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.emailAddress, 
@@ -101,7 +101,7 @@ Text('label2'.tr,
                                              
                                    
                                              Text('label3'.tr,
-                                            style: context.theme.textTheme.bodyMedium,),
+                                            style: context.theme.textTheme.bodyText2,),
                                              SizedBox(height: 10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 
@@ -113,7 +113,7 @@ Text('label2'.tr,
                                    
                                   
                                              Text('label4'.tr,
-                                            style: context.theme.textTheme.bodyMedium),
+                                            style: context.theme.textTheme.headline3),
                                              SizedBox(height: 10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 

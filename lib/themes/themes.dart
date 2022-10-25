@@ -9,7 +9,8 @@ class AppThemes{
         titleTextStyle: TextStyle(
             fontFamily: 'Poppins',
             fontSize: 20,
-            fontWeight: FontWeight.w600
+            fontWeight: FontWeight.w600,
+          color: Colors.white
         )
     ),
     backgroundColor: AppColors.primaryColor,
@@ -20,14 +21,14 @@ textTheme: TextTheme(
       fontSize: 20,
     fontFamily: 'Poppins',
   ),
-  subtitle1: TextStyle(
+  headline2: TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.w400,
       fontSize: 14,
     fontFamily: 'Poppins',
   ),
 
-  bodyMedium: TextStyle(
+  headline3: TextStyle(
 color:     Color(0xff474F55),
 fontWeight: FontWeight.w400,
   fontSize: 16)
@@ -41,7 +42,8 @@ fontWeight: FontWeight.w400,
          titleTextStyle: TextStyle(
        fontFamily: 'Poppins',
            fontSize: 20,
-           fontWeight: FontWeight.w600
+           fontWeight: FontWeight.w600,
+             color: Colors.white
    )
    ),
 
@@ -52,13 +54,13 @@ fontWeight: FontWeight.w400,
             fontSize: 20,
           fontFamily: 'Poppins',
         ),
-      subtitle1: TextStyle(
+      headline2: TextStyle(
           color: AppColors.primaryTextColor,
           fontWeight: FontWeight.w400,
           fontSize: 14,
         fontFamily: 'Poppins',
       ),
-        bodyMedium: TextStyle(
+        headline3: TextStyle(
             color:     Color(0xff474F55),
             fontWeight: FontWeight.w400,
             fontSize: 16)

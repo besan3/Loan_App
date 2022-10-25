@@ -41,7 +41,7 @@ class SetupAccountScreen extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('label1'.tr,
-                                          style:  context.theme.textTheme.bodyText2?.copyWith(color: Color(0xff474F55),
+                                          style:  context.theme.textTheme.headline2?.copyWith(color: Color(0xff474F55),
                                           fontSize: 16.sp,fontWeight: FontWeight.w400
                                           ),),
                                              SizedBox(height: 10.h,),

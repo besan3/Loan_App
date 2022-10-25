@@ -38,7 +38,7 @@ class OnBoarding_Screen extends StatelessWidget {
                       },
                       child: Text(
                         'skip'.tr,
-                        style:  Theme.of(context).textTheme.bodyText2?.copyWith(
+                        style:  Theme.of(context).textTheme.headline2?.copyWith(
                           color: Colors.white
                         )
                       ))

@@ -30,7 +30,7 @@ class OnBoardingItem extends StatelessWidget {
             children: [
               Text(
                 '${onboardingModel.title}',
-                style: Theme.of(context).textTheme.bodyText1,
+                style: context.theme.textTheme.bodyText1,
               ),
               SizedBox(
                 height: 14.h,
