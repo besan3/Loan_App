@@ -15,8 +15,7 @@ class VerificationScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: AppColors.primaryColor,
+
         toolbarHeight: 60.h,
         title: Text('screentitle1'.tr),
       ),
@@ -40,7 +39,7 @@ class VerificationScreen extends StatelessWidget {
                       padding:  EdgeInsets.symmetric(vertical: 36.w),
                       child: Text(
                         'verification'.tr,
-                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        style:  context.theme.textTheme.bodyText1?.copyWith(
                           fontWeight:FontWeight. w400
                         ),
                         textAlign: TextAlign.center,

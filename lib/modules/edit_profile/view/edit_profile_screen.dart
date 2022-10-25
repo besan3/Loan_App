@@ -16,15 +16,14 @@ class PersonalDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
 
-        elevation: 0.0,
+
         leading:
           IconButton(
             icon: Icon(Icons.arrow_back,color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor,),
             onPressed: (() => Navigator.pop(context)),
           ),
         
-        title: Text('screentitle4'.tr,style: Theme.of(context).textTheme.bodyText1,),
-        //backgroundColor:Get.isDarkMode?AppColors.primaryTextColor: Color.fromARGB(255, 252, 250, 250),
+        title: Text('screentitle4'.tr,style:  context.theme.textTheme.bodyText1,),
       ),
       body: SafeArea(
         child: Padding(
@@ -48,7 +47,7 @@ class PersonalDetailsScreen extends StatelessWidget {
           
           
                 Text('username'.tr,
-                      style: Theme.of(context).textTheme.bodyText1
+                      style:  context.theme.textTheme.bodyText1
                       ),
                        Text('1234567890',
                       style: TextStyle(
@@ -65,9 +64,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('label1'.tr,
-                                          style: TextStyle(color: Color(0xff474F55),
-                                          fontSize: 16.sp,fontWeight: FontWeight.w400
-                                          ),),
+                                          style: context.theme.textTheme.bodyMedium),
                                              SizedBox(height: 10.h,),
                                    
                Row(
@@ -106,9 +103,7 @@ Text('label2'.tr,
                                              
                                    
                                              Text('label3'.tr,
-                                            style: TextStyle(color: Color(0xff474F55),
-                                            fontSize: 16.sp,fontWeight: FontWeight.w400
-                                            ),),
+                                            style: context.theme.textTheme.bodyMedium,),
                                              SizedBox(height: 10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 
@@ -120,9 +115,7 @@ Text('label2'.tr,
                                    
                                   
                                              Text('label4'.tr,
-                                            style: TextStyle(color: Color(0xff474F55),
-                                            fontSize: 16.sp,fontWeight: FontWeight.w400
-                                            ),),
+                                            style: context.theme.textTheme.bodyMedium),
                                              SizedBox(height: 10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 

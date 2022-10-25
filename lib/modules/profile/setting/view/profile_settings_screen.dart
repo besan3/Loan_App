@@ -22,9 +22,9 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
     return Scaffold(
         backgroundColor:  AppColors.primaryColor,
         appBar: AppBar(
-          backgroundColor: AppColors.primaryColor,
+
           title: Text('setting'.tr),
-          elevation: 0.0,
+
         ),
         body: SafeArea(
           top: true,
@@ -55,11 +55,11 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                               radius: 40.r,
                               backgroundColor: Color(0xffE8F0FF)),
                           title: Text('theme'.tr,
-                              style:Theme.of(context).textTheme.bodyText1
+                              style:context.theme.textTheme.bodyText1
                           ),
                           subtitle: Text(
                           settingController.  theme.name,
-                            style:Theme.of(context).textTheme.subtitle1?.copyWith(
+                            style:context.theme.textTheme.subtitle1?.copyWith(
 
                                 fontSize: 16.sp),
                           ),
@@ -73,10 +73,10 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                               radius: 40.r,
                               backgroundColor: Color(0xffE8F0FF)),
                           title: Text('language'.tr,
-                              style:  Theme.of(context).textTheme.bodyText1),
+                              style:  context.theme.textTheme.bodyText1),
                           subtitle: Text(
                          settingController.language.name,
-                            style:Theme.of(context).textTheme.subtitle1?.copyWith(
+                            style:context.theme.textTheme.subtitle1?.copyWith(
 
                                 fontSize: 16.sp),
                           ),

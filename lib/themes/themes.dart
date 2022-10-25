@@ -26,6 +26,11 @@ textTheme: TextTheme(
       fontSize: 14,
     fontFamily: 'Poppins',
   ),
+
+  bodyMedium: TextStyle(
+color:     Color(0xff474F55),
+fontWeight: FontWeight.w400,
+  fontSize: 16)
 )
 
   );
@@ -53,7 +58,10 @@ textTheme: TextTheme(
           fontSize: 14,
         fontFamily: 'Poppins',
       ),
-
+        bodyMedium: TextStyle(
+            color:     Color(0xff474F55),
+            fontWeight: FontWeight.w400,
+            fontSize: 16)
     ),primaryColor: AppColors.primaryColor,
 
   );

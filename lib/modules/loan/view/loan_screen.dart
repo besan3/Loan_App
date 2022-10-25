@@ -47,7 +47,7 @@ class LoanScreen extends StatelessWidget {
                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 40.h),
                           child: ListTile(
-                            title: Text('username'.tr,style:  Theme.of(context).textTheme.bodyText1,),
+                            title: Text('username'.tr,style: context.theme.textTheme.bodyText1,),
                             subtitle: Text('1234567890'),
                             trailing: Image.asset('assets/images/profile.png',
                             width: 65.w,height: 65.h,
@@ -55,12 +55,12 @@ class LoanScreen extends StatelessWidget {
                           ),
                         ),
 
-                        Center(child: Text('2.000\$',style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 28.sp,color: Colors.black),)),
+                        Center(child: Text('2.000\$',style:  context.theme.textTheme.bodyText1?.copyWith(fontSize: 28.sp,color: Colors.black),)),
                         SizedBox(height: 10.h,),
                                                 Center(child: Text('12.Nov.2022',style:  Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 16.sp,color: Color(0xff767D88)),)),
                         SizedBox(height: 30.h,),
 
-                        Text('transaction'.tr,style: Theme.of(context).textTheme.bodyText1?.copyWith(color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor)),
+                        Text('transaction'.tr,style: context.theme.textTheme.bodyText1?.copyWith(color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor)),
                         SizedBox(height: 20.h,),
 
                         Expanded(child: ListView.separated(

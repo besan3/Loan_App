@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
 
                         children: [
                           Text('Dr',
-                           style:Theme.of(context).textTheme.bodyText2?.copyWith(
+                           style: context.theme.textTheme.subtitle1?.copyWith(
                             fontSize: 17.sp,color: Color(0xffEBEEF2)
                           )
                           ),
@@ -98,14 +98,14 @@ class HomeScreen extends StatelessWidget {
                                                       children: [
                                                         Icon(Icons.circle,color: Colors.red,size: 13,),
                                                         Text('2.000\$',
-                                                         style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                                                         style:  context.theme.textTheme.subtitle1?.copyWith(
                             fontSize: 23.sp,color: Color(0xffEBEEF2)
                           )
                                                         ),
                                                       ],
                                                     ),
                                                     Text('12.Nov 2022',
-                                                     style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                                                     style:  context.theme.textTheme.subtitle1?.copyWith(
                             fontSize: 14.sp,color: Color(0xffEBEEF2)
                           )
                                                     ),
@@ -118,21 +118,21 @@ class HomeScreen extends StatelessWidget {
                          Column(
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
-                             Text('Cr',style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                             Text('Cr',style:context.theme.textTheme.subtitle1?.copyWith(
                                  fontSize: 17.sp,color: Color(0xffEBEEF2)
                              ),),
                              Row(
                                children: [
                                  Icon(Icons.circle,color: Colors.green,size: 13,),
                                  Text('4.000\$',
-                                     style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                                     style: context.theme.textTheme.subtitle1?.copyWith(
                                          fontSize: 23.sp,color: Color(0xffEBEEF2)
                                      )
                                  ),
                                ],
                              ),
                              Text('12.Nov 2022',
-                                 style:Theme.of(context).textTheme.bodyText2?.copyWith(
+                                 style:context.theme.textTheme.subtitle1?.copyWith(
                                      fontSize: 14.sp,color: Color(0xffEBEEF2)
                                  )
                              ),

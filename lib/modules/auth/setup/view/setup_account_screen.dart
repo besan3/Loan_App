@@ -31,7 +31,7 @@ class SetupAccountScreen extends StatelessWidget {
           
           
                 Text('setup'.tr,
-                      style: Theme.of(context).textTheme.bodyText1
+                      style: context.theme.textTheme.bodyText1
                       ),
                                     SizedBox(height: 25.h,),
           
@@ -41,7 +41,7 @@ class SetupAccountScreen extends StatelessWidget {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('label1'.tr,
-                                          style: Theme.of(context).textTheme.bodyText2?.copyWith(color: Color(0xff474F55),
+                                          style:  context.theme.textTheme.bodyText2?.copyWith(color: Color(0xff474F55),
                                           fontSize: 16.sp,fontWeight: FontWeight.w400
                                           ),),
                                              SizedBox(height: 10.h,),

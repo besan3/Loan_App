@@ -18,8 +18,7 @@ class NotificationsScreen extends StatelessWidget {
       builder:(notificationscontroller) =>  Scaffold(
        
         appBar: AppBar(
-       backgroundColor: AppColors.primaryColor,
-          elevation: 0.0,
+
          
           
           title: Text('screentitle5'.tr,
