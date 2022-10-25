@@ -31,7 +31,7 @@ class VerificationScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(55)),
-                    color: AppColors.backgroundColor
+                    color:Get.isDarkMode?AppColors.primaryTextColor: AppColors.backgroundColor
                     ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -40,8 +40,9 @@ class VerificationScreen extends StatelessWidget {
                       padding:  EdgeInsets.symmetric(vertical: 36.w),
                       child: Text(
                         'verification'.tr,
-                        style: TextStyle(
-                            fontSize: 20.sp, fontWeight: FontWeight.w400),
+                        style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          fontWeight:FontWeight. w400
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),

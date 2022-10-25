@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,17 +9,15 @@ import 'package:loan_app/shared/local/local.dart';
 import 'package:loan_app/shared/network/local/cache_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-SharedPreferences?  sharepref;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  sharepref=await CacheHelper.init();
+  await SharedPrefs().init();
   await GetStorage.init();
-  runApp( MyApp());
+  runApp( const MyApp());
 }
 
 class MyApp extends StatelessWidget {
  const  MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SettingController localController=Get.put(SettingController(),permanent: true);
@@ -31,25 +28,14 @@ class MyApp extends StatelessWidget {
       builder:
       (context , child)=> GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        locale: localController.initialLang,
+     locale: localController.initialLang,
         translations: MyLocal(),
         title: 'Loan Application',
-        theme:
-        
-        
-        
-
-      AppThemes.CustomLightTheme,
-       darkTheme: AppThemes.CustomDarkTheme,
-       themeMode:localController.getThemeMode(),
-    
-        
-
+        theme: AppThemes().CustomLightTheme,
+       darkTheme: AppThemes().CustomDarkTheme,
        initialRoute:RoutesClass.getSplashRout() ,
-        getPages:
-          RoutesClass().routes
-        ,
-    //    home: SplashScreen(),
+        getPages: RoutesClass().routes,
+
       ),
     );
   }

@@ -14,14 +14,14 @@ class OnBoarding_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void submit() {
-      CacheHelper.saveData(key: 'onBoarding', value: true).then(((value) {
+   /* void submit() {
+      SharedPrefs.saveData(key: 'onBoarding', value: true).then(((value) {
         if (value = true) {
           Get.offAndToNamed(RoutesClass.getLoginRoute());
 
         }
       }));
-    }
+    }*/
 
     return GetBuilder<OnBoardingController>(
         init: OnBoardingController(),
@@ -33,8 +33,8 @@ class OnBoarding_Screen extends StatelessWidget {
                 actions: [
                   TextButton(
                       onPressed: () {
-                      //  Get.toNamed(RoutesClass.getLoginRoute());
-                        submit();
+                        Get.toNamed(RoutesClass.getLoginRoute());
+                        //submit();
                       },
                       child: Text(
                         'skip'.tr,

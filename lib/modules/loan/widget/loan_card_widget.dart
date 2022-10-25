@@ -12,7 +12,7 @@ class DefaultLoanCard extends StatelessWidget {
     return ListTile(
       title: Text(
         loanModel.number!,
-        style:  AppThemes.CustomLightTheme.textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
+        style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
       ),
       subtitle: Text(
         loanModel.date!,
@@ -29,7 +29,7 @@ class DefaultLoanCard extends StatelessWidget {
           )),
       trailing: Text(
         loanModel.amount!,
-        style:  AppThemes.CustomLightTheme.textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
+        style:  Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
       ),
     );
   }

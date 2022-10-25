@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../../shared/colors/app_colors.dart';
 import '../models/onboarding_model.dart';
 class OnBoardingItem extends StatelessWidget {
@@ -22,17 +24,13 @@ class OnBoardingItem extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(top: Radius.circular(55.r)),
-              color: Colors.white),
+              color:Get.isDarkMode?AppColors.primaryTextColor: Colors.white),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 '${onboardingModel.title}',
-                style: TextStyle(
-                    color: AppColors.primaryTextColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.sp,
-                    fontFamily: 'Poppins'),
+                style: Theme.of(context).textTheme.bodyText1,
               ),
               SizedBox(
                 height: 14.h,

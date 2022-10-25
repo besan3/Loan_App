@@ -1,28 +1,35 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CacheHelper{
+class SharedPrefs {
 
- static  SharedPreferences? _preferences;
-  static Future<SharedPreferences?> init()async{
-    _preferences=await SharedPreferences.getInstance() ;
-    return _preferences;
+  static late SharedPreferences _sharedPrefs;
+
+  factory SharedPrefs() => SharedPrefs._internal();
+
+  SharedPrefs._internal();
+
+
+  Future<void> init() async {
+    _sharedPrefs = await SharedPreferences.getInstance();
   }
+
+
+  setTheme(String? value) {
+    _sharedPrefs?.setString(selectedTheme, value!);
+  }
+
+  static const String selectedTheme = "selected_theme";
+
   static Future<bool> setString(String key, String value) async =>
-      await _preferences!.setString(key, value);
-static Future<bool?> saveData({
-    required String key,
-    required dynamic value
-  })async{
+      await _sharedPrefs.setString(key, value);
 
-    if(value is String) return await _preferences?.setString(key, value);
-    if(value is int) return await _preferences?.setInt(key, value);
-    if(value is bool) return await _preferences?.setBool(key, value);
-    return await _preferences?.setDouble(key, value);
-  }
-  static Future<bool?> removeData({
-    required String key,
-  })async{
-    return await _preferences?.remove(key, );
 
-  }
+   static String? getString(String key){
+  return _sharedPrefs.getString(key);
+}
+
+
+  String get theme=>_sharedPrefs?.getString('theme')??'system';
+
+
 }

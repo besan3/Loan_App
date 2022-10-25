@@ -18,8 +18,7 @@ class HomeLayout extends StatelessWidget {
         builder: (homecontroller) {
           return Scaffold(
               appBar: AppBar(
-                backgroundColor: AppColors.primaryColor,
-                elevation: 0.0,
+
                 title: Text(homecontroller.screensTitels[homecontroller.index].tr),
                 actions: [
                   IconButton(

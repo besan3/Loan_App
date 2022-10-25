@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loan_app/shared/colors/app_colors.dart';
-import '../../../../main.dart';
+import 'package:loan_app/shared/network/local/cache_helper.dart';
 enum Themes { System, Light, Dark }
 
 enum Language { System, Arabic, English }
@@ -14,39 +14,43 @@ class SettingController extends GetxController{
 
   Themes theme=Themes.Light;
  Language language=Language.English;
-  final _darkThemeKey='isDarkTheme';
-  bool isDark=true;
-Locale? initialLang= sharepref!.getString('lang')==null?Get.deviceLocale:Locale(sharepref!.getString('lang')!);
+
+Locale? initialLang= SharedPrefs.getString('lang')==null?Get.deviceLocale:Locale(SharedPrefs.getString('lang')!);
+//ThemeMode? intialMode=(sharepref!.getBool('isDarkTheme')==true?ThemeMode.system:getThemeMode()) ;
+
+late ThemeMode _themeMode;
+ThemeMode get themeMode=>_themeMode;
+Future<ThemeMode> getAppThemeMode()async{
+ try{
+   _themeMode=ThemeMode.values.firstWhere((e) => describeEnum(e)==SharedPrefs().theme);
+ }
+ catch(e){
+   _themeMode=ThemeMode.system;
+
+ }
+  setAppThemeMode(themeMode);
+   return _themeMode;
+
+}
+
+  Future <void> setAppThemeMode(ThemeMode themeMode)async{
+    Get.changeThemeMode(themeMode);
+    _themeMode=themeMode;
+    update();
+    await SharedPrefs().setTheme(themeMode.toString().split('.')[1]);
+  }
 
 
 
-
-void changeLang(String langCode){
+  void changeLang(String langCode){
 
   Locale locale=Locale(langCode);
-  sharepref!.setString('lang',langCode);
+  SharedPrefs.setString('lang',langCode);
   Get.updateLocale(locale);
 }
 
 
 
-  void saveThemeData(bool isDarkMode){
-
-    sharepref!.setBool(_darkThemeKey, isDarkMode);
-  }
-
-  bool isSavedDrakMode(){
-    return sharepref!.getBool(_darkThemeKey)??false;
-  }
-
-  ThemeMode getThemeMode(){
-    return isSavedDrakMode()? ThemeMode.dark:ThemeMode.light;
-  }
-
-  void changeTheme(){
-    Get.changeThemeMode(isSavedDrakMode()? ThemeMode.light:ThemeMode.dark);
-    saveThemeData(isSavedDrakMode());
-  }
 
   void showBottomSheet(){
     Get.bottomSheet(
@@ -64,10 +68,11 @@ void changeLang(String langCode){
                         setState(
                               () {
                             theme = value!;
+
                           },
                         );
 
-                      update();
+                     // update();
 
 
                       })),
@@ -78,14 +83,16 @@ void changeLang(String langCode){
                     groupValue: theme,
                     onChanged: (value) {
 
-                          theme = value!;
+                      setState((){
+                        theme = value!;
 
-                      update();
-                          isDark==true;
-                          isSavedDrakMode()==true;
+                       setAppThemeMode(ThemeMode.light);
 
-changeTheme();
-Get.changeThemeMode(ThemeMode.light);
+                      });
+
+
+
+//Get.changeThemeMode(ThemeMode.light);
                     }),
               ),
               ListTile(
@@ -95,14 +102,15 @@ Get.changeThemeMode(ThemeMode.light);
                     groupValue: theme,
                     onChanged: (value) {
 
-                          theme = value!;
+                         setState((){
+                           theme = value!;
+                          setAppThemeMode(ThemeMode.dark);
+                         });
 
-                     update();
-                      isDark==true;
-                      isSavedDrakMode()==true;
 
 
-                 changeTheme();
+
+               //  changeTheme();
                       print('changed');
 
                     }),

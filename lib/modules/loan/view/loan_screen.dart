@@ -47,7 +47,7 @@ class LoanScreen extends StatelessWidget {
                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 40.h),
                           child: ListTile(
-                            title: Text('username'.tr,style:  Theme.of(context).textTheme.bodyText1?.copyWith(color: AppColors.primaryTextColor),),
+                            title: Text('username'.tr,style:  Theme.of(context).textTheme.bodyText1,),
                             subtitle: Text('1234567890'),
                             trailing: Image.asset('assets/images/profile.png',
                             width: 65.w,height: 65.h,
