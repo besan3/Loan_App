@@ -91,9 +91,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                ),
                   SizedBox(height: 15.h,),
 Text('label2'.tr,
-                                            style: TextStyle(color: Color(0xff474F55),
-                                            fontSize: 16.sp,fontWeight: FontWeight.w400
-                                            ),),
+                                            style:  context.theme.textTheme.bodyMedium,),
                                              SizedBox(height: 10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.emailAddress, 
