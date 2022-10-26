@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/views/home_screen.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
 
+import '../../../resources/app_texts/app_texts.dart';
 import '../../setting/view/settingsScreen.dart';
 
 class HomeController extends GetxController {
@@ -14,9 +16,9 @@ class HomeController extends GetxController {
     Icon(Icons.settings_outlined, color: Colors.grey.shade300),
   ];
   List<String> screensTitels = [
-    'homewelcome',
-    'homewelcome',
-    'screentitle4'
+    AppTexts.home_welcome,
+    AppTexts.home_welcome,
+    AppTexts.my_profile
   ];
   void changeScreen(int currentIndex) {
     index = currentIndex;
@@ -24,8 +26,8 @@ class HomeController extends GetxController {
   }
 
   List<String> loanIcons = [
-    'assets/images/Arrow 1.png',
-        'assets/images/Arrow 6.png'
+   AppImages.arrowIcon,
+   AppImages.arrow2Icon
 
   ];
 

@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/onboarding/controller/onboarding_controller.dart';
 import 'package:loan_app/modules/onboarding/widget/onboarding_widget.dart';
-import 'package:loan_app/routes/routes.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import 'package:loan_app/resources/routes/routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../shared/colors/app_colors.dart';
-import 'package:loan_app/shared/widgets/shared_widgets.dart';
-import '../../../shared/network/local/cache_helper.dart';
+import '../../../resources/widgets/shared_widgets.dart';
+import '../../../resources/app_texts/app_texts.dart';
 
 class OnBoarding_Screen extends StatelessWidget {
   OnBoarding_Screen({Key? key}) : super(key: key);
@@ -37,8 +37,8 @@ class OnBoarding_Screen extends StatelessWidget {
                         //submit();
                       },
                       child: Text(
-                        'skip'.tr,
-                        style:  Theme.of(context).textTheme.headline2?.copyWith(
+                          AppTexts.skip.tr,
+                        style:  context.theme.textTheme.headline2?.copyWith(
                           color: Colors.white
                         )
                       ))
@@ -78,7 +78,7 @@ class OnBoarding_Screen extends StatelessWidget {
                         : Padding(
                             padding:
                                  EdgeInsets.symmetric(horizontal: 20.0.w),
-                            child: DefaultButton(text: 'button1'.tr,
+                            child: DefaultButton(text: AppTexts.get_started.tr,
                                 screen: RoutesClass.getLoginRoute()),
                           ),
                   )

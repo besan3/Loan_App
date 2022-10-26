@@ -6,9 +6,12 @@ import 'package:get/get.dart';
 import 'package:loan_app/modules/home/controllers/homeController.dart';
 import 'package:loan_app/modules/loan/model/loan_model.dart';
 import 'package:loan_app/modules/loan/widget/loan_card_widget.dart';
-import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/shared/widgets/shared_widgets.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import '../../../resources/widgets/shared_widgets.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import 'package:loan_app/resources/routes/routes.dart';
+
+import '../../../resources/app_texts/app_texts.dart';
 
 
 class LoanScreen extends StatelessWidget {
@@ -24,7 +27,7 @@ class LoanScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.primaryColor,
-          title: Text('screentitle2'.tr),
+          title: Text(AppTexts.loan.tr),
         ),
         body: SafeArea(
           top: true,
@@ -47,20 +50,22 @@ class LoanScreen extends StatelessWidget {
                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: 20.w,vertical: 40.h),
                           child: ListTile(
-                            title: Text('username'.tr,style: context.theme.textTheme.bodyText1,),
-                            subtitle: Text('1234567890'),
-                            trailing: Image.asset('assets/images/profile.png',
+                            title: Text(AppTexts.username.tr,style: context.theme.textTheme.bodyText1,),
+                            subtitle: Text(AppTexts.number.tr),
+                            trailing: Image.asset(AppImages.profile,
                             width: 65.w,height: 65.h,
                             ),
                           ),
                         ),
 
-                        Center(child: Text('2.000\$',style:  context.theme.textTheme.bodyText1?.copyWith(fontSize: 28.sp,color: Colors.black),)),
+                        Center(child: Text(AppTexts.amount_ex,style:  context.theme.textTheme.bodyText1?.copyWith(fontSize: 28.sp,color: Colors.black),)),
                         SizedBox(height: 10.h,),
-                                                Center(child: Text('12.Nov.2022',style:  Theme.of(context).textTheme.bodyText2?.copyWith(fontSize: 16.sp,color: Color(0xff767D88)),)),
+                                                Center(child: Text(AppTexts.date_ex,
+                            style:context.theme.textTheme.headline2)),
                         SizedBox(height: 30.h,),
 
-                        Text('transaction'.tr,style: context.theme.textTheme.bodyText1?.copyWith(color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor)),
+                        Text(AppTexts.transaction.tr,style:
+                        context.theme.textTheme.bodyText1?.copyWith(color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor)),
                         SizedBox(height: 20.h,),
 
                         Expanded(child: ListView.separated(
@@ -70,9 +75,9 @@ class LoanScreen extends StatelessWidget {
                           itemBuilder: ((context, index) =>
                         DefaultLoanCard(LoanModel(
                           icon: loancontroller.loanIcons[index],
-                          number: '1234567890',
-                          date: 'December 28, 2021',
-                          amount: '\$100.00'
+                          number: AppTexts.number.tr,
+                          date: AppTexts.date_ex,
+                          amount: AppTexts.amount_ex
 
                         ),
 
@@ -84,7 +89,7 @@ class LoanScreen extends StatelessWidget {
                          itemCount: loancontroller.loanIcons.length,)),
                                                  SizedBox(height: 30.h,),
 
-DefaultButton(text: 'button4'.tr,screen: RoutesClass.getRequestRoute()),
+DefaultButton(text: AppTexts.pay_loan.tr,screen: RoutesClass.getRequestRoute()),
                       ],
                     ),
                     ),

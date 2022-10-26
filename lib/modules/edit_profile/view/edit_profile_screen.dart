@@ -4,9 +4,13 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/shared/widgets/shared_widgets.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/app_sizes/app_sizes.dart';
+import '../../../resources/widgets/shared_widgets.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import 'package:loan_app/resources/routes/routes.dart';
+
+import '../../../resources/app_texts/app_texts.dart';
 
 class PersonalDetailsScreen extends StatelessWidget {
   const PersonalDetailsScreen({super.key});
@@ -23,11 +27,11 @@ class PersonalDetailsScreen extends StatelessWidget {
             onPressed: (() => Navigator.pop(context)),
           ),
         
-        title: Text('screentitle4'.tr),
+        title: Text(AppTexts.my_profile.tr),
       ),
       body: SafeArea(
         child: Padding(
-          padding:  EdgeInsets.all(20.0.h.w),
+          padding:  EdgeInsets.all(AppSizes.padding20.h.w),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -35,99 +39,95 @@ class PersonalDetailsScreen extends StatelessWidget {
               children: [
                 Center(
                   child: CircleAvatar(
-                    radius: 50.r,
+                    radius:  AppSizes.radius50.r,
                     backgroundColor: Colors.grey.shade400,
-                    child: Image.asset('assets/images/Path 66.png',
-                    width: 15.w,
-                    height: 15.h,),
+                    child: Image.asset(AppImages.camera,
+                    width: AppSizes.radius15.w,
+                    height: AppSizes.radius15.h,),
                   ),
                 ),
           
-                SizedBox(height: 16.h,),
+                SizedBox(height: AppSizes.radius15.h,),
           
           
-                Text('username'.tr,
+                Text(AppTexts.username.tr,
                       style:  context.theme.textTheme.bodyText1
                       ),
-                       Text('1234567890',
-                      style: TextStyle(
-                        color: Color(0xff95989A),
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400
+                       Text(AppTexts.number.tr,
+                      style: context.theme.textTheme.headline4
                       ),
-                      ),
-                                    SizedBox(height: 25.h,),
+                                    SizedBox(height: AppSizes.sizedBox25.h,),
           
                                     Padding(
-                                      padding:  EdgeInsets.symmetric(horizontal: 15.w),
+                                      padding:  EdgeInsets.symmetric(horizontal: AppSizes.radius15.w),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('label1'.tr,
+                                          Text(AppTexts.full_name.tr,
                                           style: context.theme.textTheme.headline3),
-                                             SizedBox(height: 10.h,),
+                                             SizedBox(height:  AppSizes.sizedBox10.h,),
                                    
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
                    Container(
-                    width: 148.w,
-                    height: 54.h,
+                    width: AppSizes.containerWidth.w,
+                    height: AppSizes.containerheight.h,
                      child: DefaultTextForm(textEditingController: TextEditingController(),
                                                        textInputType: TextInputType.text, 
                                                        validator:(value) => 'Uncorrect Name',
-                                                       label: 'hint01'.tr),
+                                                       label: AppTexts.first_name.tr),
                    ),
 
                     Container(
-                width: 148.w,
-                height: 54.h,
+                      width: AppSizes.containerWidth.w,
+                      height: AppSizes.containerheight.h,
                  child: DefaultTextForm(textEditingController: TextEditingController(),
                                                    textInputType: TextInputType.text, 
                                                    validator:(value) => 'Uncorrect Name',
-                                                   label: 'hint02'.tr),
+                                                   label:AppTexts.last_name.tr),
                ),
                  ],
                ),
-                  SizedBox(height: 15.h,),
-Text('label2'.tr,
+                  SizedBox(height: AppSizes.radius15.h,),
+Text(AppTexts.email.tr,
                                             style:  context.theme.textTheme.headline3,),
-                                             SizedBox(height: 10.h,),
+                                             SizedBox(height:  AppSizes.sizedBox10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.emailAddress, 
                                                      validator:(value) => 'Uncorrect Name',
-                                                     label: 'hint01'.tr),
-                                                      SizedBox(height: 15.h,),
+                                                     label: AppTexts.email.tr),
+                                                      SizedBox(height: AppSizes.radius15.h,),
                                              
                                    
-                                             Text('label3'.tr,
-                                            style: context.theme.textTheme.bodyText2,),
-                                             SizedBox(height: 10.h,),
+                                             Text(AppTexts.dOb.tr,
+                                            style: context.theme.textTheme.headline3,),
+                                             SizedBox(height:  AppSizes.sizedBox10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 
                                                      validator:(value) => 'Uncorrect Name',
                                                      label: 'dd/mm/yyyy',
                                                        hasPrefixIcon: true,
                                                      iconData: Icons.calendar_month_outlined),
-                                                      SizedBox(height: 15.h,),
+                                                      SizedBox(height: AppSizes.radius15.h,),
                                    
                                   
-                                             Text('label4'.tr,
+                                             Text(AppTexts.address.tr,
                                             style: context.theme.textTheme.headline3),
-                                             SizedBox(height: 10.h,),
+                                             SizedBox(height: AppSizes.sizedBox10.h,),
                                           DefaultTextForm(textEditingController: TextEditingController(),
                                                      textInputType: TextInputType.text, 
                                                      validator:(value) => 'Uncorrect Name',
-                                                     label: 'hint05'.tr,
+                                                     label:AppTexts.gaza.tr,
                                                      hasPrefixIcon: true,
                                                      iconData: Icons.location_on_outlined
                                                      ),
                                         ],
                                       ),
                                     ),
-                                                SizedBox(height: 34.h,),
+                                                SizedBox(height: AppSizes.sizedBox34.h,),
 
-                DefaultButton(text: 'button3'.tr,screen:RoutesClass.getLayoutRoute()),
+                DefaultButton(text:AppTexts.save_changes.tr,screen:RoutesClass.getLayoutRoute()),
               ],
             ),
           ),

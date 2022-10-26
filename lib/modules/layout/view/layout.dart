@@ -4,8 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/controllers/homeController.dart';
 import 'package:loan_app/modules/notifications/view/notification_screen.dart';
-
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
 
 
 class HomeLayout extends StatelessWidget {
@@ -25,7 +25,7 @@ class HomeLayout extends StatelessWidget {
                       onPressed: () {
                         Get.to(NotificationsScreen());
                       },
-                      icon: Image.asset('assets/images/Vector.png'))
+                      icon: Image.asset(AppImages.notification))
                 ],
               ),
               backgroundColor: AppColors.primaryColor,

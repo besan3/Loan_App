@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/models/home_model.dart';
 
+import '../../../resources/colors/app_colors.dart';
 import '../../loan/view/loan_screen.dart';
 
 class HomeCard extends StatelessWidget {
@@ -18,17 +19,15 @@ class HomeCard extends StatelessWidget {
         width: 335.w,
         height: 97.5.h,
         child: Card(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.r),
-              side: BorderSide(color: Color(0xff244AD3).withOpacity(0.5))),
+
           child: ListTile(
             leading: Image.asset(
               homeModel.image!,
               width: 65.w,
               height: 65.h,
             ),
-            title: Text(homeModel.name!),
-            subtitle: Text(homeModel.number!,style: Theme.of(context).textTheme.subtitle1,),
+            title: Text(homeModel.name!,style: context.theme.textTheme.bodyText1,),
+            subtitle: Text(homeModel.number!,style: context.theme.textTheme.headline2,),
           ),
         ),
       ),

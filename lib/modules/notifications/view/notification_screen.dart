@@ -4,7 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/controllers/homeController.dart';
 import 'package:loan_app/modules/notifications/widget/notification_widget.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import '../../../resources/app_texts/app_texts.dart';
 import '../model/notification_model.dart';
 
 
@@ -21,7 +23,7 @@ class NotificationsScreen extends StatelessWidget {
 
          
           
-          title: Text('screentitle5'.tr,
+          title: Text(AppTexts.notifications.tr,
         ),
        
         ),
@@ -54,8 +56,8 @@ class NotificationsScreen extends StatelessWidget {
                       itemBuilder: ((context, index) =>  Column(
                         children: [
                        NotificationsItem(NotificationModel(
-image: 'assets/images/profile.png',
-name: 'username'.tr,
+image: AppImages.profile,
+name: AppTexts.username.tr,
 description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
 time: '4h ago',
 

@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/setting/models/setting_model.dart';
 import 'package:loan_app/modules/setting/widget/setting_widget.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/app_texts/app_texts.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
 import '../controller/setting_controller.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -30,8 +32,8 @@ class SettingScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                 Image.asset('assets/images/profile.png',width: 154.w,height: 154.h,fit: BoxFit.cover,),
-                    Text('username'.tr,style: TextStyle(
+                 Image.asset(AppImages.profile,width: 154.w,height: 154.h,fit: BoxFit.cover,),
+                    Text(AppTexts.username.tr,style: TextStyle(
                    color: AppColors.primaryTextColor,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w700

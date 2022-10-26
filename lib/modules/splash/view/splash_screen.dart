@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loan_app/routes/routes.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import 'package:loan_app/resources/routes/routes.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class SplashScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: Center(child: SvgPicture.asset("assets/images/Layer 1.svg",color: Colors.white),),
+      body: Center(child: SvgPicture.asset(AppImages.splashLogo,color: Colors.white),),
     );
   }
 }

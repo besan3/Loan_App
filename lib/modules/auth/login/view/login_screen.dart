@@ -1,14 +1,15 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:loan_app/routes/routes.dart';
-import 'package:loan_app/shared/colors/app_colors.dart';
-
-import '../../../../shared/widgets/shared_widgets.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/app_sizes/app_sizes.dart';
+import 'package:loan_app/resources/app_texts/app_texts.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import 'package:loan_app/resources/routes/routes.dart';
+import '../../../../resources/widgets/shared_widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,63 +19,55 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.all(20.0.h.w),
+          padding:  EdgeInsets.all(AppSizes.padding20.h.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
                 child: Padding(
-                  padding:  EdgeInsets.only(top:36.h),
-                  child: Image.asset('assets/images/logo.png',
-                  height: 158.h,
-                  width: 158.w,
+                  padding:  EdgeInsets.only(top:AppSizes.sizedBox36.h),
+                  child: Image.asset(AppImages.logo,
+                  height: AppSizes.logoSize.h,
+                  width: AppSizes.logoSize.w,
                   ),
                 ),
               ),
-              SizedBox(height: 36.h,),
+              SizedBox(height: AppSizes.sizedBox36.h,),
               Center(
-                child: Text('signin'.tr,
-                style: TextStyle(
-                  color: AppColors.primaryTextColor,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w600
-                ),
+                child: Text(AppTexts.sign_in.tr,
+                style: context.theme.textTheme.headline1
                 ),
               ),
-              SizedBox(height: 29.h,),
+              SizedBox(height: AppSizes.sizedBox29.h,),
 
-                Text('enterphhone'.tr,
-              style: TextStyle(
-                color: AppColors.primaryTextColor,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w400
+                Text(AppTexts.phone_number.tr,
+              style: context.theme.textTheme.bodyText2
               ),
-              ),
-SizedBox(height: 15.h,),
+SizedBox(height: AppSizes.sizedBox15.h,),
               IntlPhoneField(
+
     decoration: InputDecoration(
- 
-        labelText: 'hint1'.tr,
-        labelStyle: TextStyle(
-          color: Color(0xffA5A5A5),
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w400
- 
-        ),
+        labelText: AppTexts.phone_number.tr,
+        labelStyle:context.theme.textTheme.headline4,
+        hintStyle: context.theme.textTheme.headline4,
+
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-            borderSide: BorderSide(color: Color(0xffCBD4EB),
+          borderRadius: BorderRadius.circular(AppSizes.radius10.r),
+            borderSide: BorderSide(color: AppColors.borderSideColor,
             width: 1.w,),
         ),
     ),
-    initialCountryCode: 'IN',dropdownIconPosition: IconPosition.trailing,flagsButtonPadding: EdgeInsets.symmetric(horizontal: 20.w),
+
+                dropdownIconPosition: IconPosition.trailing,
+dropdownTextStyle: context.theme.textTheme.headline4,      style: context.theme.textTheme.headline4,
+                flagsButtonPadding: EdgeInsets.symmetric(horizontal: AppSizes.padding20.w),
     onChanged: (phone) {
         print(phone.completeNumber);
     },
 ),
-SizedBox(height: 30.h,),
-DefaultButton(text:'button2'.tr,
+SizedBox(height: AppSizes.sizedBox30.h,),
+DefaultButton(text:AppTexts.continuebutton.tr,
 screen: RoutesClass.getVerificationRoute()
 
 )

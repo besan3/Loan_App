@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:loan_app/shared/transilations/english.dart';
 
 import '../transilations/arabic.dart';
+import '../transilations/english.dart';
 
 
 class MyLocal implements Translations{

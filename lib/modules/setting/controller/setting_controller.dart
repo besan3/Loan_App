@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/edit_profile/view/edit_profile_screen.dart';
 import 'package:loan_app/modules/profile/setting/view/profile_settings_screen.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+
+import '../../../resources/app_texts/app_texts.dart';
 
 class SettingsController extends GetxController {
   List<String> cardIcons = [
-    'assets/images/Vector (1).png',
-    'assets/images/Vector (2).png',
-    'assets/images/Vector (3).png',
-    'assets/images/Vector (4).png',
+   AppImages.profileIcon,
+ AppImages.debandcredIcon,
+    AppImages.settingIcon,
+   AppImages.logoutIcon,
   ];
   List<String> cardTitle = [
-    'presonaldetails'.tr,
-    'deb&cred'.tr,
-    'setting'.tr,
-    'logout'.tr
+    AppTexts.personal_details.tr,
+    AppTexts.deb_cred.tr,
+    AppTexts.setting.tr,
+    AppTexts.logout.tr
   ];
   List<Widget> cardScreens = [
     PersonalDetailsScreen(),

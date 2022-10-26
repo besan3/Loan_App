@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
 import '../models/onboarding_model.dart';
 class OnBoardingItem extends StatelessWidget {
   OnboardingModel onboardingModel;

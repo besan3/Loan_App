@@ -4,8 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/controllers/homeController.dart';
 import 'package:loan_app/modules/users/view/users_screen.dart';
-import 'package:loan_app/shared/widgets/shared_widgets.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/app_sizes/app_sizes.dart';
+import '../../../resources/widgets/shared_widgets.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import '../../../resources/app_texts/app_texts.dart';
 import '../models/home_model.dart';
 import '../widgets/home_widget.dart';
 
@@ -15,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GetBuilder<HomeController>(
-   //   init: HomeController(),
+
 
       builder: (homecontroller)=>SafeArea(
           top: true,
@@ -38,21 +41,17 @@ class HomeScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () =>Get.to(UsersScreen()) ,
-                        child: Text('view'.tr,style: TextStyle(
-                          color: AppColors.primaryColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400
-                        ),),
+                        child: Text(AppTexts.view.tr,style: context.theme.textTheme.headline2?.copyWith(color: AppColors.primaryColor)),
                       ),
                       SizedBox(
-                        height: 15.h,
+                        height: AppSizes.sizedBox15.h,
                       ),
                     Expanded(child: ListView.separated(
-                      separatorBuilder: (context, index) => SizedBox(height: 15.h,),
+                      separatorBuilder: (context, index) => SizedBox(height:  AppSizes.sizedBox15.h,),
                       itemBuilder: ((context, index) =>  HomeCard( homeModel: HomeModel(
-                          image: 'assets/images/profile.png',
-                          name: 'username'.tr,
-                          number: '1234567890'
+                          image: AppImages.profile,
+                          name: AppTexts.username.tr,
+                          number:AppTexts.number.tr
                       ),)
                      ),
                      itemCount: 6,
@@ -77,8 +76,8 @@ class HomeScreen extends StatelessWidget {
                     tileMode: TileMode.clamp,
 
                     colors: [
-                      Color(0xff6783EA),
-                      Color(0xff62349D),
+                   AppColors.gradint1Color,
+                      AppColors.gradint2Color
                     ],
                   )),
 
@@ -91,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Text('Dr',
                            style: context.theme.textTheme.subtitle1?.copyWith(
-                            fontSize: 17.sp,color: Color(0xffEBEEF2)
+                            fontSize: 17.sp,color: AppColors.subtitleColor
                           )
                           ),
                                                     Row(
@@ -99,14 +98,14 @@ class HomeScreen extends StatelessWidget {
                                                         Icon(Icons.circle,color: Colors.red,size: 13,),
                                                         Text('2.000\$',
                                                          style:  context.theme.textTheme.subtitle1?.copyWith(
-                            fontSize: 23.sp,color: Color(0xffEBEEF2)
+                            fontSize: 23.sp,color: AppColors.subtitleColor
                           )
                                                         ),
                                                       ],
                                                     ),
                                                     Text('12.Nov 2022',
                                                      style:  context.theme.textTheme.subtitle1?.copyWith(
-                            fontSize: 14.sp,color: Color(0xffEBEEF2)
+                            fontSize: 14.sp,color: AppColors.subtitleColor
                           )
                                                     ),
 
@@ -119,21 +118,21 @@ class HomeScreen extends StatelessWidget {
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
                              Text('Cr',style:context.theme.textTheme.subtitle1?.copyWith(
-                                 fontSize: 17.sp,color: Color(0xffEBEEF2)
+                                 fontSize: 17.sp,color:AppColors.subtitleColor
                              ),),
                              Row(
                                children: [
                                  Icon(Icons.circle,color: Colors.green,size: 13,),
                                  Text('4.000\$',
                                      style: context.theme.textTheme.subtitle1?.copyWith(
-                                         fontSize: 23.sp,color: Color(0xffEBEEF2)
+                                         fontSize: 23.sp,color:AppColors.subtitleColor
                                      )
                                  ),
                                ],
                              ),
                              Text('12.Nov 2022',
                                  style:context.theme.textTheme.subtitle1?.copyWith(
-                                     fontSize: 14.sp,color: Color(0xffEBEEF2)
+                                     fontSize: 14.sp,color:AppColors.subtitleColor
                                  )
                              ),
 

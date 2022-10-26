@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/profile/setting/controller/setting_controller.dart';
-import 'package:loan_app/shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_sizes/app_sizes.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import 'package:loan_app/resources/routes/routes.dart';
+
+import '../../../../resources/app_texts/app_texts.dart';
 
 
 class ProfileSettingScreen extends StatefulWidget {
@@ -23,7 +27,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
         backgroundColor:  AppColors.primaryColor,
         appBar: AppBar(
 
-          title: Text('setting'.tr),
+          title: Text(AppTexts.setting.tr),
 
         ),
         body: SafeArea(
@@ -33,11 +37,11 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
             children: [
               Expanded(
                   child: Container(
-                padding: EdgeInsets.all(20.h.w),
+                padding: EdgeInsets.all(AppSizes.padding20.h.w),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(55.r)),
+                        BorderRadius.vertical(top: Radius.circular(AppSizes.radius55.r)),
                     color:Get.isDarkMode?AppColors.primaryTextColor:  AppColors.backgroundColor),
                 child: GetBuilder<SettingController>(
                  // init: SettingController(),
@@ -45,7 +49,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 15.h,
+                        height: AppSizes.sizedBox15.h,
                       ),
                       InkWell(
                         onTap: () => settingController.showBottomSheet(),
@@ -53,13 +57,13 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           leading: CircleAvatar(
                               child: Icon(Icons.brightness_4_outlined),
                               radius: 40.r,
-                              backgroundColor: Color(0xffE8F0FF)),
-                          title: Text('theme'.tr,
+                              backgroundColor: AppColors.circleBackgroundColor),
+                          title: Text(AppTexts.theme.tr,
                               style:context.theme.textTheme.bodyText1
                           ),
                           subtitle: Text(
                           settingController.  theme.name,
-                            style:context.theme.textTheme.subtitle1?.copyWith(
+                            style:context.theme.textTheme.headline2?.copyWith(
 
                                 fontSize: 16.sp),
                           ),
@@ -71,12 +75,12 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           leading: CircleAvatar(
                               child: Icon(Icons.language_outlined),
                               radius: 40.r,
-                              backgroundColor: Color(0xffE8F0FF)),
-                          title: Text('language'.tr,
+                              backgroundColor:AppColors.circleBackgroundColor),
+                          title: Text(AppTexts.language.tr,
                               style:  context.theme.textTheme.bodyText1),
                           subtitle: Text(
                          settingController.language.name,
-                            style:context.theme.textTheme.subtitle1?.copyWith(
+                            style:context.theme.textTheme.headline2?.copyWith(
 
                                 fontSize: 16.sp),
                           ),

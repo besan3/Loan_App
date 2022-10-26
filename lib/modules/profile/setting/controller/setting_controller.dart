@@ -3,20 +3,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/shared/colors/app_colors.dart';
-import 'package:loan_app/shared/network/local/cache_helper.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+
+import '../../../../resources/app_texts/app_texts.dart';
+import '../../../../resources/local/cache_helper.dart';
 enum Themes { System, Light, Dark }
 
 enum Language { System, Arabic, English }
 
 class SettingController extends GetxController{
-
-
+  @override
+  void onInit() {
+getAppThemeMode();
+  }
   Themes theme=Themes.Light;
  Language language=Language.English;
-
 Locale? initialLang= SharedPrefs.getString('lang')==null?Get.deviceLocale:Locale(SharedPrefs.getString('lang')!);
-//ThemeMode? intialMode=(sharepref!.getBool('isDarkTheme')==true?ThemeMode.system:getThemeMode()) ;
 
 late ThemeMode _themeMode;
 ThemeMode get themeMode=>_themeMode;
@@ -59,7 +61,7 @@ Future<ThemeMode> getAppThemeMode()async{
             children: [
               SizedBox(height: 20.h),
               ListTile(
-                  title: Text('System default '),
+                  title: Text(AppTexts.system.tr),
                   leading: Radio<Themes>(
                       activeColor: AppColors.primaryColor,
                       value: Themes.System,
@@ -68,7 +70,7 @@ Future<ThemeMode> getAppThemeMode()async{
                         setState(
                               () {
                             theme = value!;
-
+                            setAppThemeMode(ThemeMode.system);
                           },
                         );
 
@@ -77,26 +79,27 @@ Future<ThemeMode> getAppThemeMode()async{
 
                       })),
               ListTile(
-                title: Text('Light '),
+                title: Text(AppTexts.light.tr),
                 leading: Radio<Themes>(
                     value: Themes.Light,
                     groupValue: theme,
                     onChanged: (value) {
 
                       setState((){
+
                         theme = value!;
 
                        setAppThemeMode(ThemeMode.light);
 
-                      });
 
+                      });
 
 
 //Get.changeThemeMode(ThemeMode.light);
                     }),
               ),
               ListTile(
-                title: Text('Dark '),
+                title: Text(AppTexts.dark.tr),
                 leading: Radio<Themes>(
                     value: Themes.Dark,
                     groupValue: theme,
@@ -105,13 +108,8 @@ Future<ThemeMode> getAppThemeMode()async{
                          setState((){
                            theme = value!;
                           setAppThemeMode(ThemeMode.dark);
+
                          });
-
-
-
-
-               //  changeTheme();
-                      print('changed');
 
                     }),
               ),
@@ -134,7 +132,7 @@ Future<ThemeMode> getAppThemeMode()async{
             children: [
               SizedBox(height: 20.h),
               ListTile(
-                  title: Text('System default '),
+                  title: Text(AppTexts.system.tr),
                   leading: Radio<Language>(
                       activeColor: AppColors.primaryColor,
                       value: Language.System,
@@ -142,15 +140,16 @@ Future<ThemeMode> getAppThemeMode()async{
                       onChanged: (value) {
                         setState(
                               () {
+
                             language = value!;
                           },
                         );
-                        //update();
+                        update();
                       Get.deviceLocale;
 
                       })),
               ListTile(
-                title: Text('English '),
+                title: Text(AppTexts.english.tr),
                 leading: Radio<Language>(
                     value: Language.English,
                     groupValue: language,
@@ -166,7 +165,7 @@ Future<ThemeMode> getAppThemeMode()async{
                     }),
               ),
               ListTile(
-                title: Text('Arabic '),
+                title:Text(AppTexts.arabic.tr),
                 leading: Radio<Language>(
                     value: Language.Arabic,
                     groupValue: language,

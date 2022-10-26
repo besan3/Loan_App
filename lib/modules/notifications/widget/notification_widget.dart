@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:loan_app/shared/widgets/shared_widgets.dart';
+import 'package:loan_app/resources/app_texts/app_texts.dart';
+import '../../../resources/widgets/shared_widgets.dart';
 import '../model/notification_model.dart';
 
 class NotificationsItem extends StatelessWidget {
@@ -31,8 +32,8 @@ class NotificationsItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(width: 150.w, child: DefaultCard(text:'accept'.tr, width: 150.w,)),
-              Container(width: 150.w, child: DefaultCard(text:'reject'.tr, width: 150.w)),
+              Container(width: 150.w, child: DefaultCard(text:AppTexts.accept.tr, width: 150.w,)),
+              Container(width: 150.w, child: DefaultCard(text:AppTexts.reject.tr, width: 150.w)),
             ],
           ),
           SizedBox(

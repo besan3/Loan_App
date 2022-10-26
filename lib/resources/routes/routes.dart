@@ -1,13 +1,15 @@
-import 'package:get/get.dart';
 
-import '../modules/auth/login/view/login_screen.dart';
-import '../modules/auth/setup/view/setup_account_screen.dart';
-import '../modules/auth/verification/view/verifecation_code_screen.dart';
-import '../modules/layout/view/layout.dart';
-import '../modules/request/view/request_screen.dart';
-import '../modules/splash/view/splash_screen.dart';
-import '../modules/onboarding/view/onboarding_screen.dart';
-import '../modules/userProfile/view/profile_screen.dart';
+
+import 'package:get/get.dart';
+import 'package:loan_app/modules/auth/setup/view/setup_account_screen.dart';
+import 'package:loan_app/modules/auth/verification/view/verifecation_code_screen.dart';
+import 'package:loan_app/modules/layout/view/layout.dart';
+import 'package:loan_app/modules/onboarding/view/onboarding_screen.dart';
+import 'package:loan_app/modules/request/view/request_screen.dart';
+import 'package:loan_app/modules/splash/view/splash_screen.dart';
+import 'package:loan_app/modules/userProfile/view/profile_screen.dart';
+
+import '../../modules/auth/login/view/login_screen.dart';
 
 class RoutesClass {
   static String splash = '/splash';
@@ -34,7 +36,7 @@ class RoutesClass {
     GetPage(name: layout, page: () => HomeLayout()),
     GetPage(name: login, page: () => LoginScreen()),
     GetPage(name: setup, page: () => SetupAccountScreen()),
-        GetPage(name: verification, page: () => VerificationScreen()),
+    GetPage(name: verification, page: () => VerificationScreen()),
     GetPage(name: request, page: ()=>RequestScreen()),
     GetPage(name: profile, page: ()=>ProfileScreen())
 

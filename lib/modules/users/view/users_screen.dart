@@ -4,8 +4,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/controllers/homeController.dart';
-import 'package:loan_app/shared/widgets/shared_widgets.dart';
-import '../../../shared/colors/app_colors.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import '../../../resources/app_texts/app_texts.dart';
+import '../../../resources/widgets/shared_widgets.dart';
 import '../../home/models/home_model.dart';
 import '../../home/widgets/home_widget.dart';
 
@@ -21,12 +23,12 @@ class UsersScreen extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: AppColors.primaryColor,
                 elevation: 0.0,
-                title: Text('screentitle3'.tr),
+                title: Text(AppTexts.users.tr),
                 actions: [
               
                   IconButton(
                       onPressed: () {},
-                      icon: Image.asset('assets/images/Vector (5).png')
+                      icon: Image.asset(AppImages.filterIcon)
                       )
                 ],
               ),
@@ -52,15 +54,16 @@ class UsersScreen extends StatelessWidget {
                       SizedBox(
                       height: 40.h,
                     ),
-                    DefaultTextForm(textEditingController: TextEditingController(), textInputType: TextInputType.text, validator: ((value) => ''), label: 'hint30'.tr,hasPrefixIcon: true,iconData: Icons.search),
+                    DefaultTextForm(textEditingController: TextEditingController(), textInputType: TextInputType.text, validator: ((value) => ''),
+                        label:AppTexts.search.tr,hasPrefixIcon: true,iconData: Icons.search),
                     SizedBox(
                       height: 30.h,
                     ),
                   Expanded(child: ListView.separated(
                     separatorBuilder: (context, index) => SizedBox(height: 15.h,),
                     itemBuilder: ((context, index) =>  HomeCard(homeModel:HomeModel(
- image: 'assets/images/profile.png',
-                      name: 'username'.tr,
+ image: AppImages.profile,
+                      name: AppTexts.username.tr,
                       number: '1234567890'
                     ))
                    ),

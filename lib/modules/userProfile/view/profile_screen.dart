@@ -4,8 +4,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/userProfile/controller/profile_controller.dart';
-import '../../../shared/colors/app_colors.dart';
-import 'package:loan_app/shared/widgets/shared_widgets.dart';
+import 'package:loan_app/resources/app_images/app_images.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import '../../../resources/widgets/shared_widgets.dart';
+
+import '../../../resources/app_texts/app_texts.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -63,14 +66,14 @@ body: Column(
         Container(
           width: 120.w,height: 120.h,
           
-          child: Image.asset('assets/images/profile.png',fit: BoxFit.cover,))
+          child: Image.asset(AppImages.profile,fit: BoxFit.cover,))
         ],
       ),
     ),
 
     Padding(
       padding:  EdgeInsets.all(20.0.h.w),
-      child: DefaultCard(text: 'button7'.tr),
+      child: DefaultCard(text: AppTexts.send_messages.tr),
     )
   ],
 ),

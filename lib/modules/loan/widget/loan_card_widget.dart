@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:loan_app/modules/loan/model/loan_model.dart';
-import '../../../shared/colors/app_colors.dart';
-import '../../../themes/themes.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
 
 class DefaultLoanCard extends StatelessWidget {
   LoanModel loanModel;
@@ -12,7 +12,7 @@ class DefaultLoanCard extends StatelessWidget {
     return ListTile(
       title: Text(
         loanModel.number!,
-        style: Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
+        style: context.theme.textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
       ),
       subtitle: Text(
         loanModel.date!,
@@ -29,7 +29,7 @@ class DefaultLoanCard extends StatelessWidget {
           )),
       trailing: Text(
         loanModel.amount!,
-        style:  Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
+        style:context.theme.textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
       ),
     );
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../colors/app_colors.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
+import 'package:loan_app/resources/routes/routes.dart';
 
 class DefaultContainer extends StatelessWidget {
 Widget widget;
@@ -129,6 +130,7 @@ class DefaultTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return     TextFormField(
+      style: context.theme.textTheme.headline2,
       controller: textEditingController,
       keyboardType: textInputType,
       onFieldSubmitted: onFieldSubmitted,

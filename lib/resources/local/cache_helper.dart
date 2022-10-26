@@ -18,7 +18,7 @@ class SharedPrefs {
     _sharedPrefs?.setString(selectedTheme, value!);
   }
 
-  static const String selectedTheme = "selected_theme";
+  static const String selectedTheme = "theme";
 
   static Future<bool> setString(String key, String value) async =>
       await _sharedPrefs.setString(key, value);
