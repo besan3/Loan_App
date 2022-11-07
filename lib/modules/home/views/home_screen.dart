@@ -18,21 +18,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GetBuilder<HomeController>(
-
-
       builder: (homecontroller)=>SafeArea(
           top: true,
           minimum: EdgeInsets.only(top: 30.h),
-          child: Stack(
+          child:
+        Stack(
             alignment: AlignmentDirectional.topCenter,
            children: [
             Column(
               children: [
                 SizedBox(height: 40.h,),
              DefaultContainer(
-
-
-
                Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -50,8 +46,12 @@ class HomeScreen extends StatelessWidget {
                       separatorBuilder: (context, index) => SizedBox(height:  AppSizes.sizedBox15.h,),
                       itemBuilder: ((context, index) =>  HomeCard( homeModel: HomeModel(
                           image: AppImages.profile,
+                          //homecontroller.usersModel?.data![index].image,
+
                           name: AppTexts.username.tr,
+                         // homecontroller.usersModel?.data![index].firstName
                           number:AppTexts.number.tr
+                          //homecontroller.usersModel?.data![index].phoneNumber
                       ),)
                      ),
                      itemCount: 6,

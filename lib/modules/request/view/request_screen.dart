@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/home/controllers/homeController.dart';
+import 'package:loan_app/resources/app_sizes/app_sizes.dart';
 import 'package:loan_app/resources/colors/app_colors.dart';
 import 'package:loan_app/resources/routes/routes.dart';
 import '../../../resources/widgets/shared_widgets.dart';
@@ -26,50 +27,50 @@ class RequestScreen extends StatelessWidget {
               ),
               body: SafeArea(
                   top: true,
-                  minimum: EdgeInsets.only(top: 30.h),
+                  minimum: EdgeInsets.only(top: AppSizes.padding30.h),
                   child: Column(children: [
                     Expanded(
                         child: Container(
-                      padding: EdgeInsets.all(20.h.w),
+                      padding: EdgeInsets.all(AppSizes.padding20.h.w),
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(55.r)),
+                              BorderRadius.vertical(top: Radius.circular(AppSizes.radius55.r)),
                           color: Get.isDarkMode?AppColors.primaryTextColor:Colors.white),
                     child: Padding(
-                      padding:  EdgeInsets.all(20.0.h.w),
+                      padding:  EdgeInsets.all(AppSizes.padding20.h.w),
                       child: SingleChildScrollView(
                         child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                                                                           SizedBox(height: 30.h,),
+                                                                           SizedBox(height: AppSizes.sizedBox30.h,),
 
                               Text(AppTexts.phone_number.tr,
                                                   style: context.theme.textTheme.headline3),
-                                                   SizedBox(height: 10.h,),
+                                                   SizedBox(height: AppSizes.sizedBox10.h,),
                                                   DefaultTextForm(textEditingController: TextEditingController(),
                                                            textInputType: TextInputType.phone,
                                                            validator:(value) => 'Uncorrect Name',
                                                            label: AppTexts.enter_phone.tr),
-                                                            SizedBox(height: 15.h,),
+                                                            SizedBox(height: AppSizes.sizedBox15.h,),
 
 
                                                    Text(AppTexts.deadline.tr,
                                                   style: context.theme.textTheme.headline3),
-                                                   SizedBox(height: 10.h,),
+                                                   SizedBox(height: AppSizes.sizedBox10.h,),
                                                   DefaultTextForm(textEditingController: TextEditingController(),
                                                            textInputType: TextInputType.text,
                                                            validator:(value) => 'Uncorrect Name',
                                                            label: 'dd/mm/yyyy',
                                                              hasPrefixIcon: true,
                                                            iconData: Icons.calendar_month_outlined),
-                                                            SizedBox(height: 15.h,),
+                                                            SizedBox(height: AppSizes.sizedBox15.h,),
 
 
                                                    Text(AppTexts.amount.tr,
                                                   style: context.theme.textTheme.headline3),
-                                                   SizedBox(height: 10.h,),
+                                                   SizedBox(height: AppSizes.sizedBox10.h,),
                                                   DefaultTextForm(textEditingController: TextEditingController(),
                                                            textInputType: TextInputType.text,
                                                            validator:(value) => 'Uncorrect Name',
@@ -77,7 +78,7 @@ class RequestScreen extends StatelessWidget {
                                                            hasPrefixIcon: true,
                                                            iconData: Icons.monetization_on_outlined
                                                            ),
-                                                   SizedBox(height: 40.h,),
+                                                   SizedBox(height: AppSizes.sizedBox40.h,),
 
                                                          DefaultButton( text:AppTexts.confirm.tr,screen: RoutesClass.getProfileRoute())
                             ],

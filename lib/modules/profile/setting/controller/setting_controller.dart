@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:loan_app/resources/colors/app_colors.dart';
 
 import '../../../../resources/app_texts/app_texts.dart';
-import '../../../../resources/local/cache_helper.dart';
+import '../../../../resources/network/local/cache_helper.dart';
 enum Themes { System, Light, Dark }
 
 enum Language { System, Arabic, English }

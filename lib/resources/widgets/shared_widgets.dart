@@ -44,9 +44,9 @@ DefaultButton({
       width: double.infinity,
       child: MaterialButton(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(radius!)),
+            borderRadius: BorderRadius.circular(radius!.r)),
         color:  AppColors.primaryColor,
-        height: height,
+        height: height?.h,
         onPressed: () {
           if(screen=='/')
             Get.offAllNamed(screen!);
@@ -108,11 +108,12 @@ class DefaultTextForm extends StatelessWidget {
   bool isPassword;
   FormFieldValidator<String> validator;
   GestureTapCallback? onTap;
-  String label;
+  String? label;
   IconData? iconData;
       IconData? iconDataSuffixx;
   bool isenable;
       bool hasPrefixIcon;
+      bool filled;
   DefaultTextForm(
       {
         required this. textEditingController,
@@ -122,15 +123,18 @@ class DefaultTextForm extends StatelessWidget {
   this. onTap,
     this.isPassword = false,
         required this.validator,
-        required this. label,
+         this. label,
        this. iconData,
        this. iconDataSuffixx,
     this. isenable = true,
-  this. hasPrefixIcon = false});
+  this. hasPrefixIcon = false,
+      this.filled=false});
   @override
   Widget build(BuildContext context) {
     return     TextFormField(
-      style: context.theme.textTheme.headline2,
+      style: context.theme.textTheme.headline2?.copyWith(
+        color: filled?Colors.white:AppColors.primaryTextColor
+      ),textAlign:filled? TextAlign.center:TextAlign.start,
       controller: textEditingController,
       keyboardType: textInputType,
       onFieldSubmitted: onFieldSubmitted,
@@ -140,14 +144,15 @@ class DefaultTextForm extends StatelessWidget {
       enabled: isenable,
       obscureText: isPassword,
       decoration: InputDecoration(
-          label: Text(label),
+          label: Text(label??''),
           labelStyle: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: Color(0xffA5A5A5),
           ),
           // icon: Icon(iconData),
-
+filled: filled,
+          fillColor: filled?AppColors.primaryColor:null,
           prefixIcon: hasPrefixIcon ? Icon(iconData) : null,
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),

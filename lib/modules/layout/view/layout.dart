@@ -14,7 +14,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
-        init: HomeController(),
+        init: HomeController()..getAllUsers(),
         builder: (homecontroller) {
           return Scaffold(
               appBar: AppBar(

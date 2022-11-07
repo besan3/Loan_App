@@ -26,7 +26,7 @@ class RoutesClass {
   static String getOnboardingRoute() => onboarding;
   static String getLoginRoute() => login;
   static String getSetupAccountRoute() => setup;
-  static String getVerificationRoute() => verification;
+  static String getVerificationRoute(String text) => verification;
   static String getRequestRoute() => request;
   static String getProfileRoute() => profile;
 
@@ -35,8 +35,8 @@ class RoutesClass {
     GetPage(name: onboarding, page: () => OnBoarding_Screen()),
     GetPage(name: layout, page: () => HomeLayout()),
     GetPage(name: login, page: () => LoginScreen()),
-    GetPage(name: setup, page: () => SetupAccountScreen()),
-    GetPage(name: verification, page: () => VerificationScreen()),
+    GetPage(name: setup, page: () => const SetupAccountScreen()),
+ //   GetPage(name: verification, page: () => VerificationScreen()),
     GetPage(name: request, page: ()=>RequestScreen()),
     GetPage(name: profile, page: ()=>ProfileScreen())
 

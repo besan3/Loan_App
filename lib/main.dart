@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loan_app/modules/profile/setting/controller/setting_controller.dart';
 import 'package:loan_app/resources/app_sizes/app_sizes.dart';
-import 'package:loan_app/resources/local/cache_helper.dart';
+import 'package:loan_app/resources/network/local/cache_helper.dart';
 import 'package:loan_app/resources/local/local.dart';
 import 'package:loan_app/resources/routes/routes.dart';
 import 'package:loan_app/resources/themes/themes.dart';

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/modules/home/api/users_api.dart';
+import 'package:loan_app/modules/home/models/users_model.dart';
+import 'package:loan_app/modules/home/repositories/users_repository.dart';
 import 'package:loan_app/modules/home/views/home_screen.dart';
 import 'package:loan_app/resources/app_images/app_images.dart';
 
@@ -31,5 +34,9 @@ class HomeController extends GetxController {
 
   ];
 
+AllUsersModel? usersModel;
 
+ getAllUsers()async{
+  UsersApi().fetchUsers();
+}
 }
