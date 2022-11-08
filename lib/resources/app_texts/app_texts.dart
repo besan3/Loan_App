@@ -60,6 +60,7 @@ class AppTexts{
   static const String number=  '1234567890';
   static const String date_ex=  'December 28, 2021';
   static const String amount_ex= '\$100.00';
+  static const String note= 'note';
 
 
 

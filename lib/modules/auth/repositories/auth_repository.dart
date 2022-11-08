@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 
 abstract class AuthRepository{
-void requestCode( {
+Future<Response> postData( {
   required String phoneNumber
 });
- void login(
+Future<Response>  login(
 
      {
        required String phoneNumber,

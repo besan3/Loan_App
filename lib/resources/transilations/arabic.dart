@@ -66,6 +66,7 @@ const  Map<String, String> ar ={
   AppTexts.reject:'رفض',
   AppTexts.date:"dd/mm/yyyy",
   AppTexts.number:'1234567890',
+  AppTexts.note:'ملاحظات'
 
 
 };

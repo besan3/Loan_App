@@ -6,12 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/auth/login/api/auth_api.dart';
 
+import '../../../../resources/routes/routes.dart';
+import '../../verification/view/verifecation_code_screen.dart';
+
 class LogInController extends GetxController {
   var phoneController = TextEditingController();
   var codeController = TextEditingController();
   bool isLoading = false;
   Dio dio = Dio();
-
+AuthApi authApi=AuthApi();
   @override
   void onInit() {
     super.onInit();
@@ -35,22 +38,17 @@ class LogInController extends GetxController {
   void requestCode({
     required String phoneNumber,
   }) async {
-    AuthApi().requestCode(phoneNumber: phoneNumber);
+   var response=await authApi.postData(phoneNumber: phoneNumber);
 
-  /*  var response = await Dio().post( EndPoints.REQUEST,
+   if(response.statusCode ==200 ) {
 
-        data: {
-          'phone_number': phoneNumber,
+     Get.snackbar('Code', response.data['data'].toString());
+     Get.to(VerificationScreen(phoneController.text));
 
-        }) ;
-    if(response.statusCode ==200 ) {
-
-      Get.snackbar('Code', response.data['data'].toString());
-      print(response);
-    }else {
-      Get.snackbar('Error', ' Something error ',backgroundColor: Colors.red);
-    }
-*/
+     print(response);
+   }else {
+     Get.snackbar('Error', ' Something error ',backgroundColor: Colors.red);
+   }
 
   }
   void verificationCode({
@@ -58,8 +56,18 @@ class LogInController extends GetxController {
     required String code,
 
   }) async {
-   AuthApi().login(phoneNumber: phoneNumber, code: code);
+   var response=await authApi.login(phoneNumber: phoneNumber, code: code);
+   if(response.statusCode==200) {
+     print(response);
 
+     Get.toNamed(RoutesClass.getSetupAccountRoute());
+
+     Get.snackbar('state', response.statusCode.toString());
+
+   } else{
+     Get.snackbar('state', 'error');
+
+   }
 
   }
 

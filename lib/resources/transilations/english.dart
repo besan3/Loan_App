@@ -62,6 +62,7 @@ AppTexts.first_name:'First name',
   AppTexts.reject:'Reject',
   AppTexts.date:"dd/mm/yyyy",
   AppTexts.number:'1234567890',
+  AppTexts.note:'note'
 
 
 

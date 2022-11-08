@@ -82,7 +82,6 @@ class LoginScreen extends StatelessWidget {
                     logInController.requestCode(
                       phoneNumber: logInController.phoneController.text,
                     );
-                    Get.to(VerificationScreen(logInController.phoneController.text));
                   },
                   padding: EdgeInsets.all(20),
                   color: AppColors.primaryColor,
