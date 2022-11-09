@@ -70,6 +70,12 @@ class RequestScreen extends StatelessWidget {
                                     height: AppSizes.sizedBox10.h,
                                   ),
                                   DefaultTextForm(
+                                      onTap: ()async{
+                                        requestcontroller.dateTime=(
+                                            await  showDatePicker(context: context,
+                                                initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate:DateTime.utc(2030)))!;
+                                        requestcontroller.deadline.text='${requestcontroller.dateTime.year!}-${requestcontroller.dateTime.month!}-${requestcontroller.dateTime.day!}';
+                                      },
                                       textEditingController:
                                           requestcontroller.deadline,
                                       textInputType: TextInputType.text,
