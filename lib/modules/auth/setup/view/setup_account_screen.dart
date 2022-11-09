@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/auth/setup/controller/setup_controller.dart';
 import 'package:loan_app/resources/app_images/app_images.dart';
@@ -33,7 +34,19 @@ class SetupAccountScreen extends StatelessWidget {
                     width: AppSizes.setupImageWidth.w,
                     height: AppSizes.setupImageheight.h,),
                   ),
-
+/*
+MaterialButton(
+  color: AppColors.primaryTextColor,
+  onPressed: ()async{
+    setupController.position=await setupController.getLatAndLang();
+    List<Placemark> placemarks = await placemarkFromCoordinates(setupController.position.latitude, setupController.position.longitude);
+  print('longitude:${setupController.position.longitude}');
+  print('latitude:${setupController.position.latitude}');
+  print(placemarks[0].country);
+},
+child: Text('position'),
+),
+*/
                   SizedBox(height: AppSizes.sizedBox16.h,),
 
 
@@ -98,7 +111,14 @@ Text(AppTexts.email.tr,
                                                Text(AppTexts.dOb.tr,
                                               style: context.theme.textTheme.headline3,),
                                                SizedBox(height: AppSizes.radius10.h,),
-                                            DefaultTextForm(textEditingController: setupController.dObController,
+                                            DefaultTextForm(
+                                                onTap: ()async{
+                                            setupController.dateTime=(
+                                                await  showDatePicker(context: context,
+                                                      initialDate: DateTime.now(), firstDate: DateTime.utc(1980), lastDate:DateTime.now()))!;
+                                            setupController.dObController.text='${setupController.dateTime.year!}-${setupController.dateTime.month!}-${setupController.dateTime.day!}';
+                                                },
+                                                textEditingController: setupController.dObController,
                                                        textInputType: TextInputType.text,
                                                        validator:(value) => 'Uncorrect Name',
                                                        label: AppTexts.date.tr,
@@ -110,7 +130,14 @@ Text(AppTexts.email.tr,
                                                Text(AppTexts.location.tr,
                                               style: context.theme.textTheme.headline3),
                                                SizedBox(height: AppSizes.radius10.h,),
-                                            DefaultTextForm(
+                                            DefaultTextForm(onTap: ()async{
+                                              setupController.position=await setupController.getLatAndLang();
+                                              List<Placemark> placemarks = await placemarkFromCoordinates(52.2165157, 6.9437819);
+                                              print('longitude:${setupController.position.longitude}');
+                                              print('latitude:${setupController.position.latitude}');
+                                              print(placemarks[0].country);
+                                              setupController.locationController.text=placemarks[0].country!+","+placemarks[0].administrativeArea!+","+placemarks[0].subLocality!;
+                                            },
                                                 textEditingController: setupController.locationController,
                                                        textInputType: TextInputType.text,
                                                        validator:(value) => 'Uncorrect Name',
@@ -118,21 +145,7 @@ Text(AppTexts.email.tr,
                                                        hasPrefixIcon: true,
                                                        iconData: Icons.location_on_outlined
                                                        ),
-                                            DefaultTextForm(
-                                                textEditingController: setupController.location1Controller,
-                                                textInputType: TextInputType.text,
-                                                validator:(value) => 'Uncorrect Name',
-                                                label: AppTexts.location.tr,
-                                                hasPrefixIcon: true,
-                                                iconData: Icons.location_on_outlined
-                                            ),DefaultTextForm(
-                                                textEditingController: setupController.location2Controller,
-                                                textInputType: TextInputType.text,
-                                                validator:(value) => 'Uncorrect Name',
-                                                label: AppTexts.location.tr,
-                                                hasPrefixIcon: true,
-                                                iconData: Icons.location_on_outlined
-                                            ),
+
                                           ],
                                         ),
                                       ),
@@ -145,8 +158,8 @@ Text(AppTexts.email.tr,
                           email: setupController.emailController.text,
                           dob: setupController.dObController.text,
                           address: setupController.locationController.text,
-                          address1: setupController.location1Controller.text,
-                          address2: setupController.location2Controller.text);
+
+                      );
                       Get.offAllNamed(RoutesClass.getLayoutRoute());
                     },
                     padding: EdgeInsets.all(20),

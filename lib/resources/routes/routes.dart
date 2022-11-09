@@ -8,13 +8,14 @@ import 'package:loan_app/modules/onboarding/view/onboarding_screen.dart';
 import 'package:loan_app/modules/request/view/request_screen.dart';
 import 'package:loan_app/modules/splash/view/splash_screen.dart';
 import 'package:loan_app/modules/userProfile/view/profile_screen.dart';
+import 'package:loan_app/resources/middleware/middleware.dart';
 
 import '../../modules/auth/login/view/login_screen.dart';
 
 class RoutesClass {
   static String splash = '/splash';
   static String onboarding = '/onboarding';
-  static String layout = '/';
+  static String layout = '/layout';
   static String login = '/login';
   static String setup = '/setup';
   static String verification= '/verification';

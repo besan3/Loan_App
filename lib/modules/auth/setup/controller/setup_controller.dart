@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/modules/auth/setup/setup_api.dart';
+import 'package:loan_app/resources/colors/app_colors.dart';
 
 import '../../../../resources/network/remote/end_points.dart';
 
@@ -14,6 +17,48 @@ class SetUpController extends GetxController{
   var location1Controller=TextEditingController();
   var location2Controller=TextEditingController();
   Dio dio = Dio();
+  SetUpApi setUpApi=SetUpApi();
+  late Position position;
+  late DateTime dateTime;
+@override
+  void onInit() {
+    getPosition();
+    super.onInit();
+  }
+
+  Future getPosition()async{
+  bool services;
+  LocationPermission per;
+  services=await Geolocator.isLocationServiceEnabled();
+  if(!services){
+    Get.defaultDialog(
+content: Text('Location Service not Enabled '),
+     title: 'services',
+titleStyle:TextStyle(
+  color: AppColors.primaryTextColor
+)
+    );
+  }
+  print(services);
+per=await Geolocator.checkPermission();
+if(per==LocationPermission.denied){
+  per=await Geolocator.requestPermission();
+  if(per==LocationPermission.always||per==LocationPermission.whileInUse){
+    getLatAndLang();
+   /* print("latitude:${position.latitude}");
+    print("longitude:${position.longitude}");*/
+  }
+}
+print(per);
+  }
+Future<Position> getLatAndLang()async{
+return position= await Geolocator.getCurrentPosition().then((value) {
+  return value;
+});
+
+
+}
+
 
   void setup({
     required String firstName,
@@ -21,22 +66,10 @@ class SetUpController extends GetxController{
     required String email,
     required String dob,
     required String address,
-    required String address1,
-    required String address2,
+
 
   }) async {
-    var response = await dio.post( EndPoints.SIGNUP,
-
-        data: {
-          'first_name': firstName,
-          'last_name': lastName,
-          'email': email,
-          'date_of_birth': dob,
-          'address': address,
-          'address_line1': address1,
-          'address_line2': address2,
-
-        }) ;
+  var response=await setUpApi.setup(firstName: firstName, lastName: lastName, email: email, dob: dob, address: address);
     if(response.statusCode ==200 ) {
 
       Get.snackbar('true', 'true');
@@ -45,12 +78,6 @@ class SetUpController extends GetxController{
       Get.snackbar('Error', ' Something error ',backgroundColor: Colors.red);
     }
 
-    // ).then((value) {
-    //   log(value.toString());
-    //   update();
-    // }).catchError((e){
-    //   print(e.toString());
-    // });
   }
 
 

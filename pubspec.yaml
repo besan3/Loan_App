@@ -46,6 +46,10 @@ dependencies:
   flutter_screenutil: ^5.5.4
   hexcolor: ^3.0.1
   get_storage: ^2.0.3
+  dio: ^4.0.6
+  flutter_otp_text_field: ^1.1.1
+  geolocator: ^9.0.2
+  geocoding: ^2.0.5
 
 dev_dependencies:
   flutter_test:

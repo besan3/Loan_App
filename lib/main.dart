@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:loan_app/modules/profile/setting/controller/setting_controller.dart';
 import 'package:loan_app/resources/app_sizes/app_sizes.dart';
 import 'package:loan_app/resources/network/local/cache_helper.dart';
 import 'package:loan_app/resources/local/local.dart';
+import 'package:loan_app/resources/network/remote/end_points.dart';
 import 'package:loan_app/resources/routes/routes.dart';
 import 'package:loan_app/resources/themes/themes.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefs().init();
-  runApp( const MyApp());
+  bool? isSaved=SharedPrefs.getDta( key: 'onBoarding');
+  EndPoints.token=SharedPrefs.getString( 'token').toString();
+  String? startWidget;
+  if(isSaved!=null){
+    if(EndPoints.token!=null) {
+      startWidget = RoutesClass.getLayoutRoute();
+    }else startWidget=RoutesClass.getLoginRoute();
+  }else startWidget=RoutesClass.getOnboardingRoute();
+
+
+
+  runApp(  MyApp(startWidget));
   SettingController().onInit();
 }
 
 class MyApp extends StatelessWidget {
- const  MyApp({super.key});
+  String? startWidget;
+
+  MyApp(this.startWidget);
   @override
   Widget build(BuildContext context) {
     SettingController localController=Get.put(SettingController());
@@ -35,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme: AppThemes().CustomLightTheme,
        darkTheme: AppThemes().CustomDarkTheme,
        themeMode: localController.themeMode,
-       initialRoute:RoutesClass.getSplashRout() ,
+       initialRoute: startWidget,
         getPages: RoutesClass().routes,
 
       ),

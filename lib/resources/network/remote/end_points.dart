@@ -11,5 +11,6 @@ static const USERS='$baseUrl/users/all';
 static const DEBITOR='$baseUrl/add_debitor';
 static AllUsersModel usersModel=AllUsersModel();
 static const TOKEN='78|P16jRWSqMwjxOWc4vuz7RBFgqcSYp7YfhsenK0gU';
-
+static  String token='';
+static  String LOGOUT='$baseUrl/logout';
 }

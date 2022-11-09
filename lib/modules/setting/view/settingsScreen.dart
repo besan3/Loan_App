@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/modules/edit_profile/view/edit_profile_screen.dart';
 import 'package:loan_app/modules/setting/models/setting_model.dart';
 import 'package:loan_app/modules/setting/widget/setting_widget.dart';
 import 'package:loan_app/resources/app_images/app_images.dart';
@@ -43,15 +44,24 @@ class SettingScreen extends StatelessWidget {
                     ),
                   Expanded(child: ListView.separated(
                     separatorBuilder: (context, index) => SizedBox(height: 15.h,),
-                    itemBuilder: ((context, index) =>  SettingCard(SettingModel(
+                    itemBuilder: ((context, index) =>  InkWell(
+                      onTap: (){
+                        if(index==3){
+                          settingcontroller.signOut();
+                        }else
+                        Get.to(settingcontroller.cardScreens[index]);
+                      },
+                      child: SettingCard(SettingModel(
 cardIcon: settingcontroller.cardIcons[index],
 title: settingcontroller.cardTitle[index],
-screen: settingcontroller.cardScreens[index]
-                    
-                    ))),
+
+
+                      )),
+                    )),
                    itemCount: settingcontroller.cardIcons.length,
                    ),
-                   )
+                   ),
+
                   ],
                 ),
               )),

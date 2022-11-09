@@ -27,8 +27,27 @@ class SharedPrefs {
    static String? getString(String key){
   return _sharedPrefs.getString(key);
 }
+  static dynamic getDta({
+    required String key,
+  }){
+    return  _sharedPrefs.get(key);
+  }
+  static Future<bool> saveData({
+    required String key,
+    required dynamic value
+  })async{
 
+    if(value is String) return await _sharedPrefs.setString(key, value);
+    if(value is int) return await _sharedPrefs.setInt(key, value);
+    if(value is bool) return await _sharedPrefs.setBool(key, value);
+    return await _sharedPrefs.setDouble(key, value);
+  }
+  static Future<bool?> removeData({
+    required String key,
+  })async{
+    return await _sharedPrefs.remove(key, );
 
+  }
   String get theme=>_sharedPrefs?.getString('theme')??'system';
 
 

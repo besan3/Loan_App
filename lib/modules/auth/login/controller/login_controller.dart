@@ -5,7 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/modules/auth/login/api/auth_api.dart';
+import 'package:loan_app/modules/auth/verification/models/verifivation_model.dart';
 
+import '../../../../resources/network/local/cache_helper.dart';
 import '../../../../resources/routes/routes.dart';
 import '../../verification/view/verifecation_code_screen.dart';
 
@@ -15,6 +17,8 @@ class LogInController extends GetxController {
   bool isLoading = false;
   Dio dio = Dio();
 AuthApi authApi=AuthApi();
+  SharedPrefs sharedPrefs=SharedPrefs();
+  VerificationModel verificationModel=VerificationModel();
   @override
   void onInit() {
     super.onInit();
@@ -63,7 +67,9 @@ AuthApi authApi=AuthApi();
      Get.toNamed(RoutesClass.getSetupAccountRoute());
 
      Get.snackbar('state', response.statusCode.toString());
-
+SharedPrefs.saveData(key: 'token',
+value: verificationModel.data!.token
+);
    } else{
      Get.snackbar('state', 'error');
 
