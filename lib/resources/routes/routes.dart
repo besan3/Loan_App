@@ -5,8 +5,10 @@ import 'package:loan_app/modules/auth/setup/view/setup_account_screen.dart';
 import 'package:loan_app/modules/auth/verification/view/verifecation_code_screen.dart';
 import 'package:loan_app/modules/layout/view/layout.dart';
 import 'package:loan_app/modules/onboarding/view/onboarding_screen.dart';
-import 'package:loan_app/modules/request/view/request_screen.dart';
+import 'package:loan_app/modules/request/view/payment_screen.dart';
 import 'package:loan_app/modules/splash/view/splash_screen.dart';
+import 'package:loan_app/modules/transactions/creditor/creditor_view.dart';
+import 'package:loan_app/modules/transactions/debtor/dedtor_view.dart';
 import 'package:loan_app/modules/userProfile/view/profile_screen.dart';
 import 'package:loan_app/resources/middleware/middleware.dart';
 
@@ -21,6 +23,8 @@ class RoutesClass {
   static String verification= '/verification';
   static String request= '/request';
   static String profile='/profile';
+  static String addCreditor='/addCreditor';
+  static String addDebtor='/addDebtor';
 
   static String getSplashRout() => splash;
   static String getLayoutRoute() => layout;
@@ -30,6 +34,8 @@ class RoutesClass {
   static String getVerificationRoute(String text) => verification;
   static String getRequestRoute() => request;
   static String getProfileRoute() => profile;
+  static String getAddCreditorRoute() => addCreditor;
+  static String getAddDebtorRoute() => addDebtor;
 
   List<GetPage> routes = [
     GetPage(name: splash, page: () => SplashScreen()),
@@ -38,8 +44,10 @@ class RoutesClass {
     GetPage(name: login, page: () => LoginScreen()),
     GetPage(name: setup, page: () => const SetupAccountScreen()),
  //   GetPage(name: verification, page: () => VerificationScreen()),
-    GetPage(name: request, page: ()=>RequestScreen()),
-    GetPage(name: profile, page: ()=>ProfileScreen())
+    GetPage(name: request, page: ()=>PaymentScreen()),
+    GetPage(name: profile, page: ()=>ProfileScreen()),
+    GetPage(name: addCreditor, page: ()=>AddCreditorScreen()),
+    GetPage(name: addDebtor, page: ()=>AddDebtorScreen()),
 
   ];
 }

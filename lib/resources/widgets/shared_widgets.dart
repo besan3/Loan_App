@@ -133,8 +133,8 @@ class DefaultTextForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return     TextFormField(
       style: context.theme.textTheme.headline2?.copyWith(
-        color: filled?Colors.white:AppColors.primaryTextColor
-      ),textAlign:filled? TextAlign.center:TextAlign.start,
+        color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor
+      ),textAlign:TextAlign.start,
       controller: textEditingController,
       keyboardType: textInputType,
       onFieldSubmitted: onFieldSubmitted,

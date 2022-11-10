@@ -12,15 +12,27 @@ import '../../setting/view/settingsScreen.dart';
 
 class HomeController extends GetxController {
   int index = 0;
-  List<Widget> screens = [HomeScreen(), HomeScreen(), SettingScreen()];
+  List<Widget> screens = [HomeScreen(),SettingScreen()];
   List<Widget> screensIcons = [
     Icon(Icons.home_outlined, color: Colors.grey.shade300),
-    Icon(Icons.add, color: Colors.grey.shade300),
+   // Icon(Icons.add, color: Colors.grey.shade300),
     Icon(Icons.settings_outlined, color: Colors.grey.shade300),
+  ];
+  List<BottomNavigationBarItem> items=[
+    BottomNavigationBarItem(
+      icon:     Icon(Icons.home_outlined, ),
+      label: 'Home'
+    ),
+    BottomNavigationBarItem(
+        icon:        Icon(Icons.settings_outlined,),
+
+        label: 'Setting'
+    ),
+
   ];
   List<String> screensTitels = [
     AppTexts.home_welcome,
-    AppTexts.home_welcome,
+   // AppTexts.home_welcome,
     AppTexts.my_profile
   ];
   void changeScreen(int currentIndex) {

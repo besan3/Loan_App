@@ -16,7 +16,7 @@ void addDebitor({
   required String amount,
   required String note,
 })async{
- var response=await requestApi.addDebitor(phoneNumber: phoneNumber, deadLine: deadLine, amount: amount, note: note) ;
+ var response=await requestApi.addDebtor(phoneNumber: phoneNumber, deadLine: deadLine, amount: amount, note: note) ;
  if(response.statusCode==200){
    Get.snackbar('Add Debtor', 'success');
  }
@@ -25,6 +25,20 @@ void addDebitor({
 
  }
 }
+  void pay({
+    required String phoneNumber,
 
+    required String amount,
+    required String note,
+  })async{
+    var response=await requestApi.pay(phoneNumber: phoneNumber,amount: amount, note: note) ;
+    if(response.statusCode==200){
+      Get.snackbar('Payment', 'success');
+    }
+    else{
+      Get.snackbar('Payment', 'failed',backgroundColor: Colors.red);
+
+    }
+  }
 
 }

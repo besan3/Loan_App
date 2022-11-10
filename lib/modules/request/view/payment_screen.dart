@@ -3,17 +3,15 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/modules/home/controllers/homeController.dart';
 import 'package:loan_app/modules/request/controller/request_controller.dart';
 import 'package:loan_app/resources/app_sizes/app_sizes.dart';
 import 'package:loan_app/resources/colors/app_colors.dart';
-import 'package:loan_app/resources/routes/routes.dart';
 import '../../../resources/widgets/shared_widgets.dart';
 
 import '../../../resources/app_texts/app_texts.dart';
 
-class RequestScreen extends StatelessWidget {
-  const RequestScreen({super.key});
+class PaymentScreen extends StatelessWidget {
+  const PaymentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,28 +62,7 @@ class RequestScreen extends StatelessWidget {
                                   SizedBox(
                                     height: AppSizes.sizedBox15.h,
                                   ),
-                                  Text(AppTexts.deadline.tr,
-                                      style: context.theme.textTheme.headline3),
-                                  SizedBox(
-                                    height: AppSizes.sizedBox10.h,
-                                  ),
-                                  DefaultTextForm(
-                                      onTap: ()async{
-                                        requestcontroller.dateTime=(
-                                            await  showDatePicker(context: context,
-                                                initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate:DateTime.utc(2030)))!;
-                                        requestcontroller.deadline.text='${requestcontroller.dateTime.year!}-${requestcontroller.dateTime.month!}-${requestcontroller.dateTime.day!}';
-                                      },
-                                      textEditingController:
-                                          requestcontroller.deadline,
-                                      textInputType: TextInputType.text,
-                                      validator: (value) => 'Uncorrect Name',
-                                      label: 'dd/mm/yyyy',
-                                      hasPrefixIcon: true,
-                                      iconData: Icons.calendar_month_outlined),
-                                  SizedBox(
-                                    height: AppSizes.sizedBox15.h,
-                                  ),
+
                                   Text(AppTexts.amount.tr,
                                       style: context.theme.textTheme.headline3),
                                   SizedBox(
@@ -121,11 +98,9 @@ class RequestScreen extends StatelessWidget {
                                   MaterialButton(
                                     color: AppColors.primaryColor,
                                     onPressed: () {
-                                      requestcontroller.addDebitor(
+                                      requestcontroller.pay(
                                           phoneNumber: requestcontroller
                                               .phoneNumber.text,
-                                          deadLine:
-                                              requestcontroller.deadline.text,
                                           amount: requestcontroller.amount.text,
                                           note: requestcontroller.note.text);
                                     },

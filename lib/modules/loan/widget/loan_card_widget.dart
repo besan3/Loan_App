@@ -12,10 +12,12 @@ class DefaultLoanCard extends StatelessWidget {
     return ListTile(
       title: Text(
         loanModel.number!,
-        style: context.theme.textTheme.bodyText1?.copyWith(fontSize: 16.sp, color: AppColors.primaryTextColor),
+        style: context.theme.textTheme.bodyText1?.copyWith(fontSize: 16.sp, color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor),
       ),
       subtitle: Text(
         loanModel.date!,
+        style: context.theme.textTheme.bodyText1?.copyWith(fontSize: 16.sp, color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor),
+
       ),
       leading: Container(
           width: 56.w,

@@ -15,9 +15,20 @@ class AppThemes{
           color: Colors.white
         )
     ),
+   floatingActionButtonTheme: FloatingActionButtonThemeData(
+       backgroundColor: AppColors.primaryColor
+   ),
+   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+     backgroundColor: AppColors.primaryTextColor,
+       selectedItemColor: AppColors.primaryColor,
+       selectedIconTheme: IconThemeData(
+           color: Colors.white
+       )
+   ),
      buttonTheme: ButtonThemeData(
        minWidth: double.infinity,
        height: AppSizes.height60.h,
+
        shape: RoundedRectangleBorder(
            borderRadius: BorderRadius.circular(AppSizes.radius10/2.r)),
        buttonColor: AppColors.primaryColor
@@ -94,7 +105,16 @@ fontWeight: FontWeight.w400,
        buttonColor: AppColors.primaryColor,
     textTheme: ButtonTextTheme.primary
    ),
-
+   floatingActionButtonTheme: FloatingActionButtonThemeData(
+     backgroundColor: AppColors.primaryColor
+   ),
+bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  backgroundColor: Color.fromARGB(255, 255, 252, 252),
+  selectedItemColor: AppColors.primaryColor,
+  selectedIconTheme: IconThemeData(
+    color: AppColors.primaryColor
+  )
+),
    cardTheme: CardTheme(
      color: Colors.white,
      shape:  RoundedRectangleBorder(
