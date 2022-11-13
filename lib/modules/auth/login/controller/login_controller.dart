@@ -18,7 +18,7 @@ class LogInController extends GetxController {
   Dio dio = Dio();
 AuthApi authApi=AuthApi();
   SharedPrefs sharedPrefs=SharedPrefs();
-  VerificationModel verificationModel=VerificationModel();
+
   @override
   void onInit() {
     super.onInit();
@@ -61,15 +61,16 @@ AuthApi authApi=AuthApi();
 
   }) async {
    var response=await authApi.login(phoneNumber: phoneNumber, code: code);
+
    if(response.statusCode==200) {
      print(response);
-
+     log(response.data.toString());
+     SharedPrefs().saveToken(response.data['data']['token']);
+     print(sharedPrefs.token);
      Get.toNamed(RoutesClass.getSetupAccountRoute());
 
      Get.snackbar('state', response.statusCode.toString());
-SharedPrefs.saveData(key: 'token',
-value: verificationModel.data!.token
-);
+
    } else{
      Get.snackbar('state', 'error');
 

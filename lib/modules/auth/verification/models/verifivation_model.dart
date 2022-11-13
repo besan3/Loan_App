@@ -20,6 +20,11 @@ class VerificationModel {
     data['success'] = this.success;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'VerificationModel{message: $message, data: $data, success: $success}';
+  }
 }
 
 class Data {
@@ -32,7 +37,7 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     draft = json['draft'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +48,11 @@ class Data {
       data['user'] = this.user!.toJson();
     }
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Data{token: $token, draft: $draft, user: $user}';
   }
 }
 
@@ -55,7 +65,7 @@ class User {
   String? addressLine1;
   String? addressLine2;
   String? address;
-  Null? image;
+  String? image;
 
   User(
       {this.phoneNumber,
@@ -92,5 +102,10 @@ class User {
     data['address'] = this.address;
     data['image'] = this.image;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'User{phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, email: $email, dateOfBirth: $dateOfBirth, addressLine1: $addressLine1, addressLine2: $addressLine2, address: $address, image: $image}';
   }
 }

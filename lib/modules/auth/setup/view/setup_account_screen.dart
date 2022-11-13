@@ -132,11 +132,11 @@ Text(AppTexts.email.tr,
                                                SizedBox(height: AppSizes.radius10.h,),
                                             DefaultTextForm(onTap: ()async{
                                               setupController.position=await setupController.getLatAndLang();
-                                              List<Placemark> placemarks = await placemarkFromCoordinates(52.2165157, 6.9437819);
+                                              List<Placemark> placemarks = await placemarkFromCoordinates(setupController.position.latitude,setupController.position.longitude);
                                               print('longitude:${setupController.position.longitude}');
                                               print('latitude:${setupController.position.latitude}');
-                                              print(placemarks[0].country);
-                                              setupController.locationController.text=placemarks[0].country!+","+placemarks[0].administrativeArea!+","+placemarks[0].subLocality!;
+                                              print(placemarks);
+                                              setupController.locationController.text=placemarks[0].name!+","+placemarks[0].street!+","+placemarks[0].thoroughfare!;
                                             },
                                                 textEditingController: setupController.locationController,
                                                        textInputType: TextInputType.text,

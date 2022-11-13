@@ -48,7 +48,11 @@ class SharedPrefs {
     return await _sharedPrefs.remove(key, );
 
   }
+  Future<bool> saveToken(String token)async {
+     return await _sharedPrefs.setString('token', token);
+  }
   String get theme=>_sharedPrefs?.getString('theme')??'system';
 
+   String get token => _sharedPrefs.getString('token')??'';
 
 }

@@ -18,7 +18,9 @@ class AuthApi extends AuthRepository{
         data: {
           'phone_number': phoneNumber,
 
-        }) ;
+        },
+
+    ) ;
 
 return response;
   }

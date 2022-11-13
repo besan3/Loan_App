@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:loan_app/resources/network/local/cache_helper.dart';
 
 import '../../../resources/network/remote/end_points.dart';
 
@@ -23,7 +24,13 @@ class SetUpApi{
           'address': address,
 
 
-        }) ;
+        },
+    options: Options(
+      headers: {
+        'Authorization':'Bearer ${SharedPrefs().token}'
+      }
+    )
+    ) ;
     return response;
   }
 
