@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/modules/profile/setting/controller/setting_controller.dart';
-import 'package:loan_app/resources/app_sizes/app_sizes.dart';
-import 'package:loan_app/resources/network/local/cache_helper.dart';
-import 'package:loan_app/resources/local/local.dart';
-import 'package:loan_app/resources/network/remote/end_points.dart';
-import 'package:loan_app/resources/routes/routes.dart';
-import 'package:loan_app/resources/themes/themes.dart';
+import 'package:loan_app/features/users/presenttion/controller/all_users_controller.dart';
+import 'package:loan_app/core/app_sizes/app_sizes.dart';
+import 'package:loan_app/core/network/cache_helper.dart';
+import 'package:loan_app/core/local/local.dart';
+import 'package:loan_app/core/network/end_points.dart';
+import 'package:loan_app/core/routes/routes.dart';
+import 'package:loan_app/core/themes/themes.dart';
+
+import 'features/profile/setting/presenttion/controllers/setting_controller.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SettingController localController=Get.put(SettingController());
     localController.getAppThemeMode();
+
     return ScreenUtilInit(
        designSize: const Size(AppSizes.screenWidth, AppSizes.screenHeight),
       minTextAdapt: true,

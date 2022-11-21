@@ -1,0 +1,72 @@
+import '../app_texts/app_texts.dart';
+
+const  Map<String, String> ar ={
+  AppTexts.onboardingTitle1: "احصل على قروض سريعة",
+  AppTexts.description1:'احصل بسهولة على القروض باستخدام هاتفك',
+
+  AppTexts.onBoardingTitle2: "سهل ومريح",
+  AppTexts.description2: "لا ضامنين ، لا قوائم انتظار طويلة ، بلا أوراق.",
+  AppTexts.onBoardingTitle3: "تابع كل شيء",
+  AppTexts.description3:'''رحلتك المالية تبدأ هنا''',
+  AppTexts.get_started:'ابدأ',
+  AppTexts.skip:'تجاهل',
+  AppTexts.sign_in:'تسجيل الدخول',
+  AppTexts.setup:'قم باعداد حسابك',
+
+  AppTexts.continuebutton:'متابعة',
+  AppTexts.enter_phone:'أدخل رقم الهاتف',
+  AppTexts.verification_code: "رمز التحقق",
+  AppTexts.verification: "لقد أرسلنا رمز OTP للتحقق من رقمك" ,
+  AppTexts.not_received: "لم يتم استلام الرمز؟",
+  AppTexts.resend: "إعادة الإرسال" ,
+  AppTexts.full_name: "الاسم الكامل",
+  AppTexts.email: "بريد إلكتروني",
+  AppTexts.dOb: "تاريخ الميلاد",
+  AppTexts.address: "العنوان",
+  AppTexts.phone_number: "رقم الهاتف",
+  AppTexts.deadline: "الموعد النهائي",
+  AppTexts.amount: 'المبلغ',
+  AppTexts.first_name: "الاسم الأول",
+  AppTexts.last_name: "اسم العائلة",
+  AppTexts.enter_email: "أدخل عنوان بريدك الإلكتروني",
+  AppTexts.gaza: "غزة" ,
+  AppTexts.location:'الموقع',
+  AppTexts.name:'الاسم',
+
+  AppTexts.odb:'ODB',
+
+  AppTexts.save_changes: "حفظ التغييرات",
+  AppTexts.home_welcome: "أهلا وسهلا بك ، جون" ,
+  AppTexts.view: 'عرض الكل',
+  AppTexts.username: "جون",
+  AppTexts.loan: "قرض",
+  AppTexts.transaction: "معاملة",
+  AppTexts.pay_loan: "سداد القرض",
+  AppTexts.confirm:'تأكيد',
+
+  AppTexts.users: "المستخدمون" ,
+  AppTexts.search: "بحث",
+  AppTexts.my_profile: 'ملفي الشخصي',
+  AppTexts.notifications: "الإشعارات",
+  AppTexts.request:'اطلب',
+
+  AppTexts.personal_details: 'التفاصيل الشخصية',
+  AppTexts.deb_cred: "المدينون والدائنون" ,
+  AppTexts.setting: "الإعدادات" ,
+  AppTexts.logout: "تسجيل الخروج",
+  AppTexts.theme: "الثيم",
+  AppTexts.language: "اللغة",
+  AppTexts.send_messages:' ارسال رسالة',
+  AppTexts.english:'الانجليزية',
+  AppTexts.arabic:'العربية',
+  AppTexts.system:'وضع الجهاز',
+  AppTexts.light:'مضيء',
+  AppTexts.dark:'معتم',
+  AppTexts.accept:'قبول',
+  AppTexts.reject:'رفض',
+  AppTexts.date:"dd/mm/yyyy",
+  AppTexts.number:'1234567890',
+  AppTexts.note:'ملاحظات'
+
+
+};
