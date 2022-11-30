@@ -4,11 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
-
-import '../../data/models/setup_api.dart';
+import 'package:loan_app/features/auth/data/models/setup_model.dart';
+import 'package:loan_app/features/auth/domain/entities/setup_entity.dart';
+import 'package:loan_app/features/auth/domain/usecases/setup_usecase.dart';
+import 'package:loan_app/features/layout/presenttion/pages/layout.dart';
+import '../../../../core/errors/fauilers.dart';
+import '../../../../core/routes/routes.dart';
 
 
 class SetUpController extends GetxController{
+  SetUpUseCase setUpUseCase;
+  SetUpController({required this.setUpUseCase});
+  SetUpModel setUpModel=SetUpModel(data:SetUpData(image: '',email: '',address: '',addressLine1: '',addressLine2: '',dateOfBirth: '',firstName: '',lastName: '',phoneNumber: ''));
   var firstNameController=TextEditingController();
   var lastNameController=TextEditingController();
   var emailController=TextEditingController();
@@ -17,7 +24,6 @@ class SetUpController extends GetxController{
   var location1Controller=TextEditingController();
   var location2Controller=TextEditingController();
   Dio dio = Dio();
-  SetUpApi setUpApi=SetUpApi();
   late Position position;
   late DateTime dateTime;
 @override
@@ -59,17 +65,47 @@ return position= await Geolocator.getCurrentPosition().then((value) {
 
 }
 
+  void setUpAccount(
+      {required String phoneNumber,
+        required String firstName,
+        required String lastName,
+        required String email,
+        required String dateOfBirth,
+        required String addressLine1,
+        required String addressLine2,
+        required String address,
+        required String image}
+      )async{
+    var response=await setUpUseCase.call(phoneNumber, firstName, lastName, email, dateOfBirth, address, addressLine1, addressLine2, image);
+    print(response);
+    response.fold((l) {
+      Get.snackbar('Status','Fail');
+      ConnectionFailure();
 
-  void setup({
+      // change(requestCodeModel,status: RxStatus.loading());
+    }, (r) {
+      print(response);
+      setUpModel.data=r.data;
+      Get.snackbar('Status','success');
+      Get.offAll(HomeLayout());
+
+
+    });
+
+
+  }
+/*  void setup({
     required String firstName,
     required String lastName,
     required String email,
     required String dob,
     required String address,
+    required String address1,
+    required String address2,
 
 
   }) async {
-  var response=await setUpApi.setup(firstName: firstName, lastName: lastName, email: email, dob: dob, address: address);
+  var response=await setUpApi.setup(firstName: firstName, lastName: lastName, email: email, dob: dob, address: address,address1: address1,address2: address2);
     if(response.statusCode ==200 ) {
 
       Get.snackbar('true', 'true');
@@ -78,7 +114,7 @@ return position= await Geolocator.getCurrentPosition().then((value) {
       Get.snackbar('Error', ' Something error ',backgroundColor: Colors.red);
     }
 
-  }
+  }*/
 
 
 

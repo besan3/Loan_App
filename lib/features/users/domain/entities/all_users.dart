@@ -14,6 +14,6 @@ class AllUsers extends Equatable{
 
   @override
   String toString() {
-    return 'TopHeadlinesNewsResponseModel{message: $message, data: $data, success: $success}';
+    return 'AllUsersModel{message: $message, data: $data, success: $success}';
   }
 }

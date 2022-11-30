@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loan_app/features/home/models/users_model.dart';
+
 import 'package:loan_app/features/home/presenttion/pages/home_screen.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
 import '../../../../core/app_texts/app_texts.dart';
@@ -14,12 +14,18 @@ class HomeController extends GetxController {
   final AllUsersRepositoryImp? allUsersModel;
   HomeController({this.allUsersModel,this.getAllUsersUseCase});
   int index = 0;
+  bool show=false;
   List<Widget> screens = [HomeScreen(),SettingScreen()];
   List<Widget> screensIcons = [
     Icon(Icons.home_outlined, color: Colors.grey.shade300),
    // Icon(Icons.add, color: Colors.grey.shade300),
     Icon(Icons.settings_outlined, color: Colors.grey.shade300),
   ];
+  void showIcons(){
+
+    update();
+
+  }
   List<BottomNavigationBarItem> items=[
     BottomNavigationBarItem(
       icon:     Icon(Icons.home_outlined, ),
@@ -48,9 +54,6 @@ class HomeController extends GetxController {
 
   ];
 
-AllUsersHome? usersModel;
 
- getAllUsers()async{
-await getAllUsersUseCase?.call();
-}
+
 }

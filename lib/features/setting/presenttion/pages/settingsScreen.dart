@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/features/edit_profile/presenttion/bindings/edit_profile_binding.dart';
 import 'package:loan_app/features/setting/data/models/setting_model.dart';
 import 'package:loan_app/features/setting/presenttion/widgets/setting_widget.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
@@ -48,7 +49,7 @@ class SettingScreen extends StatelessWidget {
                         if(index==3){
                           settingcontroller.signOut();
                         }else
-                        Get.to(settingcontroller.cardScreens[index]);
+                        Get.to(settingcontroller.cardScreens[index],binding: EditProfileBinding());
                       },
                       child: SettingCard(SettingModel(
 cardIcon: settingcontroller.cardIcons[index],

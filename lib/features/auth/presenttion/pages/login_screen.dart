@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,12 +8,14 @@ import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/app_sizes/app_sizes.dart';
 import 'package:loan_app/core/app_texts/app_texts.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
+import 'package:loan_app/features/auth/data/datasources/remote_data_sources.dart';
+import 'package:loan_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:loan_app/features/auth/domain/usecases/request_code_usecase.dart';
 
 import '../controller/login_controller.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends GetView<LogInController> {
    LoginScreen({super.key});
-  LogInController logInController=Get.put(LogInController());
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                   height: AppSizes.sizedBox15.h,
                 ),
                 IntlPhoneField(
-                  controller: logInController.phoneController,
+                  controller: controller.phoneController,
                   decoration: InputDecoration(
                     labelText: AppTexts.phone_number.tr,
                     labelStyle: context.theme.textTheme.headline4,
@@ -77,16 +80,22 @@ class LoginScreen extends StatelessWidget {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    logInController.requestCode(
-                      phoneNumber: logInController.phoneController.text,
+                    controller.status==controller.status.isLoading;
+                    controller.requestLoginCode(
+                      phoneNumber: controller.phoneController.text,
                     );
                   },
                   padding: EdgeInsets.all(20),
                   color: AppColors.primaryColor,
                   minWidth: double.infinity,
-                  child: Text(
-                    AppTexts.continuebutton.tr,
-                  ),
+                  child:
+                   Text(
+                      AppTexts.continuebutton.tr,
+                    )
+
+                  ,//onLoading: Center(child: CircularProgressIndicator()),
+
+
                 ),
 /*
 DefaultButton(

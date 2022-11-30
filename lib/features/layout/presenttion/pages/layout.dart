@@ -7,6 +7,8 @@ import 'package:loan_app/features/notifications/presenttion/pages/notification_s
 import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
 import 'package:loan_app/core/routes/routes.dart';
+import 'package:loan_app/features/transactions/presenttion/binding/transaction_binding.dart';
+import 'package:loan_app/features/transactions/presenttion/pages/dedtor_view.dart';
 
 class HomeLayout extends StatelessWidget {
   HomeLayout({super.key});
@@ -14,7 +16,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
-        init: HomeController()..getAllUsers(),
+      init: HomeController(),
         builder: (homecontroller) {
           return Scaffold(
               appBar: AppBar(
@@ -30,7 +32,11 @@ class HomeLayout extends StatelessWidget {
               ),
               backgroundColor: AppColors.primaryColor,
 
-              floatingActionButton: CircularMenu(
+              floatingActionButton:
+
+
+               CircularMenu(
+
                 alignment: Alignment.bottomCenter,
                 startingAngleInRadian: 1.25 * pi,
                 endingAngleInRadian: 1.75 * pi,
@@ -54,7 +60,7 @@ animationDuration: Duration.zero,
                   ),
                   CircularMenuItem(onTap: (){
 
-                    Get.toNamed(RoutesClass.getAddDebtorRoute());
+                    Get.to(AddDebtorScreen(),binding: TransactionBinding());
 
                   },icon:Icons.arrow_upward,color: Colors.green,boxShadow: [ BoxShadow(
                     color: Colors.grey.shade500,
@@ -66,7 +72,8 @@ animationDuration: Duration.zero,
                 ],
 
 
-              ),floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
               bottomNavigationBar:
               BottomNavigationBar(

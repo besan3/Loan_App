@@ -6,17 +6,16 @@ import 'package:get/get.dart';
 import 'package:loan_app/features/request/presenttion/controller/request_controller.dart';
 import 'package:loan_app/core/app_sizes/app_sizes.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
+import 'package:loan_app/features/transactions/presenttion/controllers/transaction_controller.dart';
 import '../../../../core/widgets/shared_widgets.dart';
 import '../../../../core/app_texts/app_texts.dart';
 
-class AddDebtorScreen extends StatelessWidget {
+class AddDebtorScreen extends GetView<TransactionController> {
   const AddDebtorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RequestController>(
-        init: RequestController(),
-        builder: (requestcontroller) => Scaffold(
+    return  Scaffold(
           backgroundColor: AppColors.primaryColor,
           appBar: AppBar(
             elevation: 0,
@@ -54,7 +53,7 @@ class AddDebtorScreen extends StatelessWidget {
                               ),
                               DefaultTextForm(
                                   textEditingController:
-                                  requestcontroller.phoneNumber,
+                                  controller.phoneNumber,
                                   textInputType: TextInputType.phone,
                                   validator: (value) => 'Uncorrect Name',
                                   label: AppTexts.enter_phone.tr),
@@ -68,13 +67,13 @@ class AddDebtorScreen extends StatelessWidget {
                               ),
                               DefaultTextForm(
                                   onTap: ()async{
-                                    requestcontroller.dateTime=(
+                                    controller.dateTime=(
                                         await  showDatePicker(context: context,
                                             initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate:DateTime.utc(2030)))!;
-                                    requestcontroller.deadline.text='${requestcontroller.dateTime.year!}-${requestcontroller.dateTime.month!}-${requestcontroller.dateTime.day!}';
+                                    controller.deadline.text='${controller.dateTime.year!}-${controller.dateTime.month!}-${controller.dateTime.day!}';
                                   },
                                   textEditingController:
-                                  requestcontroller.deadline,
+                                  controller.deadline,
                                   textInputType: TextInputType.text,
                                   validator: (value) => 'Uncorrect Name',
                                   label: 'dd/mm/yyyy',
@@ -90,7 +89,7 @@ class AddDebtorScreen extends StatelessWidget {
                               ),
                               DefaultTextForm(
                                   textEditingController:
-                                  requestcontroller.amount,
+                                  controller.amount,
                                   textInputType: TextInputType.text,
                                   validator: (value) => 'Uncorrect Name',
                                   label: '1.200',
@@ -106,7 +105,7 @@ class AddDebtorScreen extends StatelessWidget {
                               ),
                               DefaultTextForm(
                                   textEditingController:
-                                  requestcontroller.note,
+                                  controller.note,
                                   textInputType: TextInputType.text,
                                   validator: (value) => 'Uncorrect Name',
                                   label: AppTexts.note.tr,
@@ -118,13 +117,13 @@ class AddDebtorScreen extends StatelessWidget {
                               MaterialButton(
                                 color: AppColors.primaryColor,
                                 onPressed: () {
-                                  requestcontroller.addDebitor(
-                                      phoneNumber: requestcontroller
+                                  controller.transaction(
+                                      phoneNumber: controller
                                           .phoneNumber.text,
                                       deadLine:
-                                      requestcontroller.deadline.text,
-                                      amount: requestcontroller.amount.text,
-                                      note: requestcontroller.note.text);
+                                      controller.deadline.text,
+                                      amount: controller.amount.text,
+                                      note: controller.note.text);
                                 },
                                 child: Text(AppTexts.confirm.tr),
                               )
@@ -139,6 +138,6 @@ class AddDebtorScreen extends StatelessWidget {
                   ),
                 ),
               ])),
-        ));
+        );
   }
 }

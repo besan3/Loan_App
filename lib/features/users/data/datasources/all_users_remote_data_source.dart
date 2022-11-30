@@ -22,10 +22,10 @@ class UsersRemoteDataSource implements AllUsersRemoteDataSource {
        }
      )
    );
-   if(response.statusCode==20){
+   if(response.statusCode==200){
   AllUsersModel   users=AllUsersModel.fromJson((response.data));
-  print(users.data.length);
-  print(response);
+  print(users.data?.length);
+  print(users);
      return users;
 
    }else{

@@ -1,17 +1,17 @@
 import 'package:equatable/equatable.dart';
 
 class AllUsersData extends Equatable {
-late final   String phone_number;
- late final  String first_name;
-late final   String last_name;
-late final   String image;
+ final   String phone_number;
+    String? first_name;
+    String? last_name;
+   String? image;
    String? updatedAt;
 
   AllUsersData({
     required  this.phone_number,
-    required  this.first_name,
-    required this.last_name,
-    required  this.image,
+      this.first_name,
+     this.last_name,
+      this.image,
     this.updatedAt
   });
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/features/auth/presenttion/bindings/auth_bindings.dart';
+import 'package:loan_app/features/edit_profile/presenttion/bindings/edit_profile_binding.dart';
+import 'package:loan_app/features/users/presenttion/binding/all_users_binding.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_controller.dart';
 import 'package:loan_app/core/app_sizes/app_sizes.dart';
 import 'package:loan_app/core/network/cache_helper.dart';
@@ -44,6 +47,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder:
       (context , child)=> GetMaterialApp(
+        initialBinding: MainBinding(),
         debugShowCheckedModeBanner: false,
      locale: localController.initialLang,
         translations: MyLocal(),

@@ -7,20 +7,19 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/app_sizes/app_sizes.dart';
-import 'package:loan_app/core/routes/routes.dart';
 import '../../../../core/app_texts/app_texts.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/widgets/shared_widgets.dart';
+import '../../../layout/presenttion/pages/layout.dart';
 import '../controller/setup_controller.dart';
 
-class SetupAccountScreen extends StatelessWidget {
-  const SetupAccountScreen({super.key});
+class SetupAccountScreen extends GetView<SetUpController> {
+  String phone;
+  SetupAccountScreen(this.phone);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SetUpController>(
-      init: SetUpController(),
-      builder:(setupController)=> Scaffold(
+    return  Scaffold(
         body: SafeArea(
           child: Padding(
             padding:  EdgeInsets.all(AppSizes.padding20.h.w),
@@ -70,7 +69,7 @@ child: Text('position'),
                      Container(
                        width: AppSizes.containerWidth.w,
                        height: AppSizes.containerheight.h,
-                       child: DefaultTextForm(textEditingController: setupController.firstNameController,
+                       child: DefaultTextForm(textEditingController: controller.firstNameController,
                                                          textInputType: TextInputType.text,
                            validator: (String? value) {
                              if(value!.isEmpty) {
@@ -82,7 +81,7 @@ child: Text('position'),
                       Container(
                   width: AppSizes.containerWidth.w,
                   height: AppSizes.containerheight.h,
-                   child: DefaultTextForm(textEditingController: setupController.lastNameController,
+                   child: DefaultTextForm(textEditingController: controller.lastNameController,
                                                      textInputType: TextInputType.text,
                        validator: (String? value) {
                          if(value!.isEmpty) {
@@ -97,7 +96,7 @@ child: Text('position'),
 Text(AppTexts.email.tr,
                                               style: context.theme.textTheme.headline3,),
                                                SizedBox(height: AppSizes.radius10.h,),
-                                            DefaultTextForm(textEditingController: setupController.emailController,
+                                            DefaultTextForm(textEditingController: controller.emailController,
                                                        textInputType: TextInputType.emailAddress,
                                                 validator: (String? value) {
                                                   if(value!.isEmpty) {
@@ -113,12 +112,12 @@ Text(AppTexts.email.tr,
                                                SizedBox(height: AppSizes.radius10.h,),
                                             DefaultTextForm(
                                                 onTap: ()async{
-                                            setupController.dateTime=(
+                                            controller.dateTime=(
                                                 await  showDatePicker(context: context,
                                                       initialDate: DateTime.now(), firstDate: DateTime.utc(1980), lastDate:DateTime.now()))!;
-                                            setupController.dObController.text='${setupController.dateTime.year!}-${setupController.dateTime.month!}-${setupController.dateTime.day!}';
+                                            controller.dObController.text='${controller.dateTime.year!}-${controller.dateTime.month!}-${controller.dateTime.day!}';
                                                 },
-                                                textEditingController: setupController.dObController,
+                                                textEditingController: controller.dObController,
                                                        textInputType: TextInputType.text,
                                                        validator:(value) => 'Uncorrect Name',
                                                        label: AppTexts.date.tr,
@@ -131,14 +130,18 @@ Text(AppTexts.email.tr,
                                               style: context.theme.textTheme.headline3),
                                                SizedBox(height: AppSizes.radius10.h,),
                                             DefaultTextForm(onTap: ()async{
-                                              setupController.position=await setupController.getLatAndLang();
-                                              List<Placemark> placemarks = await placemarkFromCoordinates(setupController.position.latitude,setupController.position.longitude);
-                                              print('longitude:${setupController.position.longitude}');
-                                              print('latitude:${setupController.position.latitude}');
+                                              controller.position=await controller.getLatAndLang();
+                                              List<Placemark> placemarks = await placemarkFromCoordinates(controller.position.latitude,controller.position.longitude);
+                                              print('longitude:${controller.position.longitude}');
+                                              print('latitude:${controller.position.latitude}');
                                               print(placemarks);
-                                              setupController.locationController.text=placemarks[0].name!+","+placemarks[0].street!+","+placemarks[0].thoroughfare!;
+                                              controller.locationController.text=placemarks[0].name!;
+                                              controller.location1Controller.text=placemarks[0].street!;
+                                              controller.location2Controller.text=placemarks[0].thoroughfare!;
+
+                                              controller.locationController.text=controller.locationController.text+","+controller.location1Controller.text+","+controller.location2Controller.text;
                                             },
-                                                textEditingController: setupController.locationController,
+                                                textEditingController: controller.locationController,
                                                        textInputType: TextInputType.text,
                                                        validator:(value) => 'Uncorrect Name',
                                                        label: AppTexts.location.tr,
@@ -152,15 +155,16 @@ Text(AppTexts.email.tr,
                   SizedBox(height: AppSizes.sizedBox36.h,),
                   MaterialButton(
                     onPressed: () {
-                      setupController.setup(
-                          firstName:setupController.firstNameController.text ,
-                          lastName: setupController.lastNameController.text,
-                          email: setupController.emailController.text,
-                          dob: setupController.dObController.text,
-                          address: setupController.locationController.text,
+                      controller.setUpAccount(
+                          firstName:controller.firstNameController.text ,
+                          lastName: controller.lastNameController.text,
+                          email: controller.emailController.text,
+                          dateOfBirth: controller.dObController.text,
+                          address: controller.locationController.text,addressLine2: controller.location2Controller.text,
+                        addressLine1: controller.location1Controller.text, phoneNumber: '01122444', image: ''
 
                       );
-                      Get.offAllNamed(RoutesClass.getLayoutRoute());
+
                     },
                     padding: EdgeInsets.all(20),
                     color: AppColors.primaryColor,
@@ -174,8 +178,6 @@ Text(AppTexts.email.tr,
               ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

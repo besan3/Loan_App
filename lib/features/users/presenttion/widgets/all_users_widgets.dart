@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,10 @@ AllUsersWidget(this.allUsers);
             subtitle: Text(allUsers.data[index].phone_number,style: context.theme.textTheme.headline2,),
           ),
         ),
-      ),
+      ),*/
+/**//*
+
     );
   }
 }
+*/

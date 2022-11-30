@@ -1,16 +1,29 @@
+import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/core/app_texts/app_texts.dart';
 import 'package:loan_app/core/errors/exceptions.dart';
+import 'package:loan_app/core/errors/fauilers.dart';
+import 'package:loan_app/core/usecases/usecases.dart';
 import 'package:loan_app/features/users/data/models/all_users_model.dart';
 import 'package:loan_app/features/users/data/repositories/all_users_repositoryImp.dart';
+import 'package:loan_app/features/users/domain/entities/all_users.dart';
+import 'package:loan_app/features/users/domain/entities/all_users_data.dart';
 import 'package:loan_app/features/users/domain/usecases/get_all_users_usecase.dart';
+import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
 
-class AllUsersController extends GetxController{
+import '../../../../core/states/views_states.dart';
+
+class AllUsersController extends GetxController with StateMixin<AllUsersModel>{
 final GetAllUsersUseCase? getAllUsersUseCase;
-final AllUsersRepositoryImp? usersModel;
-final AllUsersModel? allUsersModel;
-AllUsersController({required this.getAllUsersUseCase,this.usersModel,this.allUsersModel});
+AllUsersModel allUsersModel=AllUsersModel(data: []);
+ViewState<AllUsersModel> viewState =
+ViewState(state: ResponseState.empty);
+AllUsersController({required this.getAllUsersUseCase});
 
-
+void setViewState(ViewState<AllUsersModel> viewState) {
+  this.viewState = viewState;
+  update();
+}
   @override
   void onInit() {
    getUsers();
@@ -19,12 +32,29 @@ AllUsersController({required this.getAllUsersUseCase,this.usersModel,this.allUse
   void onReady() {
  //  getUsers();
   }
+int index=0;
+NoParams noParams=NoParams();
+  Future getUsers()async{
+  //setViewState(ViewState.loading());
+    change(allUsersModel,status: RxStatus.loading());
+var response= await getAllUsersUseCase?.call(noParams);
 
-   getUsers()async{
-var response= await getAllUsersUseCase?.call();
 print(response);
-response?.fold((l) => response, (r) => ServerException());
-update();
+response?.fold((l) {ConnectionFailure();
+//setViewState(ViewState.error(l.toString()));
+
+change(allUsersModel,status: RxStatus.error());
+} , (r) {
+
+  allUsersModel.data =r.data;
+
+  //setViewState(ViewState.complete());
+ update();
+    change(allUsersModel,status: RxStatus.success());
+
+
+} );
+//update();
   }
 
 

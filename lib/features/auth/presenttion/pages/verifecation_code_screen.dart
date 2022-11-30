@@ -78,7 +78,7 @@ LogInController verificationController=Get.find();
                           height: AppSizes.sizedBox36.h,
                         ),
                         MaterialButton(onPressed:(){
-                           verificationController.verificationCode(
+                           verificationController.logIn(
                             phoneNumber: phone,
                              code: verificationController.codeController.text, );
                         },padding: EdgeInsets.all(20),

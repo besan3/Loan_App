@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/core/routes/routes.dart';
 import 'package:loan_app/features/home/presenttion/controller/homeController.dart';
 import 'package:loan_app/features/users/presenttion/pages/users_screen.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: (){
-                          Get.to(UsersScreen());
+                          Get.toNamed(RoutesClass.users);
 
                           },
                         child: Text(AppTexts.view.tr,style: context.theme.textTheme.headline2?.copyWith(color: AppColors.primaryColor)),
