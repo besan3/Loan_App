@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -47,16 +49,37 @@ class PersonalDetailsScreen extends GetView<EditProfileController> {
                         radius: AppSizes.radius50.r,
                         backgroundColor: Colors.grey.shade400,
                         child: Stack(
+                          alignment: AlignmentDirectional.bottomEnd,
                           children: [
+                          GetBuilder<EditProfileController>(builder: (controller){
+                            if(controller.image==null){
+                              return SizedBox();
+                            }else {
+                              return  ClipRRect(
+                                borderRadius:BorderRadius.circular(AppSizes.radius50.r) ,
 
+                            child: Image.file(File(controller.image!.path),
+
+                              ),
+                          );
+                            }
+                          }),
                             IconButton(
-                              onPressed: () => controller.pickImg(),
-                              icon: Image.asset(
-                                AppImages.camera,
-                                width: AppSizes.radius15.w,
-                                height: AppSizes.radius15.h,
+                              onPressed: () {
+                                controller.pickImg();
+
+                              },
+                              icon:CircleAvatar(
+                                radius: AppSizes.radius10*2.r,
+                                backgroundColor: Colors.grey.shade400,
+                                child: Image.asset(
+                                  AppImages.camera,
+                                  width: AppSizes.radius15.w,
+                                  height: AppSizes.radius15.h,
+                                ),
                               ),
                             ),
+
                           ],
                         ),
                       ),
@@ -90,11 +113,11 @@ class PersonalDetailsScreen extends GetView<EditProfileController> {
                                 height: AppSizes.containerheight.h,
                                 child: DefaultTextForm(
                                     textEditingController:
-                                        TextEditingController(),
+                                        controller.fNameController,
                                     textInputType: TextInputType.text,
                                     validator: (String? value) {
                                       if(value!.isEmpty) {
-                                        return 'Enter your email address';
+                                        return 'Enter your First Name';
                                       }
                                     },
                                     label: AppTexts.first_name.tr),
@@ -104,7 +127,7 @@ class PersonalDetailsScreen extends GetView<EditProfileController> {
                                 height: AppSizes.containerheight.h,
                                 child: DefaultTextForm(
                                     textEditingController:
-                                        TextEditingController(),
+                                       controller.lNameController,
                                     textInputType: TextInputType.text,
                                     validator: (value) => 'Uncorrect Name',
                                     label: AppTexts.last_name.tr),
@@ -122,7 +145,7 @@ class PersonalDetailsScreen extends GetView<EditProfileController> {
                             height: AppSizes.sizedBox10.h,
                           ),
                           DefaultTextForm(
-                              textEditingController: TextEditingController(),
+                              textEditingController: controller.emailController,
                               textInputType: TextInputType.emailAddress,
                               validator: (value) => 'Uncorrect Name',
                               label: AppTexts.email.tr),
@@ -196,7 +219,17 @@ class PersonalDetailsScreen extends GetView<EditProfileController> {
                               image: controller.imageController.text,
                               date_of_birth: controller.dObController.text,
                              ),
-                      child:Text(AppTexts.save_changes.tr,style: context.theme.textTheme.headline5,),
+                      child:Obx(
+                        (){
+                          if(controller.isLoading.value){
+                            return Center(child: CircularProgressIndicator(),);
+
+                          }else{
+                            return  Text(AppTexts.save_changes.tr,style: context.theme.textTheme.headline5,);
+
+                          }
+                        }
+                     ),
                         //onLoading: Center(child: CircularProgressIndicator()),
 
                       ),

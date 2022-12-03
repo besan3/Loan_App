@@ -23,8 +23,12 @@ void main() async{
   if(isSaved!=null){
     if(EndPoints.token!=null) {
       startWidget = RoutesClass.getLayoutRoute();
-    }else startWidget=RoutesClass.getLoginRoute();
-  }else startWidget=RoutesClass.getOnboardingRoute();
+    }else {
+      startWidget=RoutesClass.getLoginRoute();
+    }
+  }else {
+    startWidget=RoutesClass.getOnboardingRoute();
+  }
 
 
 

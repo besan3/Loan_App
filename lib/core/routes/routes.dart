@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:loan_app/features/auth/presenttion/bindings/auth_bindings.dart';
 import 'package:loan_app/features/edit_profile/presenttion/bindings/edit_profile_binding.dart';
+import 'package:loan_app/features/request/presenttion/bindings/payment_binding.dart';
 import 'package:loan_app/features/setting/presenttion/pages/settingsScreen.dart';
 import 'package:loan_app/features/transactions/presenttion/binding/transaction_binding.dart';
 import 'package:loan_app/features/users/presenttion/binding/all_users_binding.dart';
@@ -49,7 +50,7 @@ class RoutesClass {
     GetPage(name: login, page: () => LoginScreen(),binding: AuthBinding()),
   //  GetPage(name: setup, page: () =>  SetupAccountScreen(''),binding: AuthBinding()),
  //   GetPage(name: verification, page: () => VerificationScreen()),
-    GetPage(name: request, page: ()=>PaymentScreen()),
+    GetPage(name: request, page: ()=>PaymentScreen(),binding: PaymentBinding()),
    // GetPage(name: profile, page: ()=>ProfileScreen(),binding: EditProfileBinding()),
     GetPage(name: addCreditor, page: ()=>AddCreditorScreen(),bindings: [
       TransactionBinding()

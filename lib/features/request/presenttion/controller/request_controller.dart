@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loan_app/features/request/data/models/payment_model.dart';
+import 'package:loan_app/features/request/domain/usecases/pay_loan_usecase.dart';
 
+import '../../../../core/errors/fauilers.dart';
 import '../../api/request_api.dart';
 
 class RequestController extends GetxController{
@@ -9,37 +12,43 @@ class RequestController extends GetxController{
   TextEditingController deadline=TextEditingController();
   TextEditingController amount=TextEditingController();
   TextEditingController note=TextEditingController();
-RequestApi requestApi=RequestApi();
+  PayLoanUseCase payLoanUseCase;
+  PaymentModel paymentModel=PaymentModel(message: '', success: false);
+  RequestController({ required this.payLoanUseCase});
 late DateTime dateTime;
-void addDebitor({
-  required String phoneNumber,
-  required String deadLine,
-  required String amount,
-  required String note,
-})async{
- var response=await requestApi.addDebtor(phoneNumber: phoneNumber, deadLine: deadLine, amount: amount, note: note) ;
- if(response.statusCode==200){
-   Get.snackbar('Add Debtor', 'success');
- }
-  else{
-   Get.snackbar('Add Debtor', 'failed',backgroundColor: Colors.red);
+bool isLoading=false;
+  startLoading() {
+    isLoading = true;
+    update();
+  }
 
- }
-}
+  endLoading() {
+    isLoading = false;
+    update();
+  }
   void pay({
-    required String phoneNumber,
+    required String phone,
 
     required String amount,
     required String note,
   })async{
-    var response=await requestApi.pay(phoneNumber: phoneNumber,amount: amount, note: note) ;
-    if(response.statusCode==200){
-      Get.snackbar('Payment', 'success');
-    }
-    else{
-      Get.snackbar('Payment', 'failed',backgroundColor: Colors.red);
+    startLoading();
+    var response=await payLoanUseCase.call(phone, amount, note);
+    print(response);
+    response.fold(
+            (l) {
+              endLoading();
+          Get.snackbar('Status',paymentModel.message);
+          ConnectionFailure();
 
+        }, (r) {
+      endLoading();
+      print(response);
+      paymentModel.success=r.success;
+      paymentModel.message=r.message;
+      Get.snackbar('Status',paymentModel.message);
     }
+    );endLoading();
   }
 
 }

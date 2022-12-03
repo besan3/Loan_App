@@ -10,14 +10,12 @@ import '../../../../core/widgets/shared_widgets.dart';
 
 import '../../../../core/app_texts/app_texts.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends GetView<RequestController> {
   const PaymentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RequestController>(
-        init: RequestController(),
-        builder: (requestcontroller) => Scaffold(
+    return Scaffold(
               backgroundColor: AppColors.primaryColor,
               appBar: AppBar(
                 elevation: 0,
@@ -55,7 +53,7 @@ class PaymentScreen extends StatelessWidget {
                                   ),
                                   DefaultTextForm(
                                       textEditingController:
-                                          requestcontroller.phoneNumber,
+                                          controller.phoneNumber,
                                       textInputType: TextInputType.phone,
                                       validator: (value) => 'Uncorrect Name',
                                       label: AppTexts.enter_phone.tr),
@@ -70,7 +68,7 @@ class PaymentScreen extends StatelessWidget {
                                   ),
                                   DefaultTextForm(
                                       textEditingController:
-                                          requestcontroller.amount,
+                                          controller.amount,
                                       textInputType: TextInputType.text,
                                       validator: (value) => 'Uncorrect Name',
                                       label: '1.200',
@@ -86,7 +84,7 @@ class PaymentScreen extends StatelessWidget {
                                   ),
                                   DefaultTextForm(
                                       textEditingController:
-                                          requestcontroller.note,
+                                          controller.note,
                                       textInputType: TextInputType.text,
                                       validator: (value) => 'Uncorrect Name',
                                       label: AppTexts.note.tr,
@@ -98,13 +96,19 @@ class PaymentScreen extends StatelessWidget {
                                   MaterialButton(
                                     color: AppColors.primaryColor,
                                     onPressed: () {
-                                      requestcontroller.pay(
-                                          phoneNumber: requestcontroller
+                                      controller.pay(
+                                          phone: controller
                                               .phoneNumber.text,
-                                          amount: requestcontroller.amount.text,
-                                          note: requestcontroller.note.text);
+                                          amount: controller.amount.text,
+                                          note: controller.note.text);
                                     },
-                                    child: Text(AppTexts.confirm.tr),
+                                    child: GetBuilder<RequestController>(
+                                        builder:(controller) {
+                                          if(controller.isLoading){
+                                            return Center(child: CircularProgressIndicator(),);}
+                                          else{
+                                          return Text(AppTexts.confirm.tr);
+                                        }}),
                                   )
 /*
                                                          DefaultButton( text:AppTexts.confirm.tr,screen: RoutesClass.getProfileRoute())
@@ -117,6 +121,6 @@ class PaymentScreen extends StatelessWidget {
                       ),
                     ),
                   ])),
-            ));
+            );
   }
 }

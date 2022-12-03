@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -6,9 +8,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:loan_app/features/edit_profile/data/models/edit_profile_model.dart';
 import 'package:loan_app/features/edit_profile/domain/entities/edit_profile_data.dart';
 import 'package:loan_app/features/edit_profile/domain/usecases/edit_profile_usecase.dart';
+import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
 
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/errors/fauilers.dart';
+import 'dart:io';
 
 class EditProfileController extends GetxController with StateMixin{
   EditProfileUseCase editProfileUseCase;
@@ -26,7 +30,10 @@ class EditProfileController extends GetxController with StateMixin{
   late Position position;
   late DateTime dateTime;
   ImagePicker picker = ImagePicker();
+  var isLoading=false.obs;
+
   XFile? image;
+  UsersStates state=UsersStates.loading;
   @override
   void onInit() {
     getPosition();
@@ -79,39 +86,32 @@ class EditProfileController extends GetxController with StateMixin{
 
   }
       )async{
+    isLoading(true);
     var response=await editProfileUseCase.call(image: image, first_name: first_name, last_name: last_name, email: email, date_of_birth: date_of_birth, address: address, address_line1: address_line1, address_line2: address_line2);
-  //  change(response,status: RxStatus.loading());
+    isLoading(false);
 response.fold((l) {
   ConnectionFailure();
   Get.snackbar('status', 'fail',backgroundColor: Colors.red);
-  change(response,status: RxStatus.error());
   }, (r) {
   editProfileModel.data=r.data;
+  state=UsersStates.success;
+
   Get.snackbar('status', 'success');
-  change(response,status: RxStatus.success());
 });
     print(response);
 
 
   }
-
+final imagepicker=ImagePicker();
   Future pickImg()async{
 
-      image = await picker.pickImage(source: ImageSource.gallery);
-   update();
+      image = await imagepicker.pickImage(source: ImageSource.gallery);
+      if(image!=null){
+        image=XFile(image!.path);
+      }
+update();
 
   }
-/*
-  File? image;
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if(image == null) return;
-      final imageTemp = File(image.path,);
-      update(() => this.image = imageTemp);
-    } on PlatformException catch(e) {
-      print('Failed to pick image: $e');
-    }
-  }*/
+
 
 }

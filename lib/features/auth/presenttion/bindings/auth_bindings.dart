@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loan_app/core/network/network_info.dart';
+import 'package:loan_app/features/auth/data/datasources/local_data_source.dart';
 import 'package:loan_app/features/auth/data/datasources/remote_data_sources.dart';
 import 'package:loan_app/features/auth/data/repositories/auth_repositoryImp.dart';
 import 'package:loan_app/features/auth/domain/repositories/auth_repository.dart';
@@ -21,18 +22,19 @@ class AuthBinding implements Bindings {
     Get.put<InternetConnectionChecker>(InternetConnectionChecker());
     Get.put<NetworkInfo>(NetworkInfoImp(connectionChecker: Get.find()));
 
-    Get.put(AuthRepositoryImp(
+    Get.put(AuthRepositoryImp( authLocalDataSource: AuthLocalImp(),
         authRemoteDataSource: Get.find(), networkInfo: Get.find()));
     Get.put(
       LogInController(
         requestCodeUseCase: RequestCodeUseCase(
           authRepository: AuthRepositoryImp(
-              authRemoteDataSource: AuthRemoteImp(dio: Dio()),
+              authRemoteDataSource: AuthRemoteImp(dio: Dio()), authLocalDataSource: AuthLocalImp(),
               networkInfo: NetworkInfoImp(connectionChecker: Get.find())),
         ),
         loginUseCase: LoginUseCase(
           authRepository:AuthRepositoryImp(
               authRemoteDataSource: AuthRemoteImp(dio: Dio()),
+              authLocalDataSource: AuthLocalImp(),
               networkInfo: NetworkInfoImp(connectionChecker: Get.find())),
         )
       ),
@@ -42,7 +44,7 @@ class AuthBinding implements Bindings {
           setUpUseCase: SetUpUseCase(
             authRepository: AuthRepositoryImp(
                 authRemoteDataSource: AuthRemoteImp(dio: Dio()),
-                networkInfo: NetworkInfoImp(connectionChecker: Get.find())),
+                networkInfo: NetworkInfoImp(connectionChecker: Get.find()), authLocalDataSource: AuthLocalImp()),
           ),
 
       ),

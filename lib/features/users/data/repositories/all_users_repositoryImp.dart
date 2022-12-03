@@ -5,6 +5,7 @@ import 'package:loan_app/core/network/network_info.dart';
 import 'package:loan_app/features/users/data/datasources/all_users_remote_data_source.dart';
 import 'package:loan_app/features/users/domain/repositories/all_users_repository.dart';
 
+import '../../../../core/errors/exceptions.dart';
 import '../../domain/entities/all_users.dart';
 import '../datasources/all_users_local_datasource.dart';
 
@@ -23,15 +24,21 @@ class AllUsersRepositoryImp implements AllUsersRepository{
     if(await networkInfo.isConnected){
       try{
         final response=await usersRemoteDataSource.getAllUsers();
-      // usersLocalDataSource.cacheUsers(response);
+       usersLocalDataSource.cacheUsers(response);
         return Right(response);
       }on DioError{
         return Left(ServerFailure());
       }
+    }else{
+      try {
+        final localUsers = await usersLocalDataSource.getCachedUsers();
+        return Right(localUsers);
+      } on EmptyCacheException {
+        return Left(EmptyCacheFailure());
+      }
     }
 
 
-   return Left(ConnectionFailure());
   }
 
 

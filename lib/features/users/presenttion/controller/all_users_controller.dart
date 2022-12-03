@@ -19,7 +19,7 @@ AllUsersModel allUsersModel=AllUsersModel(data: []);
 ViewState<AllUsersModel> viewState =
 ViewState(state: ResponseState.empty);
 AllUsersController({required this.getAllUsersUseCase});
-
+UsersStates intialState=UsersStates.loading;
 void setViewState(ViewState<AllUsersModel> viewState) {
   this.viewState = viewState;
   update();

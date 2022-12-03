@@ -2,10 +2,10 @@ import 'package:equatable/equatable.dart';
 
 class RequestCodeEntity extends Equatable{
 
-   int data;
+   int? data;
 
   RequestCodeEntity({
-    required this.data,
+     this.data,
 
 
 });

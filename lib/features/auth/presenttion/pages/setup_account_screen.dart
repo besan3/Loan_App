@@ -169,8 +169,18 @@ Text(AppTexts.email.tr,
                     padding: EdgeInsets.all(20),
                     color: AppColors.primaryColor,
                     minWidth: double.infinity,
-                    child: Text(
-                      AppTexts.continuebutton.tr,
+                    child: GetBuilder<SetUpController>(
+                      builder: (controller) {
+    switch(controller.isLoading)
+    {
+    case true:
+    return const Center(child: CircularProgressIndicator());
+      default:
+        return Text(
+          AppTexts.continuebutton.tr,
+        );
+    }
+                      },
                     ),
                   ),
 

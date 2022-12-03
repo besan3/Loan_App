@@ -125,7 +125,13 @@ class AddDebtorScreen extends GetView<TransactionController> {
                                       amount: controller.amount.text,
                                       note: controller.note.text);
                                 },
-                                child: Text(AppTexts.confirm.tr),
+                                child: Obx((){
+                                  if(controller.isLoading.value){
+                                    return Center(child: CircularProgressIndicator(),);
+                                  }else{
+                                    return Text(AppTexts.confirm.tr);
+                                  }
+                                }),
                               )
 /*
                                                          DefaultButton( text:AppTexts.confirm.tr,screen: RoutesClass.getProfileRoute())

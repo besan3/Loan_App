@@ -4,8 +4,9 @@ import 'package:loan_app/features/transactions/data/models/transaction_model.dar
 import 'package:loan_app/features/transactions/domain/usecases/add_debt_usecase.dart';
 
 import '../../../../core/errors/fauilers.dart';
+import '../../../users/presenttion/controller/all_users_states.dart';
 
-class TransactionController extends GetxController{
+class TransactionController extends GetxController {
   TransactionUseCase transactionUseCase;
   TransactionModel transactionModel=TransactionModel(success: false);
   TransactionController({required this.transactionUseCase});
@@ -14,7 +15,14 @@ class TransactionController extends GetxController{
   TextEditingController amount=TextEditingController();
   TextEditingController note=TextEditingController();
   late DateTime dateTime;
+  var isLoading = false.obs;
 
+  UsersStates initialState=UsersStates.loading;
+  changState(){
+    initialState=UsersStates.success;
+    update();
+
+  }
   void transaction(
       {
         required String phoneNumber,
@@ -23,20 +31,24 @@ class TransactionController extends GetxController{
         required String note,
       }
       )async{
+    isLoading(true);
     var response=await transactionUseCase.call(phoneNumber, amount, deadLine, note);
     print(response);
-    response.fold((l) {
+    isLoading(false);
+    response.fold(
+            (l) {
       Get.snackbar('Status','Fail');
       ConnectionFailure();
 
-      // change(requestCodeModel,status: RxStatus.loading());
     }, (r) {
       print(response);
       transactionModel.success=r.success;
       Get.snackbar('Status','success');
+     // change(transactionModel,status: RxStatus.loading());
+    }
+    );
+
+}
 
 
-
-    });
-
-}}
+  }

@@ -11,113 +11,116 @@ import 'package:loan_app/features/layout/presenttion/pages/layout.dart';
 import '../../../../core/errors/fauilers.dart';
 import '../../../../core/routes/routes.dart';
 
-
-class SetUpController extends GetxController{
+class SetUpController extends GetxController {
   SetUpUseCase setUpUseCase;
+
   SetUpController({required this.setUpUseCase});
-  SetUpModel setUpModel=SetUpModel(data:SetUpData(image: '',email: '',address: '',addressLine1: '',addressLine2: '',dateOfBirth: '',firstName: '',lastName: '',phoneNumber: ''));
-  var firstNameController=TextEditingController();
-  var lastNameController=TextEditingController();
-  var emailController=TextEditingController();
-  var dObController=TextEditingController();
-  var locationController=TextEditingController();
-  var location1Controller=TextEditingController();
-  var location2Controller=TextEditingController();
+
+  SetUpModel setUpModel = SetUpModel(
+      data: SetUpData(
+          image: '',
+          email: '',
+          address: '',
+          addressLine1: '',
+          addressLine2: '',
+          dateOfBirth: '',
+          firstName: '',
+          lastName: '',
+          phoneNumber: ''));
+  var firstNameController = TextEditingController();
+  var lastNameController = TextEditingController();
+  var emailController = TextEditingController();
+  var dObController = TextEditingController();
+  var locationController = TextEditingController();
+  var location1Controller = TextEditingController();
+  var location2Controller = TextEditingController();
   Dio dio = Dio();
   late Position position;
   late DateTime dateTime;
-@override
+  bool isLoading = false;
+
+  @override
   void onInit() {
     getPosition();
     super.onInit();
   }
 
-  Future getPosition()async{
-  bool services;
-  LocationPermission per;
-  services=await Geolocator.isLocationServiceEnabled();
-  if(!services){
-    Get.defaultDialog(
-content: Text('Location Service not Enabled '),
-     title: 'services',
-titleStyle:TextStyle(
-  color: AppColors.primaryTextColor
-)
-    );
+  startLoading() {
+    isLoading = true;
+    update();
   }
-  print(services);
-per=await Geolocator.checkPermission();
-if(per==LocationPermission.denied){
-  per=await Geolocator.requestPermission();
-  if(per==LocationPermission.always||per==LocationPermission.whileInUse){
-    getLatAndLang();
-   /* print("latitude:${position.latitude}");
+
+  endLoading() {
+    isLoading = false;
+    update();
+  }
+
+  Future getPosition() async {
+    bool services;
+    LocationPermission per;
+    services = await Geolocator.isLocationServiceEnabled();
+    if (!services) {
+      Get.defaultDialog(
+          content: Text('Location Service not Enabled '),
+          title: 'services',
+          titleStyle: TextStyle(color: AppColors.primaryTextColor));
+    }
+    print(services);
+    per = await Geolocator.checkPermission();
+    if (per == LocationPermission.denied) {
+      per = await Geolocator.requestPermission();
+      if (per == LocationPermission.always ||
+          per == LocationPermission.whileInUse) {
+        getLatAndLang();
+        /* print("latitude:${position.latitude}");
     print("longitude:${position.longitude}");*/
+      }
+    }
+    print(per);
   }
-}
-print(per);
+
+  Future<Position> getLatAndLang() async {
+    return position = await Geolocator.getCurrentPosition().then((value) {
+      return value;
+    });
   }
-Future<Position> getLatAndLang()async{
-return position= await Geolocator.getCurrentPosition().then((value) {
-  return value;
-});
-
-
-}
 
   void setUpAccount(
-      {required String phoneNumber,
-        required String firstName,
-        required String lastName,
-        required String email,
-        required String dateOfBirth,
-        required String addressLine1,
-        required String addressLine2,
-        required String address,
-        required String image}
-      )async{
-    var response=await setUpUseCase.call(phoneNumber, firstName, lastName, email, dateOfBirth, address, addressLine1, addressLine2, image);
+      {
+        required String phoneNumber,
+      required String firstName,
+      required String lastName,
+      required String email,
+      required String dateOfBirth,
+      required String addressLine1,
+      required String addressLine2,
+      required String address,
+      required String image
+      }) async {
+    startLoading();
+    var response = await setUpUseCase.call(phoneNumber, firstName, lastName,
+        email, dateOfBirth, address, addressLine1, addressLine2, image);
     print(response);
     response.fold((l) {
-      Get.snackbar('Status','Fail');
+      Get.snackbar('Status', 'Fail');
       ConnectionFailure();
 
       // change(requestCodeModel,status: RxStatus.loading());
     }, (r) {
       print(response);
-      setUpModel.data=r.data;
-      Get.snackbar('Status','success');
-      Get.offAll(HomeLayout());
-
-
+      setUpModel.data = r.data;
+      if (r.data == null) {
+        endLoading();
+        Get.snackbar('Status', 'enter required fields',
+            backgroundColor: Colors.red);
+      } else {
+        endLoading();
+        Get.snackbar('Status', 'success');
+        Get.offAll(HomeLayout());
+      }
     });
-
-
+    endLoading(); Get.offAll(HomeLayout());
   }
-/*  void setup({
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String dob,
-    required String address,
-    required String address1,
-    required String address2,
-
-
-  }) async {
-  var response=await setUpApi.setup(firstName: firstName, lastName: lastName, email: email, dob: dob, address: address,address1: address1,address2: address2);
-    if(response.statusCode ==200 ) {
-
-      Get.snackbar('true', 'true');
-      print(response);
-    }else {
-      Get.snackbar('Error', ' Something error ',backgroundColor: Colors.red);
-    }
-
-  }*/
-
-
-
 
 
 }

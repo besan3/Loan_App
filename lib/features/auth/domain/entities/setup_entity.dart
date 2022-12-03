@@ -1,13 +1,15 @@
 import 'package:equatable/equatable.dart';
 
-class SetUpEntity extends Equatable{
-  SetUpData data;
-  SetUpEntity({required this.data});
+class SetUpEntity extends Equatable {
+  SetUpData? data;
+
+  SetUpEntity({this.data});
 
   @override
   List<Object?> get props => [data];
 }
-class SetUpData extends Equatable{
+
+class SetUpData extends Equatable {
   String? phoneNumber;
   String firstName;
   String lastName;
@@ -17,8 +19,9 @@ class SetUpData extends Equatable{
   String addressLine2;
   String address;
   String? image;
+
   SetUpData({
-     this.phoneNumber,
+    this.phoneNumber,
     required this.firstName,
     required this.lastName,
     required this.email,
@@ -26,12 +29,31 @@ class SetUpData extends Equatable{
     required this.addressLine1,
     required this.addressLine2,
     required this.address,
-     this.image,
-});
+    this.image,
+  });
+
   @override
-
-  List<Object?> get props => [phoneNumber,firstName,lastName,email,dateOfBirth,addressLine1,addressLine2,address,image];
-
-
+  List<Object?> get props => [
+        phoneNumber,
+        firstName,
+        lastName,
+        email,
+        dateOfBirth,
+        addressLine1,
+        addressLine2,
+        address,
+        image
+      ];
 }
 
+class SetUpParams {
+  String? phone_number;
+  String? fName;
+  String? lName;
+  String? email;
+  String? dob;
+  String? address;
+  String? address1;
+  String? address2;
+  String? image;
+}

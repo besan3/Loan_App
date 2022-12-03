@@ -72,7 +72,8 @@ class AuthRemoteImp implements AuthRemoteDataSource {
       required String addressLine1,
       required String addressLine2,
       required String address,
-      required String image}) async {
+      required String image
+      }) async {
     var response = await dio.post(EndPoints.SIGNUP, data: {
       'phone_number': phoneNumber,
       'first_name': firstName,
