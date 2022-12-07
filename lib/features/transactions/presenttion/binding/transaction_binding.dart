@@ -13,22 +13,12 @@ import '../../../../core/network/network_info.dart';
 class TransactionBinding extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut(() => NetworkInfoImp(connectionChecker: Get.find()));
-    Get.lazyPut(() => InternetConnectionChecker());
     Get.lazyPut<TransactionRemoteDataSource>(() => TransactionRemoteImp(dio: Get.find()));
-    Get.lazyPut(()=>Dio());
-    Get.lazyPut(()=>InternetConnectionChecker());
-    Get.lazyPut(()=>NetworkInfoImp(connectionChecker: Get.find()));
-    Get.lazyPut(()=>TransactionRepositoryImp( transactionRemoteDataSource: Get.find(), networkInfo: Get.find()));
-   // Get.put<TransactionUseCase>(TransactionUseCase(transactionsRepository: Get.find()));
-    Get.lazyPut(() =>TransactionUseCase(transactionsRepository: Get.find()));
+    Get.lazyPut<TransactionsRepository>(()=>TransactionRepositoryImp( transactionRemoteDataSource: Get.find(), networkInfo: Get.find()));
+    Get.lazyPut<TransactionUseCase>(() =>TransactionUseCase(transactionsRepository: Get.find()));
     Get.put(
       TransactionController(
-        transactionUseCase: TransactionUseCase(
-          transactionsRepository: TransactionRepositoryImp(
-              transactionRemoteDataSource: TransactionRemoteImp(dio: Dio()),
-              networkInfo: NetworkInfoImp(connectionChecker: Get.find())),
-        ),
+        transactionUseCase: Get.find()
 
       ),
     );

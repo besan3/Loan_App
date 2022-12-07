@@ -4,7 +4,7 @@ import 'package:loan_app/features/transactions/domain/entities/transaction_entit
 import '../../../../core/errors/fauilers.dart';
 
 abstract class TransactionsRepository{
-  Future<Either<Failure,TranactionEntity>> transaction(String phone,String amount,String deadline,String note);
+  Future<Either<Failure,TransactionEntity>> transaction(String phone,String amount,String deadline,String note);
 
 
 

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/core/app_texts/app_texts.dart';
 import 'package:loan_app/core/errors/exceptions.dart';
@@ -11,50 +12,84 @@ import 'package:loan_app/features/users/domain/entities/all_users_data.dart';
 import 'package:loan_app/features/users/domain/usecases/get_all_users_usecase.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
 
+import '../../../../core/app_images/app_images.dart';
 import '../../../../core/states/views_states.dart';
+import '../../../home/presenttion/pages/home_screen.dart';
+import '../../../setting/presenttion/pages/settingsScreen.dart';
 
 class AllUsersController extends GetxController with StateMixin<AllUsersModel>{
 final GetAllUsersUseCase? getAllUsersUseCase;
 AllUsersModel allUsersModel=AllUsersModel(data: []);
-ViewState<AllUsersModel> viewState =
-ViewState(state: ResponseState.empty);
 AllUsersController({required this.getAllUsersUseCase});
-UsersStates intialState=UsersStates.loading;
-void setViewState(ViewState<AllUsersModel> viewState) {
-  this.viewState = viewState;
+
+int index = 0;
+bool show=false;
+List<Widget> screens = [HomeScreen(),SettingScreen()];
+List<Widget> screensIcons = [
+  Icon(Icons.home_outlined, color: Colors.grey.shade300),
+  // Icon(Icons.add, color: Colors.grey.shade300),
+  Icon(Icons.settings_outlined, color: Colors.grey.shade300),
+];
+void showIcons(){
+
+  update();
+
+}
+List<BottomNavigationBarItem> items=[
+  BottomNavigationBarItem(
+      icon:     Icon(Icons.home_outlined, ),
+      label: 'Home'
+  ),
+  BottomNavigationBarItem(
+      icon:        Icon(Icons.settings_outlined,),
+
+      label: 'Setting'
+  ),
+
+];
+List<String> screensTitels = [
+  AppTexts.home_welcome,
+  // AppTexts.home_welcome,
+  AppTexts.my_profile
+];
+void changeScreen(int currentIndex) {
+  index = currentIndex;
   update();
 }
+
+List<String> loanIcons = [
+  AppImages.arrowIcon,
+  AppImages.arrow2Icon
+
+];
   @override
   void onInit() {
    getUsers();
   }
   @override
   void onReady() {
- //  getUsers();
   }
-int index=0;
+
 NoParams noParams=NoParams();
   Future getUsers()async{
-  //setViewState(ViewState.loading());
     change(allUsersModel,status: RxStatus.loading());
 var response= await getAllUsersUseCase?.call(noParams);
 
 print(response);
 response?.fold((l) {ConnectionFailure();
-//setViewState(ViewState.error(l.toString()));
 
 change(allUsersModel,status: RxStatus.error());
 } , (r) {
 
   allUsersModel.data =r.data;
+  allUsersModel.success =r.success;
+  allUsersModel.message =r.message;
 
-  //setViewState(ViewState.complete());
  update();
     change(allUsersModel,status: RxStatus.success());
 
 
 } );
-//update();
   }
 
 

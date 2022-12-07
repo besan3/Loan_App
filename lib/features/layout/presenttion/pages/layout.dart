@@ -10,9 +10,10 @@ import 'package:loan_app/core/routes/routes.dart';
 import 'package:loan_app/features/transactions/presenttion/binding/transaction_binding.dart';
 import 'package:loan_app/features/transactions/presenttion/pages/dedtor_view.dart';
 
+import '../../../users/presenttion/controller/all_users_controller.dart';
+
 class HomeLayout extends StatelessWidget {
   HomeLayout({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -20,7 +21,6 @@ class HomeLayout extends StatelessWidget {
         builder: (homecontroller) {
           return Scaffold(
               appBar: AppBar(
-
                 title: Text(homecontroller.screensTitels[homecontroller.index].tr),
                 actions: [
                   IconButton(

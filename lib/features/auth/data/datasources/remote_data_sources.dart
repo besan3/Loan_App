@@ -5,11 +5,12 @@ import 'package:loan_app/features/auth/data/models/setup_model.dart';
 import 'package:loan_app/features/auth/data/models/verifivation_model.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/network/cache_helper.dart';
+import '../../domain/entities/login_entity.dart';
 
 abstract class AuthRemoteDataSource {
   Future<RequestCodeModel> requestCode({required String phone_number});
 
-  Future<LoginModel> logIn({
+  Future<LogInModel> logIn({
     required String phone_number,
     required String code,
   });
@@ -23,7 +24,7 @@ abstract class AuthRemoteDataSource {
     required String addressLine1,
     required String addressLine2,
     required String address,
-    required String image,
+  //  required String image,
   });
 }
 
@@ -48,12 +49,13 @@ class AuthRemoteImp implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LoginModel> logIn(
+  Future<LogInModel> logIn(
       {required String phone_number, required String code}) async {
     var response =
-        await dio.post(EndPoints.LOGIN, data: {'phone_number': phone_number});
+        await dio.post(EndPoints.LOGIN, data: {'phone_number': phone_number,'code':code});
     if (response.statusCode == 200) {
-      LoginModel loginModel = LoginModel.fromJson(response.data);
+      print(response.toString());
+      LogInModel loginModel = LogInModel.fromJson(response.data['data']);
 
       print(loginModel);
       return loginModel;
@@ -72,8 +74,9 @@ class AuthRemoteImp implements AuthRemoteDataSource {
       required String addressLine1,
       required String addressLine2,
       required String address,
-      required String image
+    //  required String image
       }) async {
+    print(SharedPrefs().token);
     var response = await dio.post(EndPoints.SIGNUP, data: {
       'phone_number': phoneNumber,
       'first_name': firstName,
@@ -83,7 +86,7 @@ class AuthRemoteImp implements AuthRemoteDataSource {
       'address_line1': addressLine1,
       'address_line2': addressLine2,
       'address': address,
-      'image': image,
+      // 'image': image,
     },
         options: Options(
             headers: {

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,16 +7,12 @@ import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/app_sizes/app_sizes.dart';
 import 'package:loan_app/core/app_texts/app_texts.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
-import 'package:loan_app/features/auth/data/datasources/remote_data_sources.dart';
-import 'package:loan_app/features/auth/domain/repositories/auth_repository.dart';
-import 'package:loan_app/features/auth/domain/usecases/request_code_usecase.dart';
-import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
-
 import '../controller/login_controller.dart';
 
-class LoginScreen extends GetView<LogInController> {
+class LoginScreen extends StatelessWidget {
    LoginScreen({super.key});
 GlobalKey formKey=GlobalKey();
+LogInController controller=Get.find();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

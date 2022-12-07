@@ -15,6 +15,7 @@ class UsersRemoteDataSource implements AllUsersRemoteDataSource {
 });
   @override
   Future<AllUsersModel> getAllUsers()async {
+
    Response response=await dio.get('https://aseel.sirius-it.dev/api/users/all',
      options: Options(
        headers: {
@@ -24,7 +25,7 @@ class UsersRemoteDataSource implements AllUsersRemoteDataSource {
    );
    if(response.statusCode==200){
   AllUsersModel   users=AllUsersModel.fromJson((response.data));
-  print(users.data?.length);
+  print(users.data.length);
   print(users);
      return users;
 

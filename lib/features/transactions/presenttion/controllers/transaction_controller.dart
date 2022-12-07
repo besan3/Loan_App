@@ -5,10 +5,11 @@ import 'package:loan_app/features/transactions/domain/usecases/add_debt_usecase.
 
 import '../../../../core/errors/fauilers.dart';
 import '../../../users/presenttion/controller/all_users_states.dart';
+import '../../domain/entities/transaction_entity.dart';
 
 class TransactionController extends GetxController {
   TransactionUseCase transactionUseCase;
-  TransactionModel transactionModel=TransactionModel(success: false);
+  //TransactionEntity transactionModel=TransactionEntity();
   TransactionController({required this.transactionUseCase});
   TextEditingController phoneNumber=TextEditingController();
   TextEditingController deadline=TextEditingController();
@@ -18,6 +19,13 @@ class TransactionController extends GetxController {
   var isLoading = false.obs;
 
   UsersStates initialState=UsersStates.loading;
+  @override
+  void onClose(){
+    phoneNumber.dispose();
+    deadline.dispose();
+    amount.dispose();
+    note.dispose();
+  }
   changState(){
     initialState=UsersStates.success;
     update();
@@ -42,8 +50,8 @@ class TransactionController extends GetxController {
 
     }, (r) {
       print(response);
-      transactionModel.success=r.success;
-      Get.snackbar('Status','success');
+     /// transactionModel.success=r.success;
+      Get.snackbar(r.message.toString(),r.success.toString());
      // change(transactionModel,status: RxStatus.loading());
     }
     );

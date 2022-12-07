@@ -14,7 +14,7 @@ class TransactionRepositoryImp implements TransactionsRepository{
   TransactionRepositoryImp({required this.transactionRemoteDataSource,required this.networkInfo});
 
   @override
-  Future<Either<Failure, TranactionEntity>> transaction(String phone, String amount, String deadline, String note)async {
+  Future<Either<Failure, TransactionEntity>> transaction(String phone, String amount, String deadline, String note)async {
     if(await networkInfo.isConnected){
       try{
         final response=await transactionRemoteDataSource.transaction(phone, amount, deadline, note);

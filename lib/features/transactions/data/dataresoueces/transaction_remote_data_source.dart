@@ -28,6 +28,7 @@ class TransactionRemoteImp implements TransactionRemoteDataSource{
             }
         ));
     if (response.statusCode == 200) {
+      print(response.data.toString());
       TransactionModel transactionModel = TransactionModel.fromJson(response.data);
       print(transactionModel);
       return transactionModel;

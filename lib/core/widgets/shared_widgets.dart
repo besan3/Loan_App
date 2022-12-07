@@ -114,6 +114,7 @@ class DefaultTextForm extends StatelessWidget {
   bool isenable;
       bool hasPrefixIcon;
       bool filled;
+      bool readOnly;
   DefaultTextForm(
       {
         required this. textEditingController,
@@ -128,13 +129,14 @@ class DefaultTextForm extends StatelessWidget {
        this. iconDataSuffixx,
     this. isenable = true,
   this. hasPrefixIcon = false,
-      this.filled=false});
+      this.filled=false,
+      this.readOnly=false});
   @override
   Widget build(BuildContext context) {
     return     TextFormField(
       style: context.theme.textTheme.headline2?.copyWith(
         color:Get.isDarkMode?Colors.white: AppColors.primaryTextColor
-      ),textAlign:TextAlign.start,
+      ),textAlign:TextAlign.start,readOnly:readOnly ,
       controller: textEditingController,
       keyboardType: textInputType,
       onFieldSubmitted: onFieldSubmitted,

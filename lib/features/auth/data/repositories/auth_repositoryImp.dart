@@ -25,6 +25,7 @@ class AuthRepositoryImp implements AuthRepository {
       String phone_number) async {
     if (await networkInfo.isConnected) {
       try {
+
         final response =
             await authRemoteDataSource.requestCode(phone_number: phone_number);
 
@@ -44,21 +45,22 @@ class AuthRepositoryImp implements AuthRepository {
       try {
         final response = await authRemoteDataSource.logIn(
             phone_number: phone_number, code: code);
-        //authLocalDataSource.cacheLogin(response);
+        authLocalDataSource.cacheLogin(response.token??'');
+        authLocalDataSource.cacheUser(response.user.toString()??'');
 
         return Right(response);
       } on DioError {
         return Left(ServerFailure());
       }
     }
-    /*else{
-      try {
-        final localLogin = await authLocalDataSource.getCachedLogin();
-        return Right(localLogin);
-      } on EmptyCacheException {
-        return Left(EmptyCacheFailure());
-      }
-    }*/
+    // else{
+    //   try {
+    //     final localLogin = await authLocalDataSource.getCachedLogin();
+    //     return Right(localLogin);
+    //   } on EmptyCacheException {
+    //     return Left(EmptyCacheFailure());
+    //   }
+    //}
 
     return Left(ConnectionFailure());
   }
@@ -73,9 +75,11 @@ class AuthRepositoryImp implements AuthRepository {
       String address,
       String address1,
       String address2,
-      String image) async {
+     // String image
+      ) async {
     if (await networkInfo.isConnected) {
-      try {
+      // try {
+
         final response = await authRemoteDataSource.SetUp(
             phoneNumber: phone_number,
             firstName: fName,
@@ -85,12 +89,14 @@ class AuthRepositoryImp implements AuthRepository {
             addressLine1: address1,
             addressLine2: address2,
             address: address,
-            image: image);
+            //image: image
+        );
+        print(response);
 
         return Right(response);
-      } on DioError {
-        return Left(ServerFailure());
-      }
+      // } on DioError {
+      //   return Left(ServerFailure());
+      // }
     }
 
     return Left(ConnectionFailure());

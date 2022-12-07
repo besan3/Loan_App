@@ -19,6 +19,6 @@ abstract class AuthRepository {
       String address,
       String address1,
       String address2,
-      String image
+   //   String image
       );
 }

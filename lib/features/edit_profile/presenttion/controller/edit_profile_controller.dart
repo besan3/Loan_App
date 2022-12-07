@@ -7,6 +7,7 @@ import 'package:get/get.dart' hide Response;
 import 'package:image_picker/image_picker.dart';
 import 'package:loan_app/features/edit_profile/data/models/edit_profile_model.dart';
 import 'package:loan_app/features/edit_profile/domain/entities/edit_profile_data.dart';
+import 'package:loan_app/features/edit_profile/domain/entities/edit_profile_entity.dart';
 import 'package:loan_app/features/edit_profile/domain/usecases/edit_profile_usecase.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
 
@@ -17,7 +18,7 @@ import 'dart:io';
 class EditProfileController extends GetxController with StateMixin{
   EditProfileUseCase editProfileUseCase;
   EditProfileController({required this.editProfileUseCase});
-  EditProfileModel editProfileModel=EditProfileModel(data: EditProfileData(address: '',email: '',image: '',first_name: '',last_name: '',date_of_birth: '',address_line2: '',address_line1: '',phone_number: ''));
+  EditProfile editProfileModel=EditProfile(data: EditProfileData(address: '',email: '',image: '',first_name: '',last_name: '',date_of_birth: '',address_line2: '',address_line1: '',phone_number: ''));
   TextEditingController phoneController=TextEditingController();
   TextEditingController fNameController=TextEditingController();
   TextEditingController lNameController=TextEditingController();
@@ -39,7 +40,18 @@ class EditProfileController extends GetxController with StateMixin{
     getPosition();
     super.onInit();
   }
-
+  @override
+  void onClose() {
+   phoneController.dispose();
+   fNameController.dispose();
+   lNameController.dispose();
+   emailController.dispose();
+   addressController.dispose();
+   address1Controller.dispose();
+   address2Controller.dispose();
+   dObController.dispose();
+   imageController.dispose();
+  }
   Future getPosition()async{
     bool services;
     LocationPermission per;
@@ -93,7 +105,7 @@ response.fold((l) {
   ConnectionFailure();
   Get.snackbar('status', 'fail',backgroundColor: Colors.red);
   }, (r) {
-  editProfileModel.data=r.data;
+  editProfileModel=r;
   state=UsersStates.success;
 
   Get.snackbar('status', 'success');

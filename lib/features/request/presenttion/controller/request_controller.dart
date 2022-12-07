@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/features/request/data/models/payment_model.dart';
+import 'package:loan_app/features/request/domain/entities/pay_loan_entity.dart';
 import 'package:loan_app/features/request/domain/usecases/pay_loan_usecase.dart';
 
 import '../../../../core/errors/fauilers.dart';
@@ -13,7 +14,7 @@ class RequestController extends GetxController{
   TextEditingController amount=TextEditingController();
   TextEditingController note=TextEditingController();
   PayLoanUseCase payLoanUseCase;
-  PaymentModel paymentModel=PaymentModel(message: '', success: false);
+  PaymentEntity paymentModel=PaymentEntity(message: '', success: false);
   RequestController({ required this.payLoanUseCase});
 late DateTime dateTime;
 bool isLoading=false;
@@ -44,9 +45,9 @@ bool isLoading=false;
         }, (r) {
       endLoading();
       print(response);
-      paymentModel.success=r.success;
-      paymentModel.message=r.message;
-      Get.snackbar('Status',paymentModel.message);
+      // paymentModel.success=r.success;
+      // paymentModel.message=r.message;
+      Get.snackbar('Status',r.message);
     }
     );endLoading();
   }

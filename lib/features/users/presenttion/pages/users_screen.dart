@@ -1,30 +1,19 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:loan_app/core/network/network_info.dart';
-import 'package:loan_app/core/states/views_states.dart';
-import 'package:loan_app/features/users/data/datasources/all_users_remote_data_source.dart';
-import 'package:loan_app/features/users/data/repositories/all_users_repositoryImp.dart';
-import 'package:loan_app/features/users/domain/usecases/get_all_users_usecase.dart';
+import 'package:loan_app/core/app_sizes/app_sizes.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_controller.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
 import '../../../../core/app_texts/app_texts.dart';
 import '../../../../core/widgets/shared_widgets.dart';
-import '../../../home/presenttion/controller/homeController.dart';
-import '../../../home/models/home_model.dart';
-import '../../../home/presenttion/widgets/home_widget.dart';
 import '../../../loan/presenttion/pages/loan_screen.dart';
-import '../../data/datasources/all_users_local_datasource.dart';
 
-class UsersScreen extends GetView<AllUsersController> {
+class UsersScreen extends StatelessWidget{
    UsersScreen({super.key});
-
+   AllUsersController controller=Get.find();
   @override
   Widget build(BuildContext context) {
     print(controller.allUsersModel.data);
@@ -86,13 +75,14 @@ class UsersScreen extends GetView<AllUsersController> {
                               child: Card(
 
                                 child: ListTile(
+                                  contentPadding: EdgeInsets.all(AppSizes.padding20/2),
                                   leading: Image.asset(
                                     controller.allUsersModel.data[index].image??AppImages.profile,
                                     width: 65.w,
                                     height: 65.h,
                                   ),
-                               //   title: Text("${controller.allUsersModel.data[index].first_name}  ${controller.allUsersModel!.data[index].last_name}",style: context.theme.textTheme.bodyText1,),
-                                  subtitle: Text(controller.allUsersModel.data[index].phone_number,style: context.theme.textTheme.headline2,),
+                               // title: Text("${controller.allUsersModel.data[index].first_name}  ${controller.allUsersModel!.data[index].last_name}",style: context.theme.textTheme.bodyText1,),
+                                  title: Text(controller.allUsersModel.data[index].phone_number!,style: context.theme.textTheme.headline2,),
                                 ),
                               ),
                             ),

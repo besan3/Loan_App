@@ -16,7 +16,7 @@ class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
-      init: HomeController(),
+
       builder:(notificationscontroller) =>  Scaffold(
        
         appBar: AppBar(

@@ -18,9 +18,9 @@ class SetUpUseCase {
       String address,
       String address1,
       String address2,
-      String image
+      //String image
       ) {
     return authRepository.SetUp(phone_number, fName, lName, email, dob, address,
-        address1, address2, image);
+        address1, address2);
   }
 }

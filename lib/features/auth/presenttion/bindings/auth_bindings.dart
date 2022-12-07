@@ -15,40 +15,27 @@ import 'package:loan_app/features/auth/presenttion/controller/setup_controller.d
 class AuthBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => AuthRemoteImp(dio: Dio()));
-    Get.lazyPut(() => NetworkInfoImp(connectionChecker: Get.find()));
-    Get.lazyPut(() => InternetConnectionChecker());
-    Get.put<AuthRemoteDataSource>(AuthRemoteImp(dio: Dio()));
-    Get.put<InternetConnectionChecker>(InternetConnectionChecker());
-    Get.put<NetworkInfo>(NetworkInfoImp(connectionChecker: Get.find()));
-
-    Get.put(AuthRepositoryImp( authLocalDataSource: AuthLocalImp(),
-        authRemoteDataSource: Get.find(), networkInfo: Get.find()));
+    Get.lazyPut(() => AuthRemoteImp(dio: Get.find()));
+    Get.lazyPut<AuthRemoteDataSource>(()=>AuthRemoteImp(dio: Get.find()));
+    Get.lazyPut<AuthLocalDataSource>(()=>AuthLocalImp());
+    Get.lazyPut<AuthRepository>(()=>AuthRepositoryImp(
+        authLocalDataSource:Get.find(),
+        authRemoteDataSource: Get.find(), networkInfo: Get.find()
+    ));
+    Get.lazyPut(() => RequestCodeUseCase(authRepository: Get.find()));
+    Get.lazyPut(() => LoginUseCase(authRepository: Get.find()));
+    Get.lazyPut(() => SetUpUseCase(authRepository: Get.find()));
     Get.put(
       LogInController(
-        requestCodeUseCase: RequestCodeUseCase(
-          authRepository: AuthRepositoryImp(
-              authRemoteDataSource: AuthRemoteImp(dio: Dio()), authLocalDataSource: AuthLocalImp(),
-              networkInfo: NetworkInfoImp(connectionChecker: Get.find())),
-        ),
-        loginUseCase: LoginUseCase(
-          authRepository:AuthRepositoryImp(
-              authRemoteDataSource: AuthRemoteImp(dio: Dio()),
-              authLocalDataSource: AuthLocalImp(),
-              networkInfo: NetworkInfoImp(connectionChecker: Get.find())),
-        )
+        requestCodeUseCase: Get.find(),
+        loginUseCase: Get.find()
       ),
     );
     Get.put(
       SetUpController(
-          setUpUseCase: SetUpUseCase(
-            authRepository: AuthRepositoryImp(
-                authRemoteDataSource: AuthRemoteImp(dio: Dio()),
-                networkInfo: NetworkInfoImp(connectionChecker: Get.find()), authLocalDataSource: AuthLocalImp()),
+          setUpUseCase: Get.find(),
           ),
 
-      ),
-    );
-
+      );
   }
 }

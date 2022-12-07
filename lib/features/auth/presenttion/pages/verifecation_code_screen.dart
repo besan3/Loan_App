@@ -59,15 +59,6 @@ LogInController verificationController=Get.find();
                             fillColor: AppColors.primaryColor,
                             showFieldAsBox: true,
                             onSubmit: (String verificationCode){
-                              showDialog(
-                                  context: context,
-                                  builder: (context){
-                                    return AlertDialog(
-                                      title: Text(AppTexts.verification_code),
-                                      content: Text('Code entered is $verificationCode'),
-                                    );
-                                  }
-                              );
                               verificationController.codeController.text=verificationCode;
                             }, // end onSubmit
                           ),
@@ -77,30 +68,39 @@ LogInController verificationController=Get.find();
                         SizedBox(
                           height: AppSizes.sizedBox36.h,
                         ),
-                        MaterialButton(onPressed:(){
-                           verificationController.logIn(
-                            phoneNumber: phone,
-                             code: verificationController.codeController.text, );
-                        },padding: EdgeInsets.all(20),
-                          color: AppColors.primaryColor,
-                          minWidth: double.infinity,
-                          child: Text(AppTexts.continuebutton.tr,),),
+                        GetBuilder<LogInController>(
+                        builder:(verificationController)=> MaterialButton(onPressed:(){
+                          print(phone);
+                            print(verificationController.codeController.text);
+                             verificationController.logIn(
+                              phoneNumber: phone,
+                               code: verificationController.codeController.text, );
+                          },padding: EdgeInsets.all(20),
+                            color: AppColors.primaryColor,
+                            minWidth: double.infinity,
+                            child: Text(AppTexts.continuebutton.tr,),),
+                        ),
                         /*DefaultButton( text:AppTexts.continuebutton.tr,
                           screen: RoutesClass.getSetupAccountRoute()),*/
                         SizedBox(
                           height: 29.h,
                         ),
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                              text: AppTexts.not_received.tr,
-                              style: context.theme.textTheme.subtitle1),
-                          TextSpan(
-                              text: AppTexts.resend.tr,
-                              style: context.theme.textTheme.subtitle1?.copyWith(
-                                color: AppColors.primaryColor
-                              ))
-                        ]))
+                        InkWell(
+                          onTap: (){
+                            verificationController.requestLoginCode(phoneNumber: verificationController.phoneController.text);
+                          },
+                          child: RichText(
+                              text: TextSpan(children: [
+                            TextSpan(
+                                text: AppTexts.not_received.tr,
+                                style: context.theme.textTheme.subtitle1),
+                            TextSpan(
+                                text: AppTexts.resend.tr,
+                                style: context.theme.textTheme.subtitle1?.copyWith(
+                                  color: AppColors.primaryColor
+                                ))
+                          ])),
+                        )
                       ],
                     ),
                   ),

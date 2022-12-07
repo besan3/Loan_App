@@ -5,6 +5,7 @@ import 'package:loan_app/features/onboarding/presenttion/controllers/onboarding_
 import 'package:loan_app/core/colors/app_colors.dart';
 import 'package:loan_app/core/routes/routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../../../core/network/cache_helper.dart';
 import '../../../../core/widgets/shared_widgets.dart';
 import '../../../../core/app_texts/app_texts.dart';
 import '../widgets/onboarding_widget.dart';
@@ -14,14 +15,14 @@ class OnBoarding_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   /* void submit() {
+    void submit() {
       SharedPrefs.saveData(key: 'onBoarding', value: true).then(((value) {
         if (value = true) {
           Get.offAndToNamed(RoutesClass.getLoginRoute());
 
         }
       }));
-    }*/
+    }
 
     return GetBuilder<OnBoardingController>(
         init: OnBoardingController(),
@@ -34,7 +35,7 @@ class OnBoarding_Screen extends StatelessWidget {
                   TextButton(
                       onPressed: () {
                         Get.toNamed(RoutesClass.getLoginRoute());
-                        //submit();
+                        submit();
                       },
                       child: Text(
                           AppTexts.skip.tr,
@@ -78,8 +79,17 @@ class OnBoarding_Screen extends StatelessWidget {
                         : Padding(
                             padding:
                                  EdgeInsets.symmetric(horizontal: 20.0.w),
-                            child: DefaultButton(text: AppTexts.get_started.tr,
-                                screen: RoutesClass.getLoginRoute()),
+                            child:
+                            MaterialButton(
+    onPressed: (){
+      submit();
+      Get.offAllNamed(RoutesClass.getLoginRoute());
+    },
+    color: AppColors.primaryColor,
+    child: Text(AppTexts.get_started.tr),
+    )
+                            /*DefaultButton(text: AppTexts.get_started.tr,
+                                screen: RoutesClass.getLoginRoute()),*/
                           ),
                   )
                 ],

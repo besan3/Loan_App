@@ -13,10 +13,10 @@ import '../../../../core/routes/routes.dart';
 
 class SetUpController extends GetxController {
   SetUpUseCase setUpUseCase;
-
+  static SetUpController get to =>Get.find();
   SetUpController({required this.setUpUseCase});
 
-  SetUpModel setUpModel = SetUpModel(
+  SetUpEntity setUpModel = SetUpEntity(
       data: SetUpData(
           image: '',
           email: '',
@@ -43,6 +43,18 @@ class SetUpController extends GetxController {
   void onInit() {
     getPosition();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    dObController.dispose();
+    locationController.dispose();
+    location1Controller.dispose();
+    location2Controller.dispose();
+
   }
 
   startLoading() {
@@ -95,11 +107,12 @@ class SetUpController extends GetxController {
       required String addressLine1,
       required String addressLine2,
       required String address,
-      required String image
+     // required String image
       }) async {
-    startLoading();
+    // startLoading();
+
     var response = await setUpUseCase.call(phoneNumber, firstName, lastName,
-        email, dateOfBirth, address, addressLine1, addressLine2, image);
+        email, dateOfBirth, address, addressLine1, addressLine2);
     print(response);
     response.fold((l) {
       Get.snackbar('Status', 'Fail');
@@ -108,7 +121,7 @@ class SetUpController extends GetxController {
       // change(requestCodeModel,status: RxStatus.loading());
     }, (r) {
       print(response);
-      setUpModel.data = r.data;
+      setUpModel = r;
       if (r.data == null) {
         endLoading();
         Get.snackbar('Status', 'enter required fields',
@@ -119,7 +132,7 @@ class SetUpController extends GetxController {
         Get.offAll(HomeLayout());
       }
     });
-    endLoading(); Get.offAll(HomeLayout());
+    endLoading();
   }
 
 

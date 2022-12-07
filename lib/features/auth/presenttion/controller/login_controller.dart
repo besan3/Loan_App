@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/core/errors/fauilers.dart';
+import 'package:loan_app/features/auth/data/datasources/local_data_source.dart';
 import 'package:loan_app/features/auth/data/models/request_code_model.dart';
 import 'package:loan_app/features/auth/data/models/verifivation_model.dart';
 import 'package:loan_app/features/auth/domain/entities/login_entity.dart';
@@ -14,6 +15,8 @@ import 'package:loan_app/features/auth/domain/entities/request_code_entity.dart'
 import 'package:loan_app/features/auth/domain/usecases/login_usecase.dart';
 import 'package:loan_app/features/auth/domain/usecases/request_code_usecase.dart';
 import 'package:loan_app/features/auth/presenttion/pages/setup_account_screen.dart';
+import 'package:loan_app/features/home/presenttion/bindings/home_binding.dart';
+import 'package:loan_app/features/layout/presenttion/pages/layout.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
 import '../../../../core/network/cache_helper.dart';
 import '../../../../core/routes/routes.dart';
@@ -25,7 +28,10 @@ class LogInController extends GetxController with StateMixin<RequestCodeEntity>{
   RequestCodeUseCase requestCodeUseCase;
   LoginUseCase loginUseCase;
   RequestCodeEntity requestCodeModel=RequestCodeEntity(data: 0);
-  LoginModel loginModel=LoginModel(data: Data(user: User()));
+  LogInModel logInEntity=LogInModel(
+    user: User()
+  );
+ // LoginModel loginModel=LoginModel(data: Data(user: User()));
   LogInController({required this.requestCodeUseCase,required this.loginUseCase});
   bool isLoading = false;
   Dio dio = Dio();
@@ -35,7 +41,12 @@ UsersStates initialState=UsersStates.loading;
   void onInit() {
     super.onInit();
   }
+@override
+  void onClose() {
+    phoneController.dispose();
+    codeController.dispose();
 
+  }
   @override
   void onReady() {
     super.onReady();
@@ -86,7 +97,7 @@ initialState=UsersStates.error;endLoading();
     required String code,
   }
       )async{
-    var response=await loginUseCase.call( phoneNumber,code);
+    final response=await loginUseCase.call( phoneNumber,code);
     print(response);
     response.fold((l) {
       Get.snackbar('Status','Fail');
@@ -95,9 +106,13 @@ initialState=UsersStates.error;endLoading();
      // change(requestCodeModel,status: RxStatus.loading());
     }, (r) {
       print(response);
-      loginModel.data=r.data;
+      // logInEntity=r;
+      logInEntity.user=r.user;
+      logInEntity.token=r.token;
+      logInEntity.draft=r.draft;
       Get.snackbar('Status','success');
-      Get.to(SetupAccountScreen(phoneNumber));
+      Get.to(logInEntity.user!=null?HomeLayout():SetupAccountScreen(phoneNumber),);
+
 
 
     });

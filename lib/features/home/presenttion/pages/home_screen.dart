@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loan_app/core/routes/routes.dart';
 import 'package:loan_app/features/home/presenttion/controller/homeController.dart';
+import 'package:loan_app/features/users/presenttion/controller/all_users_controller.dart';
 import 'package:loan_app/features/users/presenttion/pages/users_screen.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/app_sizes/app_sizes.dart';
@@ -14,12 +15,12 @@ import '../../models/home_model.dart';
 import '../widgets/home_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+// AllUsersController controller=Get.find();
   @override
   Widget build(BuildContext context) {
 
     return GetBuilder<HomeController>(
-      builder: (homecontroller)=>SafeArea(
+      builder: (controller)=>SafeArea(
           top: true,
           minimum: EdgeInsets.only(top: 30.h),
           child:

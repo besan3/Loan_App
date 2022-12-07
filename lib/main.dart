@@ -18,7 +18,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefs().init();
   bool? isSaved=SharedPrefs.getDta( key: 'onBoarding');
-  EndPoints.token=SharedPrefs.getString( 'token').toString();
+ // EndPoints.token=SharedPrefs.getString( 'token').toString();
   String? startWidget;
   if(isSaved!=null){
     if(EndPoints.token!=null) {
@@ -32,14 +32,14 @@ void main() async{
 
 
 
-  runApp(  MyApp(startWidget));
+  runApp(  MyApp(isSaved));
   SettingController().onInit();
 }
 
 class MyApp extends StatelessWidget {
-  String? startWidget;
+  bool? isSaved;
 
-  MyApp(this.startWidget);
+  MyApp(this.isSaved);
   @override
   Widget build(BuildContext context) {
     SettingController localController=Get.put(SettingController());
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         theme: AppThemes().CustomLightTheme,
        darkTheme: AppThemes().CustomDarkTheme,
        themeMode: localController.themeMode,
-       initialRoute: startWidget,
+       initialRoute: isSaved!=true?RoutesClass.onboarding:RoutesClass.login,
         getPages: RoutesClass().routes,
 
       ),

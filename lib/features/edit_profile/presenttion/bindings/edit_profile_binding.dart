@@ -11,21 +11,10 @@ import 'package:loan_app/features/edit_profile/presenttion/controller/edit_profi
 class EditProfileBinding extends Bindings{
   @override
   void dependencies() {
- /*   Get.lazyPut(() => EditProfileController(editProfileUseCase: EditProfileUseCase(
-      repository: Get.find(),
-
-    )));*/
-
-    Get.put(EditProfileController(editProfileUseCase:EditProfileUseCase(
-      repository: EditProfileRepositpryImp(
-        remoteDataSource: EditProfileRemoteImp(dio: Dio()),
-        networkInfo: NetworkInfoImp(
-          connectionChecker: InternetConnectionChecker()
-        )
-      )
-    )));
-    /*Get.put(EditProfileUseCase(repository: Get.find()));
-    Get.put(EditProfileRemoteImp(dio: Dio()));*/
+    Get.lazyPut<EditProfileUseCase>(() => EditProfileUseCase(repository: Get.find()));
+    Get.lazyPut<EditProfileRepository>(() => EditProfileRepositpryImp(remoteDataSource: Get.find(),networkInfo: Get.find()));
+    Get.lazyPut<EditProfileRemoteDataSource>(() => EditProfileRemoteImp(dio: Get.find()));
+    Get.put(EditProfileController(editProfileUseCase:Get.find()));
 
   }
 

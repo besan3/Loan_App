@@ -29,14 +29,14 @@ class OnBoardingItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '${onboardingModel.title}',
+                '${onboardingModel.title.tr}',
                 style: context.theme.textTheme.bodyText1,
               ),
               SizedBox(
                 height: 14.h,
               ),
               Text(
-                '${onboardingModel.description}',
+                '${onboardingModel.description.tr}',
                 style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 18.sp,

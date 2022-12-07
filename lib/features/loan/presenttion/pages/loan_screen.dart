@@ -20,7 +20,6 @@ class LoanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
-      init: HomeController(),
       builder: (loancontroller)=>
       Scaffold(
         backgroundColor: AppColors.primaryColor,

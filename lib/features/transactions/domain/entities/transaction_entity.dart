@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class TranactionEntity extends Equatable{
+class TransactionEntity extends Equatable{
   bool success;
-  TranactionEntity({required this.success});
+  String message;
+  TransactionEntity({required this.success,required this.message});
   @override
 
-  List<Object?> get props => [success];
+  List<Object?> get props => [success,message];
 
 
 

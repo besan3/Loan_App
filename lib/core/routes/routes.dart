@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:loan_app/features/auth/presenttion/bindings/auth_bindings.dart';
 import 'package:loan_app/features/edit_profile/presenttion/bindings/edit_profile_binding.dart';
+import 'package:loan_app/features/home/presenttion/bindings/home_binding.dart';
 import 'package:loan_app/features/request/presenttion/bindings/payment_binding.dart';
 import 'package:loan_app/features/setting/presenttion/pages/settingsScreen.dart';
 import 'package:loan_app/features/transactions/presenttion/binding/transaction_binding.dart';
@@ -46,16 +47,15 @@ class RoutesClass {
   List<GetPage> routes = [
     GetPage(name: splash, page: () => SplashScreen()),
     GetPage(name: onboarding, page: () => OnBoarding_Screen()),
-    //GetPage(name: layout, page: () => HomeLayout()),
+    GetPage(name: layout, page: () => HomeLayout()),
     GetPage(name: login, page: () => LoginScreen(),binding: AuthBinding()),
-  //  GetPage(name: setup, page: () =>  SetupAccountScreen(''),binding: AuthBinding()),
- //   GetPage(name: verification, page: () => VerificationScreen()),
+   GetPage(name: setup, page: () =>  SetupAccountScreen(''),binding: AuthBinding()),
     GetPage(name: request, page: ()=>PaymentScreen(),binding: PaymentBinding()),
-   // GetPage(name: profile, page: ()=>ProfileScreen(),binding: EditProfileBinding()),
+   GetPage(name: profile, page: ()=>ProfileScreen(),binding: EditProfileBinding()),
     GetPage(name: addCreditor, page: ()=>AddCreditorScreen(),bindings: [
       TransactionBinding()
     ]),
-    //GetPage(name: addDebtor, page: ()=>AddDebtorScreen(),binding: TransactionBinding()),
+    GetPage(name: addDebtor, page: ()=>AddDebtorScreen(),binding: TransactionBinding()),
     GetPage(name: users, page: ()=>UsersScreen(),binding: AllUsersBinding()),
     GetPage(name: setting, page: ()=>SettingScreen(),binding: EditProfileBinding()),
 
