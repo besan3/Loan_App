@@ -6,6 +6,7 @@ import 'package:loan_app/features/home/presenttion/controller/homeController.dar
 import 'package:loan_app/features/notifications/presenttion/widgets/notification_widget.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
+import 'package:loan_app/features/users/presenttion/controller/all_users_controller.dart';
 import '../../../../core/app_texts/app_texts.dart';
 import '../../data/models/notification_model.dart';
 
@@ -15,7 +16,8 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
+
+    return GetBuilder<AllUsersController>(
 
       builder:(notificationscontroller) =>  Scaffold(
        

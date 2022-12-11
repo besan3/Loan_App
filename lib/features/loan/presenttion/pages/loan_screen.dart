@@ -7,6 +7,7 @@ import 'package:loan_app/features/home/presenttion/controller/homeController.dar
 import 'package:loan_app/features/loan/data/models/loan_model.dart';
 import 'package:loan_app/features/loan/presenttion/widgets/loan_card_widget.dart';
 import 'package:loan_app/core/app_images/app_images.dart';
+import 'package:loan_app/features/users/presenttion/controller/all_users_controller.dart';
 import '../../../../core/widgets/shared_widgets.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
 import 'package:loan_app/core/routes/routes.dart';
@@ -19,7 +20,7 @@ class LoanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
+    return GetBuilder<AllUsersController>(
       builder: (loancontroller)=>
       Scaffold(
         backgroundColor: AppColors.primaryColor,

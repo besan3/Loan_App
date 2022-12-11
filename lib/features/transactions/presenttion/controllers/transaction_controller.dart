@@ -6,11 +6,13 @@ import 'package:loan_app/features/transactions/domain/usecases/add_debt_usecase.
 import '../../../../core/errors/fauilers.dart';
 import '../../../users/presenttion/controller/all_users_states.dart';
 import '../../domain/entities/transaction_entity.dart';
+import '../../domain/usecases/add_cred_usecase.dart';
 
 class TransactionController extends GetxController {
-  TransactionUseCase transactionUseCase;
+  TransactionDrUseCase transactionUseCase;
+  TransactionCrUseCase transactionCrUseCase;
   //TransactionEntity transactionModel=TransactionEntity();
-  TransactionController({required this.transactionUseCase});
+  TransactionController({required this.transactionUseCase,required this.transactionCrUseCase});
   TextEditingController phoneNumber=TextEditingController();
   TextEditingController deadline=TextEditingController();
   TextEditingController amount=TextEditingController();
@@ -31,7 +33,7 @@ class TransactionController extends GetxController {
     update();
 
   }
-  void transaction(
+  void transactionDr(
       {
         required String phoneNumber,
         required String deadLine,
@@ -56,6 +58,31 @@ class TransactionController extends GetxController {
     }
     );
 
+}
+void transactionCr(
+      {
+        required String phoneNumber,
+        required String deadLine,
+        required String amount,
+        required String note,
+      }
+      )async{
+    isLoading(true);
+    var response=await transactionCrUseCase.call(phoneNumber, amount, deadLine, note);
+    print(response);
+    isLoading(false);
+    response.fold(
+            (l) {
+      Get.snackbar('Status','Fail');
+      ConnectionFailure();
+
+    }, (r) {
+      print(response);
+     /// transactionModel.success=r.success;
+      Get.snackbar(r.message.toString(),r.success.toString());
+     // change(transactionModel,status: RxStatus.loading());
+    }
+    );
 }
 
 

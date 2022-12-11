@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:loan_app/core/errors/fauilers.dart';
+import 'package:loan_app/core/network/cache_helper.dart';
 import 'package:loan_app/core/network/network_info.dart';
 import 'package:loan_app/features/users/data/datasources/all_users_remote_data_source.dart';
 import 'package:loan_app/features/users/domain/repositories/all_users_repository.dart';
@@ -24,6 +25,7 @@ class AllUsersRepositoryImp implements AllUsersRepository{
     if(await networkInfo.isConnected){
       try{
         final response=await usersRemoteDataSource.getAllUsers();
+        SharedPrefs().cacheUsers(response);
        usersLocalDataSource.cacheUsers(response);
         return Right(response);
       }on DioError{
@@ -31,7 +33,8 @@ class AllUsersRepositoryImp implements AllUsersRepository{
       }
     }else{
       try {
-        final localUsers = await usersLocalDataSource.getCachedUsers();
+        final localUsers = await SharedPrefs().getCachedUsers() ;
+        //usersLocalDataSource.getCachedUsers()
         return Right(localUsers);
       } on EmptyCacheException {
         return Left(EmptyCacheFailure());

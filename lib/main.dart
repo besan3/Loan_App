@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder:
       (context , child)=> GetMaterialApp(
-        initialBinding: MainBinding(),
+        initialBinding: AllUsersBinding(),
         debugShowCheckedModeBanner: false,
      locale: localController.initialLang,
         translations: MyLocal(),

@@ -5,6 +5,9 @@ import 'package:loan_app/core/app_texts/app_texts.dart';
 import 'package:loan_app/core/errors/exceptions.dart';
 import 'package:loan_app/core/errors/fauilers.dart';
 import 'package:loan_app/core/usecases/usecases.dart';
+import 'package:loan_app/features/home/data/models/card_model.dart';
+import 'package:loan_app/features/home/domain/entities/card_entity.dart';
+import 'package:loan_app/features/home/domain/usecases/get_card_usecase.dart';
 import 'package:loan_app/features/users/data/models/all_users_model.dart';
 import 'package:loan_app/features/users/data/repositories/all_users_repositoryImp.dart';
 import 'package:loan_app/features/users/domain/entities/all_users.dart';
@@ -19,8 +22,10 @@ import '../../../setting/presenttion/pages/settingsScreen.dart';
 
 class AllUsersController extends GetxController with StateMixin<AllUsersModel>{
 final GetAllUsersUseCase? getAllUsersUseCase;
+final GetCardDataUseCase? getCardDataUseCase;
 AllUsersModel allUsersModel=AllUsersModel(data: []);
-AllUsersController({required this.getAllUsersUseCase});
+CardEntity cardEntity=CardEntity(data: CardData(nearCreditor: NearCreditor(),nearDebitor: NearCreditor()));
+AllUsersController({required this.getAllUsersUseCase,required this.getCardDataUseCase});
 
 int index = 0;
 bool show=false;
@@ -35,6 +40,7 @@ void showIcons(){
   update();
 
 }
+var dateTime = DateTime.parse(DateTime.now().toString());
 List<BottomNavigationBarItem> items=[
   BottomNavigationBarItem(
       icon:     Icon(Icons.home_outlined, ),
@@ -64,6 +70,7 @@ List<String> loanIcons = [
 ];
   @override
   void onInit() {
+    getCard();
    getUsers();
   }
   @override
@@ -92,6 +99,22 @@ change(allUsersModel,status: RxStatus.error());
 } );
   }
 
+Future getCard()async{
+ // change(allUsersModel,status: RxStatus.loading());
+  var response= await getCardDataUseCase?.call();
 
+  print(response);
+  response?.fold((l) {ConnectionFailure();
+
+  change(allUsersModel,status: RxStatus.error());
+  } , (r) {
+    cardEntity=r;
+
+    update();
+    change(allUsersModel,status: RxStatus.success());
+
+
+  } );
+}
 
 }

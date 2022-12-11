@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_notifier.dart';
 import 'package:loan_app/core/app_sizes/app_sizes.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
+import 'package:loan_app/features/layout/presenttion/pages/layout.dart';
 import 'package:loan_app/features/transactions/presenttion/controllers/transaction_controller.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
@@ -14,7 +15,7 @@ import '../../../../core/widgets/shared_widgets.dart';
 import '../../../../core/app_texts/app_texts.dart';
 
 class AddCreditorScreen extends GetView<TransactionController> {
-  GlobalKey formKey=GlobalKey<FormState>();
+  final formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -59,7 +60,10 @@ class AddCreditorScreen extends GetView<TransactionController> {
                                     textEditingController:
                                     controller.phoneNumber,
                                     textInputType: TextInputType.phone,
-                                    validator: (value) => 'Uncorrect Name',
+                                    validator: (String? value) {
+                                      if(value!.length<9){
+                                        return 'Phone number is too short';
+                                    }},
                                     label: AppTexts.enter_phone.tr),
                                 SizedBox(
                                   height: AppSizes.sizedBox15.h,
@@ -79,7 +83,11 @@ class AddCreditorScreen extends GetView<TransactionController> {
                                     textEditingController:
                                     controller.deadline,
                                     textInputType: TextInputType.text,
-                                    validator: (value) => 'Uncorrect Name',
+                                    validator: (String? value){
+                                      if(value!.isEmpty) {
+                                        return 'Enter The deadline';
+                                      }
+                                    },
                                     label: 'dd/mm/yyyy',
                                     hasPrefixIcon: true,
                                     iconData: Icons.calendar_month_outlined),
@@ -95,7 +103,11 @@ class AddCreditorScreen extends GetView<TransactionController> {
                                     textEditingController:
                                     controller.amount,
                                     textInputType: TextInputType.text,
-                                    validator: (value) => 'Uncorrect Name',
+                                    validator: (String? value){
+                                      if(value!.isEmpty) {
+                                        return 'Enter the amount';
+                                      }
+                                    },
                                     label: '1.200',
                                     hasPrefixIcon: true,
                                     iconData: Icons.monetization_on_outlined),
@@ -114,7 +126,7 @@ class AddCreditorScreen extends GetView<TransactionController> {
                                     validator: (String? value) {
                                       value=controller.note.text;
                           if(value!.isEmpty) {
-                          return 'Enter your email address';
+                          return '';
                           }
                           },
                                     label: AppTexts.note.tr,
@@ -128,14 +140,15 @@ class AddCreditorScreen extends GetView<TransactionController> {
                                 MaterialButton(
                                   color: AppColors.primaryColor,
                                   onPressed: () {
-
-                                    controller.transaction(
+                               if(formKey.currentState!.validate()) {
+                                 controller.transactionCr(
                                         phoneNumber: controller
                                             .phoneNumber.text,
                                         deadLine:
                                         controller.deadline.text,
                                         amount: controller.amount.text,
                                         note: controller.note.text);
+                               }
                                   },
                                   child:
 Obx((){

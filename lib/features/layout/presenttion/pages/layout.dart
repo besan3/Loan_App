@@ -8,24 +8,25 @@ import 'package:loan_app/core/app_images/app_images.dart';
 import 'package:loan_app/core/colors/app_colors.dart';
 import 'package:loan_app/core/routes/routes.dart';
 import 'package:loan_app/features/transactions/presenttion/binding/transaction_binding.dart';
+import 'package:loan_app/features/transactions/presenttion/pages/creditor_view.dart';
 import 'package:loan_app/features/transactions/presenttion/pages/dedtor_view.dart';
+import 'package:loan_app/features/users/presenttion/controller/all_users_controller.dart';
 
-import '../../../users/presenttion/controller/all_users_controller.dart';
+class HomeLayout extends GetView<AllUsersController> {
 
-class HomeLayout extends StatelessWidget {
-  HomeLayout({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      init: HomeController(),
+
+    return GetBuilder<AllUsersController>(
         builder: (homecontroller) {
+         // controller.getUsers();
           return Scaffold(
               appBar: AppBar(
                 title: Text(homecontroller.screensTitels[homecontroller.index].tr),
                 actions: [
                   IconButton(
                       onPressed: () {
-                        Get.to(NotificationsScreen());
+                        Get.to(const NotificationsScreen());
                       },
                       icon: Image.asset(AppImages.notification))
                 ],
@@ -52,7 +53,7 @@ animationDuration: Duration.zero,
                 items: [
                   CircularMenuItem(onTap: (){
 
-                    Get.toNamed(RoutesClass.getAddCreditorRoute());
+                    Get.to(AddDebtorScreen(),binding: TransactionBinding());
                   },icon:Icons.arrow_downward,color: Colors.red,boxShadow: [ BoxShadow(
                     color: Colors.grey.shade500,
                     blurRadius: 5,
@@ -60,7 +61,7 @@ animationDuration: Duration.zero,
                   ),
                   CircularMenuItem(onTap: (){
 
-                    Get.to(AddDebtorScreen(),binding: TransactionBinding());
+                    Get.to(AddCreditorScreen(),binding: TransactionBinding());
 
                   },icon:Icons.arrow_upward,color: Colors.green,boxShadow: [ BoxShadow(
                     color: Colors.grey.shade500,

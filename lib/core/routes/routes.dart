@@ -47,7 +47,7 @@ class RoutesClass {
   List<GetPage> routes = [
     GetPage(name: splash, page: () => SplashScreen()),
     GetPage(name: onboarding, page: () => OnBoarding_Screen()),
-    GetPage(name: layout, page: () => HomeLayout()),
+    GetPage(name: layout, page: () => HomeLayout(),binding: AllUsersBinding()),
     GetPage(name: login, page: () => LoginScreen(),binding: AuthBinding()),
    GetPage(name: setup, page: () =>  SetupAccountScreen(''),binding: AuthBinding()),
     GetPage(name: request, page: ()=>PaymentScreen(),binding: PaymentBinding()),

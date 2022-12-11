@@ -13,7 +13,7 @@ import '../../../setting/presenttion/pages/settingsScreen.dart';
 import '../../../users/data/repositories/all_users_repositoryImp.dart';
 import '../../../users/domain/usecases/get_all_users_usecase.dart';
 
-class HomeController extends GetxController with StateMixin<AllUsers> {
+class HomeController extends GetxController {
  // final GetAllUsersUseCase getAllUsersUseCase;
    AllUsers allUsersModel=AllUsers(data: []);
   HomeController();

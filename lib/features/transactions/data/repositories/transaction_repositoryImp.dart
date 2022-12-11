@@ -14,10 +14,10 @@ class TransactionRepositoryImp implements TransactionsRepository{
   TransactionRepositoryImp({required this.transactionRemoteDataSource,required this.networkInfo});
 
   @override
-  Future<Either<Failure, TransactionEntity>> transaction(String phone, String amount, String deadline, String note)async {
+  Future<Either<Failure, TransactionEntity>> transactionDr(String phone, String amount, String deadline, String note)async {
     if(await networkInfo.isConnected){
       try{
-        final response=await transactionRemoteDataSource.transaction(phone, amount, deadline, note);
+        final response=await transactionRemoteDataSource.transactionDr(phone, amount, deadline, note);
 
         return Right(response);
       }on DioError{
@@ -28,6 +28,22 @@ class TransactionRepositoryImp implements TransactionsRepository{
 
     return Left(ConnectionFailure());
   }
+  @override
+  Future<Either<Failure, TransactionEntity>> transactionCr(String phone, String amount, String deadline, String note)async {
+    if(await networkInfo.isConnected){
+      try{
+        final response=await transactionRemoteDataSource.transactionCr(phone, amount, deadline, note);
+
+        return Right(response);
+      }on DioError{
+        return Left(ServerFailure());
+      }
+    }
+
+
+    return Left(ConnectionFailure());
+  }
+
 
 
 

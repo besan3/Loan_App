@@ -4,12 +4,12 @@ import 'package:loan_app/features/transactions/domain/repositories/transactions_
 import '../../../../core/errors/fauilers.dart';
 import '../entities/transaction_entity.dart';
 
-class TransactionUseCase{
+class TransactionDrUseCase{
 TransactionsRepository transactionsRepository;
-TransactionUseCase({required this.transactionsRepository});
+TransactionDrUseCase({required this.transactionsRepository});
 
 Future<Either<Failure,TransactionEntity>> call(String phone,String amount,String deadline,String note){
-return transactionsRepository.transaction(phone, amount, deadline, note);
+return transactionsRepository.transactionDr(phone, amount, deadline, note);
 
 }
 

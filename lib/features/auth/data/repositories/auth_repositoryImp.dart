@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:loan_app/core/errors/fauilers.dart';
+import 'package:loan_app/core/network/cache_helper.dart';
 import 'package:loan_app/core/network/network_info.dart';
 import 'package:loan_app/features/auth/data/datasources/local_data_source.dart';
 import 'package:loan_app/features/auth/data/datasources/remote_data_sources.dart';
@@ -45,8 +46,10 @@ class AuthRepositoryImp implements AuthRepository {
       try {
         final response = await authRemoteDataSource.logIn(
             phone_number: phone_number, code: code);
-        authLocalDataSource.cacheLogin(response.token??'');
-        authLocalDataSource.cacheUser(response.user.toString()??'');
+        SharedPrefs().cacheLogin(response.token??'');
+
+        // authLocalDataSource.cacheLogin(response.token??'');
+
 
         return Right(response);
       } on DioError {

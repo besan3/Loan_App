@@ -1,4 +1,12 @@
+import 'dart:convert';
+
+import 'package:dartz/dartz.dart';
+import 'package:loan_app/features/home/data/models/card_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../features/auth/data/models/verifivation_model.dart';
+import '../../features/users/data/models/all_users_model.dart';
+import '../errors/exceptions.dart';
 
 class SharedPrefs {
 
@@ -50,6 +58,45 @@ class SharedPrefs {
   }
   Future<bool> saveToken(String token)async {
      return await _sharedPrefs.setString('token', token);
+  }
+  static const CACHED_USERS = "CACHED_USERS";
+  static const CACHED_CARD = "CACHED_CARD";
+  Future<Unit> cacheUsers(AllUsersModel allUsers) {
+    SharedPrefs.setString(CACHED_USERS, json.encode(allUsers.toJson()));
+    return Future.value(unit);
+  }
+  Future<Unit> cacheCard(CardModel cardModel) {
+    SharedPrefs.setString(CACHED_USERS, json.encode(cardModel.toJson()));
+    return Future.value(unit);
+  }
+  Future<AllUsersModel> getCachedUsers() {
+    final jsonString = SharedPrefs.getString(CACHED_USERS);
+    if (jsonString != null) {
+      return Future.value(AllUsersModel.fromJson(json.decode(jsonString)));
+    } else {
+      throw EmptyCacheException();
+    }
+  }
+  Future<CardModel> getCachedCard() {
+    final jsonString = SharedPrefs.getString(CACHED_CARD);
+    if (jsonString != null) {
+      return Future.value(CardModel.fromJson(json.decode(jsonString)));
+    } else {
+      throw EmptyCacheException();
+    }
+  }
+  static const token_key = "token";
+  Future<Unit> cacheLogin(String token) {
+    SharedPrefs.setString(token_key,token );
+    return Future.value(unit);
+  }
+  Future<LogInModel> getCachedLogin() {
+    final jsonString = SharedPrefs.getString(token_key);
+    if (jsonString != null) {
+      return Future.value(LogInModel.fromJson(json.decode(jsonString)));
+    } else {
+      throw EmptyCacheException();
+    }
   }
   String get theme=>_sharedPrefs?.getString('theme')??'system';
 

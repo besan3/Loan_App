@@ -8,6 +8,7 @@ import 'package:loan_app/features/auth/data/models/setup_model.dart';
 import 'package:loan_app/features/auth/domain/entities/setup_entity.dart';
 import 'package:loan_app/features/auth/domain/usecases/setup_usecase.dart';
 import 'package:loan_app/features/layout/presenttion/pages/layout.dart';
+import 'package:loan_app/features/users/presenttion/binding/all_users_binding.dart';
 import '../../../../core/errors/fauilers.dart';
 import '../../../../core/routes/routes.dart';
 
@@ -129,7 +130,7 @@ class SetUpController extends GetxController {
       } else {
         endLoading();
         Get.snackbar('Status', 'success');
-        Get.offAll(HomeLayout());
+        Get.offAll(HomeLayout(),binding: AllUsersBinding());
       }
     });
     endLoading();

@@ -17,6 +17,7 @@ import 'package:loan_app/features/auth/domain/usecases/request_code_usecase.dart
 import 'package:loan_app/features/auth/presenttion/pages/setup_account_screen.dart';
 import 'package:loan_app/features/home/presenttion/bindings/home_binding.dart';
 import 'package:loan_app/features/layout/presenttion/pages/layout.dart';
+import 'package:loan_app/features/users/presenttion/binding/all_users_binding.dart';
 import 'package:loan_app/features/users/presenttion/controller/all_users_states.dart';
 import '../../../../core/network/cache_helper.dart';
 import '../../../../core/routes/routes.dart';
@@ -101,6 +102,7 @@ initialState=UsersStates.error;endLoading();
     print(response);
     response.fold((l) {
       Get.snackbar('Status','Fail');
+
       ConnectionFailure();
 
      // change(requestCodeModel,status: RxStatus.loading());
@@ -111,7 +113,8 @@ initialState=UsersStates.error;endLoading();
       logInEntity.token=r.token;
       logInEntity.draft=r.draft;
       Get.snackbar('Status','success');
-      Get.to(logInEntity.user!=null?HomeLayout():SetupAccountScreen(phoneNumber),);
+      logInEntity.user!=null?Get.offAll(HomeLayout()):
+      Get.to(SetupAccountScreen(phoneNumber),);
 
 
 
